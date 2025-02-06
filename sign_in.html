@@ -3,82 +3,31 @@
 
 <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="style.css" href="https://fonts.googleapis.com/css?family=Cinzel">
-    <title>Luxaltura - Sign in</title>
-    <style>
-        body {
-            font-family:Cinzel;
-            background-color: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .container {
-            background: #947e7e;
-            padding: 50px;
-            border-radius: 20px;
-            padding-top: 20px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
-        }
-
-        h2 {
-            text-align: center;
-            font-size: 30px;
-        }
-
-        input {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        button {
-            width: 100%;
-            padding: 10px;
-            background: black;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        button:hover {
-
-            background: #817575;
-        }
-        
-    </style>
+    <link rel="stylesheet" href="sign_in.css" />
+    <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
+    <title>Luxaltura - Sign In</title>
 </head>
 
 <body>
+    <nav>
+        <a href="home.html" class="back-home">Click here to come back home.</a>
+    </nav>
     <div class="container">
-        <h2>Sign in</h2>
+        <h2>Sign In</h2>
         <form id="signin">
-
             <input type="email" placeholder="Email" id="email" required>
             <input type="password" placeholder="Password" id="pw" required>
-
-            <button type="submit">Log in</button>
+            <button type="submit">Sign In</button>
         </form>
     </div>
-    <footer >
-        <nav>
-            <a href="home.html">Click here to come back home.</a>
-        </nav>
-        <div id = "contact">
+    <footer>
+        <div id="contact">
             <section>
                 <h3>Contact us</h3>
-
-                <p>Email : <b><a href = "mailto:luxalturaagency@outlook.com">luxalturaagency@outlook.com</a></b></p>
-                
+                <p>Email : <b><a href="mailto:luxalturaagency@outlook.com">luxalturaagency@outlook.com</a></b></p>
             </section>
         </div>
-        <span> 2025 | MI-03.I ©</span>
+        <span>2025 | MI-03.I ©</span>
     </footer>
 </body>
 

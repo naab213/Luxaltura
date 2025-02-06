@@ -1,0 +1,108 @@
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #f4f4f4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+
+nav {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+nav .back-home {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #947e7e;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+nav .back-home:hover {
+  background: #7a6767;
+}
+
+.container {
+  background: #947e7e;
+  padding: 50px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  width: 300px;
+}
+
+h2 {
+  text-align: center;
+  color: #fef8eb;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: #333;
+}
+
+footer {
+  width: 100%;
+  position: relative;
+}
+
+#contact {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #947e7e;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+#contact h3 {
+  margin-top: 0;
+  color: white;
+}
+
+#contact p {
+  margin: 5px 0;
+  color: white;
+}
+
+#contact a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+#contact a:hover {
+  text-decoration: underline;
+}
+
+footer span {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  color: #7a6767;
+}
