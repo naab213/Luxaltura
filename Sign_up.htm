@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css">
+    <title>Inscription</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: rgb(199, 117, 177);
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #5a0d8e;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+
+            background: #480971;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Inscription</h2>
+        <form id="Inscription">
+            <input type="text" placeholder="Nom" id="Nom" maxlength="100" required>
+            <input type="text" placeholder="Prenom" id="Prenom" maxlength="100" required>
+            <input type="number" placeholder="Age" id="Age" required>
+            <input type="email" placeholder="Email" id="email" required>
+            <input type="email" placeholder="Confirmer email" id="email" required>
+            <input type="password" placeholder="Mot de passe" id="email" required>
+            <input type="password" placeholder="Confirmer le mot de passe" id="email" required>
+            <button type="submit">S'inscrire</button>
+        </form>
+    </div>
+</body>
+
+</html>
