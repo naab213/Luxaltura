@@ -102,6 +102,33 @@
                 text-align: center;
                 padding: 20px;
             }
+            .image-container {
+            position: relative;
+            display: inline-block;
+            }
+
+            .image-container img {
+            width: 300px; 
+            height: 150;
+            }
+
+            .image-container .overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            font-size: 28px;
+            }
+
+            .image-container:hover .overlay {
+            opacity: 1;
+            }
         </style>
     </head>
 
@@ -118,7 +145,12 @@
                     <input type="text" placeholder="Search..." id="request" required>
     
                     <div class="field">
-                        <label for="date">Select a date:</label>
+                        <label for="date">Select a date to go:</label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+
+                    <div class="field">
+                        <label for="date">Select a return date:</label>
                         <input type="date" id="date" name="date" required>
                     </div>
 
@@ -152,6 +184,22 @@
                 </form>
             </div>
         </section>
+<table class="image-table">
+                    <tr>
+                        <td><div class="image-container"><img src="https://content.r9cdn.net/rimg/dimg/92/01/0c6091fc-city-20461-167be288f16.jpg" width=300 height=150><div class="overlay">Algeria</div></div></td>
+                        <td><div class="image-container"><img src="https://wallpaperaccess.com/full/4695115.jpg" width=300 height=150><div class="overlay">Brasil</div></div></td>
+                        <td><div class="image-container"><img src="https://5b0988e595225.cdn.sohucs.com/images/20171207/cefea0a8643a4f6abe5b9c3db7decd1b.jpg" width=300 height=150><div class="overlay">Canada</div></div></td>
+                        <td><div class="image-container"><img src="https://besthqwallpapers.com/Uploads/1-11-2019/110276/mount-fuji-spring-nightscapes-mountains-stratovolcano.jpg" width=300 height=150><div class="overlay">Japan</div></div></td>
+                        <td><div class="image-container"><img src="https://mylittlekech.com/wp-content/uploads/2023/05/Marrakech-Capitale-de-la-culture-dans-le-monde-islamique-pour-lannee-2024..jpg" width=300 height=150><div class="overlay">Morocco</div></div><td>
+                    </tr>
+                    <tr>
+                        <td><div class="image-container"><img src="https://mybayutcdn.bayut.com/mybayut/wp-content/uploads/Travelling-from-Dubai-to-Oman-Cover-02-06.jpg" width=300 height=150><div class="overlay">Oman</div></div></td>
+                        <td><div class="image-container"><img src="https://www.levoyaging.fr/wp-content/uploads/2021/07/NORCTBAL_tromso-circuits-neige-norvege-tui.jpg" width=300 height=150><div class="overlay">Norway</div></div></td>
+                        <td><div class="image-container"><img src="https://img.ev.mu/images/portfolio/pays/181/1605x1070/847131.jpg" width=300 height=150><div class="overlay">Palestine</div></div></td>
+                        <td><div class="image-container"><img src="https://www.mngturizm.com/tourphotos/peru-bolivya-kolombiya-turu-genel-35393-peru-bolivya-kolombiya-turu-17151740971.jpg" width=300 height=150><div class="overlay">Peru</div></div></td>
+                        <td><div class="image-container"><img src="https://wallpaperaccess.com/full/348472.jpg" width=300 height=150><div class="overlay">Spain</div></div></td>
+                    </tr>
+                </table>
 
         <footer>
             <p>Click here to come back home.</p>
