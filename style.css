@@ -1,3 +1,63 @@
+/* --------------- GLOBAL STYLES --------------- */
+body {
+    font-family: Cinzel;
+    background-color: #C4AAAA;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0;
+    padding-top: 10px;
+}
+
+/* --------------- LOGO STYLES --------------- */
+.logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* --------------- SIGN IN / SIGN UP STYLES --------------- */
+.auth-links {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 20px;
+}
+
+.auth-links a {
+    padding: 12px 25px;
+    border: 2px solid #6e5e5e;
+    background-color: white;
+    color: #6e5e5e;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.auth-links a:hover {
+    background-color: #6e5e5e;
+    color: white;
+}
+
+/* --------------- NAVBAR STYLES --------------- */
+nav {
+    background-color: #6e5e5e;
+    padding: 10px 10px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: auto;
+}
+
+/* --------------- GLOBAL STYLES --------------- */
 body {
     font-family: Cinzel;
     background-color: #C4AAAA;
@@ -15,20 +75,61 @@ header {
 }
 
 header h1 {
-    font-size: 32px;
-    margin: 10px 0;
+    font-size: 30px;
+    margin-top: 40px;
 }
 
-.img {
-    width: 60%; height: 250px;
-    border-radius: 20px;
+table {
+    width: 85%;
 }
 
+/* --------------- NAVBAR STYLES --------------- */
+nav {
+    background-color: #6e5e5e;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+
+nav li {
+    font-family: Verdana;
+    color: black;
+    font-size: 14px;
+    margin: 0 20px;
+    text-align: center;
+}
+
+nav a {
+    text-decoration: none;
+    color: black;
+    padding: 10px;
+    font-size: 16px;
+    transition: background 0.3s ease;
+}
+
+nav a:hover {
+    background-color: #3d3737;
+    color: white;
+}
+
+#psearch {
+    width: 75%;
+}
+
+/* --------------- FORMULAIRE STYLES --------------- */
 section {
     flex-grow: 1;
     display: flex;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
     padding: 20px;
 }
 
@@ -39,21 +140,25 @@ section {
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 600px;
-    margin-bottom: 20px;
+    margin: 0 auto;
 }
 
 h2 {
     text-align: center;
     font-size: 30px;
-    margin-bottom: 20px;
+    margin-bottom: auto;
+    margin-top: auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 input, select {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 5px;
+    box-sizing: border-box;
 }
 
 .field {
@@ -62,7 +167,7 @@ input, select {
 
 button {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     background: black;
     color: white;
     border: none;
@@ -91,11 +196,37 @@ button:hover {
     font-size: 20px;
 }
 
-footer {
-     text-align: center;
-    padding: 20px;
+#formulaire{
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
-            
+
+/* --------------- FOOTER STYLES --------------- */
+footer {
+    background-color: #6e5e5e;
+    height: auto;
+    margin-top: auto;
+    text-align: center;
+}
+
+footer nav a {
+    text-decoration: none;
+    color: white;
+    margin: 0 10px;
+    font-size: 16px;
+}
+
+footer nav a:hover {
+    color: #C4AAAA;
+}
+
+footer .footer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --------------- IMAGE GALLERY STYLES --------------- */
 .image-container {
     position: relative;
     display: inline-block;
@@ -103,7 +234,7 @@ footer {
 
 .image-container img {
     width: 300px; 
-    height: 150;
+    height: 150px;
 }
 
 .image-container .overlay {
@@ -118,12 +249,13 @@ footer {
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
     font-size: 28px;
-    }
+}
 
 .image-container:hover .overlay {
     opacity: 1;
 }
 
+/* --------------- MAP STYLES --------------- */
 #map {
     width: 75%;
     height: 600px;

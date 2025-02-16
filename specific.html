@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
     <head>
         <meta charset="utf-8" />
         <link rel="stylesheet" href="style.css" />
+        <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
         <title>Luxaltura - Bookings</title>
@@ -11,7 +12,21 @@
     <body>
         <header>
             <h1>Choose your package and embark on a unique experience</h1>
+            <span class="separator"></span>
+            <img src="https://imgur.com/F38OAQx.jpg" width="200" height="200" class="logo" />
+            <div class="auth-links">
+                <a href="sign_in.html" title="Sign in">Sign in</a>
+                <a href="sign_up.html" title="Sign up">Sign up</a>
+            </div>
         </header>
+
+        <nav>
+            <ul>
+                <li><a href="home.html" title="Go to home">Home</a></li>
+                <li><a href="presentation.html" title="Our presentation">Presentation</a></li>
+                <li><a href="#contact" title="Go to contact">Contact us</a></li>
+            </ul>
+        </nav>
 
         <section>
             <div class="container">
@@ -64,7 +79,7 @@
                     <td><div class="image-container"><img src="https://content.r9cdn.net/rimg/dimg/92/01/0c6091fc-city-20461-167be288f16.jpg" width=300 height=150><div class="overlay">Algeria</div></div></td>
                     <td><div class="image-container"><img src="https://wallpaperaccess.com/full/4695115.jpg" width=300 height=150><div class="overlay">Brasil</div></div></td>
                     <td><div class="image-container"><img src="https://5b0988e595225.cdn.sohucs.com/images/20171207/cefea0a8643a4f6abe5b9c3db7decd1b.jpg" width=300 height=150><div class="overlay">Canada</div></div></td>
-                    <td><div class="image-container"><img src="https://besthqwallpapers.com/Uploads/1-11-2019/110276/mount-fuji-spring-nightscapes-mountains-stratovolcano.jpg" width=300 height=150><div class="overlay">Japan</div></div></td>
+                    <td><div class="image-container"><img src="https://imgur.com/vcMkREB.jpg" width=300 height=150><div class="overlay">Japan</div></div></td>
                     <td><div class="image-container"><img src="https://mylittlekech.com/wp-content/uploads/2023/05/Marrakech-Capitale-de-la-culture-dans-le-monde-islamique-pour-lannee-2024..jpg" width=300 height=150><div class="overlay">Morocco</div></div><td>
                 </tr>
                 <tr>
@@ -79,12 +94,9 @@
             <div id="map"></div>
         </section>
         <footer>
-            <nav>
-                <a href="home.html">Click here to come back home.</a>
-            </nav>
             <div id = "contact">
                 <section>
-                    <p>Contact us<b><a href = "mailto:luxalturaagency@outlook.com">luxalturaagency@outlook.com</a></b></p>
+                    <p><br>Contact us</br><a href = "mailto:luxalturaagency@outlook.com">luxalturaagency@outlook.com</a></p>
                 </section>
             </div>
             <span> 2025 | MI-03.I ©</span>

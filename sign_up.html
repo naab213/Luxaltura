@@ -1,18 +1,32 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
     
     <head>
         <meta charset="utf-8" />
-        <link rel="stylesheet" href="sign_up.css" />
+        <link rel="stylesheet" href="style.css" />
         <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
         <title>Luxaltura - Sign up</title>
     </head>
 
     <body>
+        <header>
+            <h1>Luxaltura</h1>
+            <span class="separator"></span>
+            <img src="https://imgur.com/F38OAQx.jpg" width="200" height="200" class="logo" />
+            <div class="auth-links">
+                <a href="sign_in.html" title="Sign in">Sign in</a>
+            </div>
+        </header>
+
         <nav>
-            <a href="home.html" class="back-home">Click here to come back home.</a>
+            <ul>
+                <li><a href="home.html" title="Go to home">Home</a></li>
+                <li><a href="presentation.html" title="Our presentation">Presentation</a></li>
+                <li><a href="specific.html" title="Go to my bookings">Bookings</a></li>
+                <li><a href="#contact" title="Go to contact">Contact us</a></li>
+            </ul>
         </nav>
-        <div class="container">
+        <div class="container" id="formulaire">
             <h2>Sign up</h2>
             <form id="signup">
                 <input type="text" placeholder="Lastname" id="lastname" maxlength="50" required>
@@ -27,11 +41,9 @@
         </div>
     
         <footer>
-            <div id="contact">
+            <div id = "contact">
                 <section>
-                    <h3>Contact us</h3>
-                    <p><b><a href="mailto:luxalturaagency@outlook.com">luxalturaagency@outlook.com</a></b></p>
-                </section>
+                    <p><br>Contact us</br><a href = "mailto:luxalturaagency@outlook.com">luxalturaagency@outlook.com</a></p>
             </div>
             <span>2025 | MI-03.I ©</span>
         </footer>

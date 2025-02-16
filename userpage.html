@@ -1,25 +1,40 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Luxaltura - Profil</title>
-        <link rel="stylesheet" href="styleus.css" />
+        <title>Luxaltura - User</title>
+        <link rel="stylesheet" href="style.css" />
+        <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
         <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" >
     </head>
 
     <body>
-        <div class="container">
+        <header>
+            <h1>Luxaltura</h1>
+            <span class="separator"></span>
+            <img src="https://imgur.com/F38OAQx.jpg" width="200" height="200" class="logo" />
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="home.html" title="Go to home">Home</a></li>
+                <li><a href="presentation.html" title="Our presentation">Presentation</a></li>
+                <li><a href="specific.html" title="Go to my bookings">Bookings</a></li>
+                <li><a href="#contact" title="Go to contact">Contact us</a></li>
+            </ul>
+        </nav>
+        <div class="container" id="formulaire">
             <h2>Profil</h2>
             <form id="profileForm">
                 <div class="field">
-                    <input type="text" id="lastname" value="Bouaalam" disabled required>
+                    <input type="text" id="lastname" value="Hamoud" disabled required>
                     <button type="button" class="edit-btn" onclick="edit('lastname')">
                         <i class="fas fa-pencil-alt"></i>
                     </button>
                 </div>
                 <div class="field">
-                    <input type="text" id="name" value="Hamoud" disabled required>
+                    <input type="text" id="name" value="Youssef" disabled required>
                     <button type="button" class="edit-btn" onclick="edit('name')">
                         <i class="fas fa-pencil-alt"></i>
                     </button>
@@ -63,13 +78,9 @@
         </script>
         
         <footer >
-            <nav>
-                <a href="home.html">Click here to come back home.</a>
-            </nav>
             <div id = "contact">
                 <section>
-                    <h3>Contact us</h3>
-                    <p><b><a href = "mailto:luxalturaagency@outlook.com">luxalturaagency@outlook.com</a></b></p>
+                    <p><br>Contact us</br><a href = "mailto:luxalturaagency@outlook.com">luxalturaagency@outlook.com</a></p>
                 </section>
             </div>
             <span> 2025 | MI-03.I ©</span>

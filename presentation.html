@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
     <head>
         <meta charset="utf-8" />
-        <link rel="stylesheet" href="presentation.css" />
+        <link rel="stylesheet" href="style.css" />
+        <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
         <title>Luxaltura - Presentation</title>
     </head>
 
@@ -11,22 +12,25 @@
             <h1>Luxaltura</h1>
             <span class="separator"></span>
             <img src="https://imgur.com/F38OAQx.jpg" width="200" height="200" class="logo" />
+            <div class="auth-links">
+                <a href="sign_in.html" title="Sign in">Sign in</a>
+                <a href="sign_up.html" title="Sign up">Sign up</a>
+            </div>
             <form id="search" action="/recherche" method="GET">
-                <input type="text" placeholder="Search..." id="request" required>
+                <input type="text"id="psearch" placeholder="Search..." id="request" required>
             </form>
         </header>
 
         <nav>
             <ul>
                 <li><a href="home.html" title="Go to home">Home</a></li>
-                <li><a href="#res" title="Go to my bookings">Bookings</a></li>
+                <li><a href="specific.html" title="Go to my bookings">Bookings</a></li>
                 <li><a href="#contact" title="Go to contact">Contact us</a></li>
             </ul>
         </nav>
 
         <div class="presentation">
             <section>
-                <h3><center>Luxaltura</center></h3>
                 <p>
                     <center>
                         Welcome to Luxaltura, your one-of-a-kind travel agency, specializing in exceptional aerial experiences.
@@ -73,14 +77,10 @@
         </div>
 
         <footer>
-            <nav>
-                <a href="home.html">Click here to come back home.</a>
-            </nav>
-            <div id="contact">
-            <section>
-                <h3>Contact us</h3>
-                <p><b><a href="mailto:luxalturaagency@outlook.com">luxalturaagency@outlook.com</a></b></p>
-            </section>
+            <div id = "contact">
+                <section>
+                    <p><br>Contact us</br><a href = "mailto:luxalturaagency@outlook.com">luxalturaagency@outlook.com</a></p>
+                </section>
             </div>
             <span>2025 | MI-03.I ©</span>
         </footer>
