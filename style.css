@@ -255,6 +255,74 @@ footer .footer-container {
     opacity: 1;
 }
 
+/* Appliquer un style à chaque ligne avec l'ID "line" */
+#search-results tr#line {
+    background-color: whitesmoke;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    padding-bottom: 5px;
+    padding-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background-color 0.3s ease;
+    width: 90%;
+    margin: 10px auto;
+}
+
+#search-results tr#line:hover {
+    background-color: #817575;
+}
+
+#search-results a.result-link {
+    display: flex;
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+}
+
+#search-results tr#line td img {
+    border-radius: 8px;
+    margin-right: 15px;
+}
+
+#search-results tr#line td {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#search-results tr#line td .country {
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+#search-results tr#line td .activity {
+    font-size: 1em;
+    font-style: italic;
+    text-align: center;
+}
+
+#search-results tr#line td.price {
+    text-align: right;
+    font-weight: bold;
+    font-size: 1.2em;
+    padding-left: 10px;
+}
+
+#search-results tr#line td.price .price-note {
+    display: block;
+    font-size: 0.8em;
+    font-style: italic;
+    color: #6e5e5e;
+    margin-top: 5px;
+    text-align: right;
+}
+
 /* --------------- MAP STYLES --------------- */
 #map {
     width: 75%;
