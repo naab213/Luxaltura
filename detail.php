@@ -648,7 +648,7 @@ if (!empty($departure_date)){
                 <input type="hidden" name="voyage_id" value="<?php echo $id; ?>" />
                 <div class="voyage-details">
                     <div class="image">
-                        <img src="<?php echo $selected_voyage['image']; ?>" alt="Image du voyage" width="600"/>
+                        <img src="<?php echo $selected_voyage['image']; ?>" alt="Image du voyage"/>
                     </div>
                     <div class="details">
                         <h3><?php echo $selected_voyage['ville'] . ', ' . $selected_voyage['pays']; ?></h3>

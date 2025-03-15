@@ -417,30 +417,41 @@ footer .footer-container {
     }
 }
 
-/* Styles spécifiques à la page detail */
+/*------------Styles spécifiques à la page detail-----------*/
+
 .detail-page .container {
-    max-width: 900px;  /* Augmente la largeur du formulaire */
-    width: 100%;  /* Assure que la largeur est de 100% de la page jusqu'à max-width */
-    padding: 40px;  /* Augmenter le padding pour offrir plus d'espace */
-    margin: 0 auto;  /* Centrer le formulaire */
+    max-width: 900px;
+    width: 100%;
+    padding: 20px;
+    margin: 0 auto;
 }
 
 .detail-page .voyage-details {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
     margin-top: 20px;
 }
 
+.detail-page .voyage-details .image {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
 .detail-page .voyage-details .image img {
-    max-width: 100%;  /* Assurer que l'image de voyage est bien responsive */
+    max-width: 90%;
     height: auto;
+    object-fit: contain;
     border-radius: 10px;
 }
 
 .detail-page .voyage-details .details {
     flex: 1;
     margin-left: 20px;
+    width: 100%;
+    text-align: center;
 }
 
 .detail-page label {
@@ -461,7 +472,7 @@ footer .footer-container {
 .detail-page button {
     width: 100%;
     padding: 15px;
-    background: #6e5e5e;
+    background: black;
     color: white;
     border: none;
     border-radius: 5px;
@@ -485,8 +496,8 @@ footer .footer-container {
 }
 
 .detail-page .hotel-item .hotel-image img {
-    width: 200px;
-    height: 100px;
+    width: 300px;
+    height: 150px;
     object-fit: cover;
     border-radius: 10px;
 }
@@ -495,7 +506,7 @@ footer .footer-container {
     display: inline-block;
     margin-top: 20px;
     text-decoration: none;
-    background: #6e5e5e;
+    background: black;
     color: white;
     padding: 10px 20px;
     border-radius: 5px;
@@ -504,6 +515,7 @@ footer .footer-container {
 .detail-page .back-btn:hover {
     background: #817575;
 }
+
 
 /* --------------- MAP STYLES --------------- */
 #map {
