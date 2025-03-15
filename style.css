@@ -257,7 +257,7 @@ footer .footer-container {
 
 /* Appliquer un style à chaque ligne avec l'ID "line" */
 #search-results tr#line {
-    background-color: whitesmoke;
+    background-color: white;
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     padding: 15px;
@@ -321,6 +321,188 @@ footer .footer-container {
     color: #6e5e5e;
     margin-top: 5px;
     text-align: right;
+}
+
+#search-results a {
+    text-decoration: none;
+    color: black;
+}
+
+/* Conteneur parent des tableaux */
+.table-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px; /* Espace entre les colonnes */
+    margin: 20px auto;
+    max-width: 100%;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+.table-best {
+    padding: 10px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: Cinzel;
+    text-align: center;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.table-best th {
+    text-align: center;
+    padding: 10px;
+    font-size: 18px;
+}
+
+.table-best td {
+    padding: 10px;
+    text-align: center;
+}
+
+.img-container {
+    position: relative;
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.overlay-text {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #817575;
+    font-family: Verdana;
+    color: white;
+    font-size: 14px;
+    width: 100%;
+    text-align: center;
+    padding: 5px 0;
+}
+
+.table-best img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.table-container a {
+    text-decoration: none;
+    color: black;
+}
+
+.table-best:hover {
+    background-color: #6e5e5e;
+}
+
+@media (max-width: 768px) { /* Sur les petits écrans */
+    .table-container {
+        grid-template-columns: 1fr; /* Un seul tableau par ligne */
+    }
+
+    .table-best {
+        width: 100%; /* Prend toute la largeur*/
+    }
+}
+
+/* Styles spécifiques à la page detail */
+.detail-page .container {
+    max-width: 900px;  /* Augmente la largeur du formulaire */
+    width: 100%;  /* Assure que la largeur est de 100% de la page jusqu'à max-width */
+    padding: 40px;  /* Augmenter le padding pour offrir plus d'espace */
+    margin: 0 auto;  /* Centrer le formulaire */
+}
+
+.detail-page .voyage-details {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.detail-page .voyage-details .image img {
+    max-width: 100%;  /* Assurer que l'image de voyage est bien responsive */
+    height: auto;
+    border-radius: 10px;
+}
+
+.detail-page .voyage-details .details {
+    flex: 1;
+    margin-left: 20px;
+}
+
+.detail-page label {
+    font-size: 18px;
+    margin-top: 10px;
+    display: block;
+}
+
+.detail-page input, .detail-page select {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.detail-page button {
+    width: 100%;
+    padding: 15px;
+    background: #6e5e5e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.detail-page button:hover {
+    background: #817575;
+}
+
+.detail-page .hotel-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.detail-page .hotel-item .hotel-info {
+    flex: 1;
+    text-align: left;
+}
+
+.detail-page .hotel-item .hotel-image img {
+    width: 200px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.detail-page .back-btn {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    background: #6e5e5e;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.detail-page .back-btn:hover {
+    background: #817575;
 }
 
 /* --------------- MAP STYLES --------------- */

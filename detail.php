@@ -1,18 +1,5 @@
 <?php
-$voyages = [
-    ["nom" => "Algeria", "image" => "https://content.r9cdn.net/rimg/dimg/92/01/0c6091fc-city-20461-167be288f16.jpg"],
-    ["nom" => "Brazil", "image" => "https://wallpaperaccess.com/full/4695115.jpg"],
-    ["nom" => "Canada", "image" => "https://5b0988e595225.cdn.sohucs.com/images/20171207/cefea0a8643a4f6abe5b9c3db7decd1b.jpg"],
-    ["nom" => "Japan", "image" => "https://imgur.com/vcMkREB.jpg"],
-    ["nom" => "Morocco", "image" => "https://mylittlekech.com/wp-content/uploads/2023/05/Marrakech-Capitale-de-la-culture-dans-le-monde-islamique-pour-lannee-2024..jpg"],
-    ["nom" => "Oman", "image" => "https://mybayutcdn.bayut.com/mybayut/wp-content/uploads/Travelling-from-Dubai-to-Oman-Cover-02-06.jpg"],
-    ["nom" => "Norway", "image" => "https://www.levoyaging.fr/wp-content/uploads/2021/07/NORCTBAL_tromso-circuits-neige-norvege-tui.jpg"],
-    ["nom" => "Palestine", "image" => "https://i.imgur.com/S7vq6Zd.jpeg"],
-    ["nom" => "Peru", "image" => "https://www.mngturizm.com/tourphotos/peru-bolivya-kolombiya-turu-genel-35393-peru-bolivya-kolombiya-turu-17151740971.jpg"],
-    ["nom" => "Spain", "image" => "https://wallpaperaccess.com/full/348472.jpg"]
-];
-
-// Liste des voyages (après recherche)
+// Simulation de la liste des voyages
 $voyages_search = [
     ["id" => 1,
     "nom" => "Algeria", "ville" => "Algiers ", "pays" => "~ Algeria",
@@ -582,35 +569,68 @@ $packs = [
     4 => "Future Sky🚀"
 ];
 
-$search = isset($_GET['request']) ? $_GET['request'] : '';
+$id = isset($_GET['id']) ? $_GET['id'] : '';
 
-$filtered_voyages = array_filter($voyages_search, function($voyage) use ($search) {
-    return stripos($voyage['nom'], $search) !== false;
-});
+if (empty($id)) {
+    die('ID de voyage non valide.');
+}
 
-$is_searching = !empty($search);
+$selected_voyage = null;
+foreach ($voyages_search as $voyage){
+    if ($voyage['id'] == $id){
+        $selected_voyage = $voyage;
+        break;
+    }
+}
+
+if (!$selected_voyage) {
+    die('Voyage non trouvé.');
+}
+
+$departure_date = isset($_GET['date']) ? $_GET['date'] : '';
+$return_date = '';
+
+if (!empty($departure_date)){
+    $date_parts = explode('-', $departure_date);
+    if (count($date_parts) == 3 && checkdate($date_parts[1], $date_parts[2], $date_parts[0])){
+        $return_date = date('Y-m-d', strtotime($departure_date . ' +8 days'));
+    }
+    else{
+        $departure_date = '';
+        $return_date = '';
+        echo "<script>alert('Date de départ non valide.');</script>";
+    }
+}
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="style.css" />
     <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-    <title>Luxaltura - Bookings</title>
+    <title>Détails de Voyage - Luxaltura</title>
+    <script>
+        function updateReturnDate() {
+            var departureDate = document.getElementById('departure').value;
+            if (departureDate) {
+                var date = new Date(departureDate);
+                date.setDate(date.getDate() + 8); // Ajouter 8 jours à la date de départ
+                var day = ("0" + date.getDate()).slice(-2);
+                var month = ("0" + (date.getMonth() + 1)).slice(-2);
+                var year = date.getFullYear();
+                var returnDate = year + "-" + month + "-" + day;
+                document.getElementById('return').value = returnDate;
+            }
+        }
+    </script>
 </head>
-
-<body>
+<body class="detail-page">
     <header>
-        <h1>Choose your package and embark on a unique experience</h1>
+        <h1>Summary of Your Trip</h1>
         <span class="separator"></span>
         <img src="https://imgur.com/F38OAQx.jpg" width="200" height="200" class="logo" />
-        <div class="auth-links">
-            <a href="sign_in.html" title="Sign in">Sign in</a>
-            <a href="sign_up.html" title="Sign up">Sign up</a>
-        </div>
     </header>
 
     <nav>
@@ -623,80 +643,76 @@ $is_searching = !empty($search);
 
     <section>
         <div class="container">
-            <h2>Search and Filters</h2>
-            <form id="search" action="" method="GET">
-                <input type="text" placeholder="Search..." id="request" name="request" value="<?php echo htmlspecialchars($search); ?>" required>
-    
-                <div class="field">
-                    <label for="date">Select a date to go:</label>
-                    <input type="date" id="date" name="date" required min="<?php echo date('Y-m-d'); ?>">
-                </div>
+            <h2>Trip Details</h2>
+            <form action="confirm_booking.php" method="POST">
+                <input type="hidden" name="voyage_id" value="<?php echo $id; ?>" />
+                <div class="voyage-details">
+                    <div class="image">
+                        <img src="<?php echo $selected_voyage['image']; ?>" alt="Image du voyage" width="600"/>
+                    </div>
+                    <div class="details">
+                        <h3><?php echo $selected_voyage['ville'] . ', ' . $selected_voyage['pays']; ?></h3>
+                        <p><strong>Activities :</strong> <?php echo $packs[$selected_voyage['pack']] ?? 'Non défini'; ?></p>
+                        <p><strong>Price :</strong> <?php echo $selected_voyage['prix']; ?></p>
 
-                <div class="field">
-                    <label for="airplane">Select airplane type:</label>
-                    <select id="airplane" name="airplane">
-                        <option value="Buisness">Business Elite✨</option>
-                        <option value="Military">Military Experience✈️</option>
-                        <option value="Adrenaline">Adrenaline Flight🎢</option>
-                        <option value="Future">Future Sky🚀</option>
-                    </select>
-                </div>
+                        <h4>Recommended Hotels :</h4>
+                        <ul>
+                            <?php foreach ($selected_voyage['hotels'] as $hotel): ?>
+                            <li class="hotel-item">
+                                <div class="hotel-info">
+                                    <strong><?php echo $hotel['nom']; ?></strong><br>
+                                    <span><?php echo $hotel['prix']; ?></span>
+                                 </div>
+                                <div class="hotel-image">
+                                <img src="<?php echo $hotel['image']; ?>" alt="<?php echo $hotel['nom']; ?>" width="300" height="150" />
+                                </div>
+                            </li>
+                            <?php endforeach; ?>
+                        </ul>
 
-                <button type="submit" class="search-btn"><i class="fas fa-search"></i></button>
-            </form>
+                        <label for="departure">Departure Date :</label>
+                        <input type="date" id="departure" name="departure" value="<?php echo $departure_date; ?>" required />
+
+                        <label for="return">Return Date :</label>
+                        <input type="date" id="return" name="return" value="<?php echo $return_date; ?>" readonly required />
+
+                        <h4>Choose your hotel :</h4>
+                        <select name="hotel" required>
+                            <?php foreach ($selected_voyage['hotels'] as $hotel): ?>
+                                <option value="<?php echo $hotel['nom']; ?>"><?php echo $hotel['nom']; ?> - <?php echo $hotel['prix']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+
+                        <h4>Choose your activities:</h4>
+                        <select name="activite1">
+                            <option value="activite1"><?php echo $selected_voyage['activite1'][0]['nom']; ?> - <?php echo $selected_voyage['activite1'][0]['prix']; ?></option>
+                            <option value="activite2"><?php echo $selected_voyage['activite1'][1]['nom']; ?> - <?php echo $selected_voyage['activite1'][1]['prix']; ?></option>
+                        </select>
+
+                        <select name="activite2">
+                            <option value="activite1"><?php echo $selected_voyage['activite2'][0]['nom']; ?> - <?php echo $selected_voyage['activite2'][0]['prix']; ?></option>
+                            <option value="activite2"><?php echo $selected_voyage['activite2'][1]['nom']; ?> - <?php echo $selected_voyage['activite2'][1]['prix']; ?></option>
+                        </select>
+
+                        <select name="activite3">
+                            <option value="activite1"><?php echo $selected_voyage['activite3'][0]['nom']; ?> - <?php echo $selected_voyage['activite3'][0]['prix']; ?></option>
+                            <option value="activite2"><?php echo $selected_voyage['activite3'][1]['nom']; ?> - <?php echo $selected_voyage['activite3'][1]['prix']; ?></option>
+                        </select>
+
+                        <select name="activite4">
+                            <option value="activite1"><?php echo $selected_voyage['activite4'][0]['nom']; ?> - <?php echo $selected_voyage['activite4'][0]['prix']; ?></option>
+                            <option value="activite2"><?php echo $selected_voyage['activite4'][1]['nom']; ?> - <?php echo $selected_voyage['activite4'][1]['prix']; ?></option>
+                        </select>
+
+                        <div class="button-group">
+                            <button type="submit" class="validate-btn">Confirm the reservation</button>
+                            <button type="button" class="back-btn" onclick="window.location.href='specific.php'">Return to booking</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </section>
-
-    <?php if (!$is_searching): ?>
-        <table class="image-table">
-            <?php
-            $chunks = array_chunk($voyages, 5);
-            foreach ($chunks as $chunk): ?>
-                <tr>
-                    <?php foreach ($chunk as $voyage): ?>
-                        <td>
-                            <div class="image-container">
-                                <img src="<?php echo $voyage['image']; ?>" width="300" height="150">
-                                <div class="overlay"><?php echo $voyage['nom']; ?></div>
-                            </div>
-                        </td>
-                    <?php endforeach; ?>
-                </tr>
-            <?php endforeach; ?>
-        </table>
-        <section>
-            <div id="map"></div>
-        </section>
-
-    <?php else: ?>
-        <?php if (count($filtered_voyages) > 0): ?>
-        <table id="search-results" class="image-table">
-            <?php 
-                foreach ($filtered_voyages as $voyage):
-                $unique_id = $voyage['id'];
-                $url = "detail.php?id=" . $unique_id . "&date=" . urlencode($_GET['date']) . "&pays=" . urlencode($voyage['pays']);
-            ?>
-            <tr id="line" onclick="window.location='<?php echo $url; ?>';" style="cursor: pointer;">
-                <td>
-                    <div class="image-container">
-                        <img src="<?php echo $voyage['image']; ?>" width="150" height="100">
-                    </div>
-                </td>
-                <td>
-                    <p><?php echo $voyage['ville']; echo $voyage['pays']; ?></p>
-                    <p><?php echo $packs[$voyage['pack']] ?? 'Non défini'; ?></p>
-                </td>
-                <td class="price">
-                    <?php echo $voyage['prix']; ?>
-                    <span class="price-note">One way only</span>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </table>
-        <?php else: ?>
-            <p><center>No trips found matching your search.</center></p>
-        <?php endif; ?>
-    <?php endif; ?>
 
     <footer>
         <div id="contact">
@@ -706,31 +722,5 @@ $is_searching = !empty($search);
         </div>
         <span>2025 | MI-03.I ©</span>
     </footer>
-
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <script>
-        var map = L.map('map').setView([51.505, -0.09], 2);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
-        var markers = [
-            { lat: 28.0339, lon: 3.06, popup: "Algeria" },
-            { lat: -14.235, lon: -51.9253, popup: "Brasil" },
-            { lat: 56.1304, lon: -106.3468, popup: "Canada" },
-            { lat: 35.6762, lon: 139.6503, popup: "Japan" },
-            { lat: 31.634, lon: -7.999, popup: "Morocco" },
-            { lat: 21.4735, lon: 55.9232, popup: "Oman" },
-            { lat: 60.472, lon: 8.4689, popup: "Norway" },
-            { lat: 31.9454, lon: 35.2345, popup: "Palestine" },
-            { lat: 48.8566, lon: 2.3522, popup: "Paris" },
-            { lat: -9.19, lon: -75.0152, popup: "Peru" },
-            { lat: 40.4168, lon: -3.7038, popup: "Spain" },
-        ];
-        markers.forEach(function(marker) {
-            L.marker([marker.lat, marker.lon])
-                .addTo(map)
-                .bindPopup(marker.popup);
-        });
-    </script>
 </body>
 </html>
