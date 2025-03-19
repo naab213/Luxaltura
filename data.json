@@ -26,5 +26,12 @@
         "age": 19,
         "email": "Do@gmail.Com",
         "pass": "123"
+    },
+    {
+        "lastname": "Boumiz ",
+        "name": "Abdel",
+        "age": 54,
+        "email": "abdel@gmail.com",
+        "pass": "DELL"
     }
 ]
