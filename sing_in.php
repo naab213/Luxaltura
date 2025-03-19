@@ -1,9 +1,8 @@
 <?php
-session_start(); // Démarrer la session
+session_start(); 
 
-// Vérifier si le formulaire a été soumis via POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Vérifier si les champs email et password existent dans $_POST
+  
     if (isset($_POST['email']) && isset($_POST['password'])) {
         $email = trim($_POST['email']);
         $password = trim($_POST['password']);
@@ -12,7 +11,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 
-    // Charger les utilisateurs depuis le fichier JSON
+   
+    
     $filePath = 'data.json';
     if (!file_exists($filePath)) {
         echo "Erreur : le fichier de données est introuvable.";
@@ -29,12 +29,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $userFound = false;
 
     foreach ($users as $user) {
-        // Vérifier si l'email correspond
+        
         if (strtolower($user['email']) === strtolower($email)) {
             $userFound = true;
 
-            // Vérifier le mot de passe
-            if ($password === $user['pass']) { // Remplacez par password_verify si les mots de passe sont hachés
+            
+            if ($password === $user['pass']) { 
                 $_SESSION['user_email'] = $email;
                 echo "Connexion réussie. Redirection...";
                 header("Location: Home.html");
