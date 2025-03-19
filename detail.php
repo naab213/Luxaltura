@@ -644,7 +644,7 @@ if (!empty($departure_date)){
     <section>
         <div class="container">
             <h2 class="title">Trip Details</h2>
-            <form action="confirm_booking.php" method="POST">
+            <form action="payment.php" method="POST">
                 <input type="hidden" name="voyage_id" value="<?php echo $id; ?>" />
                 <div class="voyage-details">
                     <div class="image">
