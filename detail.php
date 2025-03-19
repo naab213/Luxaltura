@@ -481,7 +481,7 @@ $voyages_search = [
     "nom" => "Peru", "ville" => "Ayacucho ", "pays" => "~ Peru",
     "pack" => 3,
     "prix" => "1500€",
-    "image" => "https://cdn.getyourguide.com/img/tour/33f47d2e209909255154cd5fc41e92663107f4685113ca265628b894c8aff24d.jpg/68.jpg",
+    "image" => "https://cdn.getyourguide.com/img/tour/4ca0ef5db7327e27cddafaf7c1b8a007562d4e3a417a73f5312fe63746b295ea.png/148.jpg",
     "hotels" => [
             ["nom" => "Hotel SumacPlaza","prix" => "370€", "image" => "https://cf.bstatic.com/xdata/images/hotel/max1280x900/621300123.jpg?k=adf42218de95f390152e1895d2ea0ffcdc747a2c5d9bd9bcaf6495b784cfa9de&o=&hp=1"],
             ["nom" => "Hotel LAS FLORES", "prix" => "350€", "image" => "https://cf.bstatic.com/xdata/images/hotel/max1280x900/618986827.jpg?k=e15b01055dd80d20f1b3768d40a5c3824d97d55a484c7b287ef9b839e6f2db2b&o=&hp=1"],
@@ -643,7 +643,7 @@ if (!empty($departure_date)){
 
     <section>
         <div class="container">
-            <h2>Trip Details</h2>
+            <h2 class="title">Trip Details</h2>
             <form action="confirm_booking.php" method="POST">
                 <input type="hidden" name="voyage_id" value="<?php echo $id; ?>" />
                 <div class="voyage-details">
@@ -655,7 +655,7 @@ if (!empty($departure_date)){
                         <p><strong>Activities :</strong> <?php echo $packs[$selected_voyage['pack']] ?? 'Non défini'; ?></p>
                         <p><strong>Price :</strong> <?php echo $selected_voyage['prix']; ?></p>
 
-                        <h4>Recommended Hotels :</h4>
+                        <h4 class="hotel">Recommended Hotels :</h4>
                         <ul>
                             <?php foreach ($selected_voyage['hotels'] as $hotel): ?>
                             <li class="hotel-item">
@@ -676,14 +676,14 @@ if (!empty($departure_date)){
                         <label for="return">Return Date :</label>
                         <input type="date" id="return" name="return" value="<?php echo $return_date; ?>" readonly required />
 
-                        <h4>Choose your hotel :</h4>
+                        <h4 class="hot">Choose your hotel :</h4>
                         <select name="hotel" required>
                             <?php foreach ($selected_voyage['hotels'] as $hotel): ?>
                                 <option value="<?php echo $hotel['nom']; ?>"><?php echo $hotel['nom']; ?> - <?php echo $hotel['prix']; ?></option>
                             <?php endforeach; ?>
                         </select>
 
-                        <h4>Choose your activities:</h4>
+                        <h4 class="act">Choose your activities:</h4>
                         <select name="activite1">
                             <option value="activite1"><?php echo $selected_voyage['activite1'][0]['nom']; ?> - <?php echo $selected_voyage['activite1'][0]['prix']; ?></option>
                             <option value="activite2"><?php echo $selected_voyage['activite1'][1]['nom']; ?> - <?php echo $selected_voyage['activite1'][1]['prix']; ?></option>
@@ -705,7 +705,7 @@ if (!empty($departure_date)){
                         </select>
 
                         <div class="button-group">
-                            <button type="submit" class="validate-btn">Confirm the reservation</button>
+                            <button type="submit" class="validate-btn" onclick="window.location.href='payment.php'">Confirm the reservation</button>
                             <button type="button" class="back-btn" onclick="window.location.href='specific.php'">Return to booking</button>
                         </div>
                     </form>

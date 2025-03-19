@@ -494,7 +494,7 @@ $voyages_search = [
     "nom" => "Peru", "ville" => "Ayacucho ", "pays" => "~ Peru",
     "pack" => 3,
     "prix" => "1500€",
-    "image" => "https://cdn.getyourguide.com/img/tour/33f47d2e209909255154cd5fc41e92663107f4685113ca265628b894c8aff24d.jpg/68.jpg",
+    "image" => "https://cdn.getyourguide.com/img/tour/4ca0ef5db7327e27cddafaf7c1b8a007562d4e3a417a73f5312fe63746b295ea.png/148.jpg",
     "hotels" => [
             ["nom" => "Hotel SumacPlaza","prix" => "370€", "image" => "https://cf.bstatic.com/xdata/images/hotel/max1280x900/621300123.jpg?k=adf42218de95f390152e1895d2ea0ffcdc747a2c5d9bd9bcaf6495b784cfa9de&o=&hp=1"],
             ["nom" => "Hotel LAS FLORES", "prix" => "350€", "image" => "https://cf.bstatic.com/xdata/images/hotel/max1280x900/618986827.jpg?k=e15b01055dd80d20f1b3768d40a5c3824d97d55a484c7b287ef9b839e6f2db2b&o=&hp=1"],
