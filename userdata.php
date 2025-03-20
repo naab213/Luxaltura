@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     );
 
 
-    $file = 'data.json';
+    $file = 'dataJSON/user_data.json';
     if (file_exists($file)) {
         $jsonData = file_get_contents($file);
         $data = json_decode($jsonData, true);
