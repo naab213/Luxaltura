@@ -587,6 +587,8 @@ if (!$selected_voyage) {
     die('Voyage non trouvé.');
 }
 
+
+
 $departure_date = isset($_GET['date']) ? $_GET['date'] : '';
 $return_date = '';
 
@@ -654,7 +656,6 @@ if (!empty($departure_date)){
                         <h3><?php echo $selected_voyage['ville'] . ', ' . $selected_voyage['pays']; ?></h3>
                         <p><strong>Activities :</strong> <?php echo $packs[$selected_voyage['pack']] ?? 'Non défini'; ?></p>
                         <p><strong>Price :</strong> <?php echo $selected_voyage['prix']; ?></p>
-
                         <h4 class="hotel">Recommended Hotels :</h4>
                         <ul>
                             <?php foreach ($selected_voyage['hotels'] as $hotel): ?>
@@ -705,6 +706,7 @@ if (!empty($departure_date)){
                         </select>
 
                         <div class="button-group">
+                            <input type="hidden" name="prix" value="<?php echo $selected_voyage['prix']; ?>" />
                             <button type="submit" class="validate-btn" onclick="window.location.href='payment.php'">Confirm the reservation</button>
                             <button type="button" class="back-btn" onclick="window.location.href='specific.php'">Return to booking</button>
                         </div>
