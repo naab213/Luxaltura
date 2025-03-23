@@ -1,86 +1,138 @@
 <?php
 session_start();
-
-// Check if the temporary file exists and is not empty
-$tempDir = 'dataJSON/temp/';
-$tempFilePath = $tempDir . 'user_' . (isset($_SESSION['user_email']) ? md5($_SESSION['user_email']) : '') . '.json';
-
-if (!file_exists($tempFilePath) || filesize($tempFilePath) === 0) {
-    header("Location: sign_in.php"); // Redirect to login page if not connected
+if (!isset($_SESSION['user_email'])) {
+    header('Location: sign_in.php?error=not_connected');
     exit();
 }
 
-// Verify the trip ID and amount
-if (!isset($_POST['voyage_id']) || !isset($_POST['montant'])) {
-    die("Erreur : données de paiement invalides.");
+$userEmail = $_SESSION['user_email'];
+
+
+require('getapikey.php');
+$api_key = getAPIKey("MI-3_I"); 
+
+$voyageId = $_POST['voyage_id'] ?? '';
+$hotel = $_POST['hotel'] ?? '';
+$activites = $_POST['activites'] ?? [];
+
+if (empty($voyageId)) {
+    die("Erreur : L'ID du voyage est manquant.");
+}
+if (empty($hotel)) {
+    die("Erreur : Le nom de l'hôtel est manquant.");
 }
 
-$voyageId = $_POST['voyage_id'];
-$montant = number_format((float)$_POST['montant'], 2, '.', ''); // Ensure montant is properly formatted
 
 $dataFile = 'dataJSON/fly.json';
-$flyData = json_decode(file_get_contents($dataFile), true);
-
-if (!is_array($flyData)) {
-    die("Erreur : les données de voyage sont introuvables ou corrompues.");
+if (!file_exists($dataFile)) {
+    die("Erreur : Fichier de données des voyages introuvable.");
 }
 
-$validVoyage = false;
+$flyData = json_decode(file_get_contents($dataFile), true);
+if (json_last_error() !== JSON_ERROR_NONE) {
+    die("Erreur : Impossible de charger les données du voyage (fichier JSON corrompu).");
+}
+
+$selectedVoyage = null;
 foreach ($flyData as $voyage) {
-    if ($voyage['id'] == $voyageId && $voyage['prix'] == $montant . "€") { // Ensure montant matches the format in fly.json
-        $validVoyage = true;
+    if ($voyage['id'] == $voyageId) {
+        $selectedVoyage = $voyage;
         break;
     }
 }
 
-if (!$validVoyage) {
-    die("Erreur : le montant ou l'ID du voyage est incorrect.");
+if (!$selectedVoyage) {
+    die("Erreur : Voyage non trouvé.");
 }
 
-require('getapikey.php');
-$transaction = strtoupper(bin2hex(random_bytes(5))); 
-$vendeur = "MI-3_I"; 
-$retour = "http://localhost/return_payment.php?session=12345";
-$api_key = getAPIKey($vendeur);
+$prixBillet = (float)$selectedVoyage['prix'];
 
-if (!preg_match("/^[0-9a-zA-Z]{15}$/", $api_key)) {
-    die("Erreur : API Key invalide.");
+
+$montant = $prixBillet * 2;
+
+
+list($hotelNom, $hotelPrix) = explode('|', $hotel);
+$montant += (float)$hotelPrix;
+
+
+foreach ($activites as $activite) {
+    list($activiteNom, $activitePrix) = explode('|', $activite);
+    $montant += (float)$activitePrix;
 }
 
-// Generate the control hash
-$control = md5($api_key . "#" . $transaction . "#" . $montant . "#" . $vendeur . "#" . $retour);
 
-if (empty($control)) {
-    die("Erreur : la valeur de contrôle est erronée.");
+$transactionData = [
+    'transaction_id' => strtoupper(bin2hex(random_bytes(5))),
+    'montant' => $montant,
+    'voyage_id' => $voyageId,
+    'hotel' => $hotelNom,
+    'activites' => $activites,
+    'user_email' => $userEmail,
+    'date' => date('Y-m-d H:i:s')
+];
+
+$transactionsFile = 'dataJSON/payments.json';
+if (file_exists($transactionsFile)) {
+    $transactions = json_decode(file_get_contents($transactionsFile), true);
+} else {
+    $transactions = [];
 }
 
+$transactions[] = $transactionData;
+file_put_contents($transactionsFile, json_encode($transactions, JSON_PRETTY_PRINT));
+
+$retour = "http://localhost/Luxaltura/return_payment.php?voyage_id=" . urlencode($voyageId) . "&hotel=" . urlencode($hotelNom);
+
+$control = md5($api_key . "#" . $transactionData['transaction_id'] . "#" . $montant . "#MI-3_I#" . $retour . "#");
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Payment</title>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
+    <title>Payment</title>
+</head>
+<body>
+    <header>
+        <h1>Luxaltura - Elevate Your Journey, Embrace Prestige</h1>
+        <span class="separator"></span>
+        <img src="https://imgur.com/F38OAQx.jpg" width="150" height="150" class="logo" />
+    </header>
 
-    <body>
-        <h2>Payment page</h2>
-        <p>Amount due : <?php echo $montant; ?> </p>
+    <div class="resume">
+        <section>
+            <h2>Payment Summary</h2>
+            <p><strong>Selected Trip:</strong> <?php echo htmlspecialchars($selectedVoyage['ville'] . ', ' . $selectedVoyage['pays']); ?></p>
+            <p><strong>Hotel:</strong> <?php echo htmlspecialchars($hotelNom); ?></p>
+            <p><strong>Activities:</strong></p>
+            <ul>
+                <?php foreach ($activites as $activite): ?>
+                    <?php list($activiteNom, $activitePrix) = explode('|', $activite); ?>
+                    <li><?php echo htmlspecialchars($activiteNom); ?> - <?php echo htmlspecialchars($activitePrix); ?> €</li>
+                <?php endforeach; ?>
+            </ul>
+            <p><strong>Total Amount:</strong> <?php echo htmlspecialchars($montant); ?> €</p>
 
+            <form action="https://www.plateforme-smc.fr/cybank/index.php" method="POST">
+                <input type="hidden" name="transaction" value="<?php echo htmlspecialchars($transactionData['transaction_id']); ?>">
+                <input type="hidden" name="montant" value="<?php echo htmlspecialchars($montant); ?>">
+                <input type="hidden" name="vendeur" value="MI-3_I">
+                <input type="hidden" name="retour" value="<?php echo htmlspecialchars($retour); ?>">
+                <input type="hidden" name="control" value="<?php echo htmlspecialchars($control); ?>">
+                <button type="submit" class="button">Confirm and Pay</button>
+            </form>
+        </section>
+    </div>
 
-        <form action="https://www.plateforme-smc.fr/cybank/index.php" method="POST">
-
-        <input type="hidden" name="transaction" value="<?php echo $transaction; ?>">
-        <input type="hidden" name="montant" value="<?php echo $montant; ?>">
-
-        <input type="hidden" name="vendeur" value="<?php echo $vendeur; ?>">
-        <input type="hidden" name="retour" value="<?php echo $retour; ?>">
-
-        <input type="hidden" name="control" value="<?php echo $control; ?>">
-        <button type="submit">Confirm and pay.</button>
-
-        </form>
-
-    </body>
-
+    <footer>
+        <div id="contact">
+            <section>
+                <p>Contact us: <a href="mailto:luxalturaagency@outlook.com">luxalturaagency@outlook.com</a></p>
+            </section>
+        </div>
+        <span>2025 | MI-03.I ©</span>
+    </footer>
+</body>
 </html>

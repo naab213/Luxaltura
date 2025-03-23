@@ -1,40 +1,32 @@
 <?php
 require('getapikey.php');
 
-// Récupérez les paramètres de retour
 $transaction = $_GET['transaction'] ?? '';
 $montant = $_GET['montant'] ?? '';
 $vendeur = $_GET['vendeur'] ?? '';
 $statut = $_GET['status'] ?? '';
 $control = $_GET['control'] ?? '';
-$voyageId = $_GET['voyage_id'] ?? ''; // Vérifiez si voyage_id est défini
-$hotel = $_GET['hotel'] ?? ''; // Ajoutez l'hôtel si transmis dans l'URL
+$voyageId = $_GET['voyage_id'] ?? ''; 
+$hotel = $_GET['hotel'] ?? ''; 
 
-// Vérifiez que tous les paramètres sont présents
+
 if (empty($transaction) || empty($montant) || empty($vendeur) || empty($statut) || empty($control) || empty($voyageId)) {
     die("Erreur : données de retour manquantes.");
 }
 
-// Récupérez la clé API
-
-$retour = "http://localhost/Luxaltura/return_payment.php?session=12345";
-
-require('getapikey.php');
 
 $api_key = getAPIKey($vendeur);
 if (!preg_match("/^[0-9a-zA-Z]{15}$/", $api_key)) {
     die("Erreur : API Key invalide.");
 }
 
-// Recalculez la valeur de contrôle
+
 $calculatedControl = md5($api_key . "#" . $transaction . "#" . $montant . "#" . $vendeur . "#" . $statut . "#");
 
-// Vérifiez la valeur de contrôle
 if ($calculatedControl !== $control) {
     die("Erreur : la valeur de contrôle est invalide.");
 }
 
-// Charger les détails du voyage depuis le fichier JSON
 $dataFile = 'dataJSON/fly.json';
 $flyData = json_decode(file_get_contents($dataFile), true);
 
@@ -50,7 +42,7 @@ if (!$selectedVoyage) {
     die("Erreur : Voyage non trouvé.");
 }
 
-// Save payment details to a JSON file
+
 $paymentDataFile = 'dataJSON/payments.json';
 $paymentData = file_exists($paymentDataFile) ? json_decode(file_get_contents($paymentDataFile), true) : [];
 
