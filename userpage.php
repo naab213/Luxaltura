@@ -19,9 +19,9 @@ if (json_last_error() !== JSON_ERROR_NONE) {
 }
 
 // Filtrer les transactions pour l'utilisateur connecté
-$userPayments = array_filter($paymentData, function ($payment) use ($userEmail) {
+$userPayments = array_filter($paymentData, function ($payment) {
     // Vérifiez si la clé 'user_email' existe dans le tableau $payment
-    return isset($payment['user_email']) && $payment['user_email'] === $userEmail;
+    return isset($payment['user_email']) && $payment['user_email'] === $_SESSION['user_email'];
 });
 ?>
 

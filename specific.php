@@ -9,7 +9,18 @@ if (!is_array($flyData)) {
     $flyData = [];
 }
 
-$voyages = $flyData; // Use the full data for displaying all voyages
+$voyages = [
+    ["nom" => "Algeria", "image" => "https://content.r9cdn.net/rimg/dimg/92/01/0c6091fc-city-20461-167be288f16.jpg"],
+    ["nom" => "Brazil", "image" => "https://wallpaperaccess.com/full/4695115.jpg"],
+    ["nom" => "Canada", "image" => "https://5b0988e595225.cdn.sohucs.com/images/20171207/cefea0a8643a4f6abe5b9c3db7decd1b.jpg"],
+    ["nom" => "Japan", "image" => "https://imgur.com/vcMkREB.jpg"],
+    ["nom" => "Morocco", "image" => "https://mylittlekech.com/wp-content/uploads/2023/05/Marrakech-Capitale-de-la-culture-dans-le-monde-islamique-pour-lannee-2024..jpg"],
+    ["nom" => "Oman", "image" => "https://mybayutcdn.bayut.com/mybayut/wp-content/uploads/Travelling-from-Dubai-to-Oman-Cover-02-06.jpg"],
+    ["nom" => "Norway", "image" => "https://www.levoyaging.fr/wp-content/uploads/2021/07/NORCTBAL_tromso-circuits-neige-norvege-tui.jpg"],
+    ["nom" => "Palestine", "image" => "https://i.imgur.com/S7vq6Zd.jpeg"],
+    ["nom" => "Peru", "image" => "https://www.mngturizm.com/tourphotos/peru-bolivya-kolombiya-turu-genel-35393-peru-bolivya-kolombiya-turu-17151740971.jpg"],
+    ["nom" => "Spain", "image" => "https://wallpaperaccess.com/full/348472.jpg"]
+];
 $voyages_search = $flyData; // Use the same data for search functionality
 
 $packs = [
