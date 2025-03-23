@@ -1,27 +1,21 @@
 <?php
-// Récupérer les informations via GET (qui proviennent de la plateforme de paiement)
 $transaction = $_GET['transaction'] ?? '';
 $prix = $_GET['prix'] ?? '';
 $vendeur = $_GET['vendeur'] ?? '';
 $statut = $_GET['statut'] ?? '';
 $control = $_GET['control'] ?? '';
 
-// Vérification si les informations sont présentes
 if (empty($transaction) || empty($prix) || empty($vendeur) || empty($statut) || empty($control)) {
     die('Informations manquantes dans la réponse de paiement.');
 }
 
-// URL de retour (en cas de redirection)
 $retour = "http://localhost/return_payment.php?session=12345";
 
-// Inclure la clé API pour valider la transaction
 require('getapikey.php');
 $api_key = getAPIKey($vendeur);
 
-// Vérification de l'intégrité des données avec la clé API
 $control_verif = md5($api_key . "#" . $transaction . "#" . $prix . "#" . $vendeur . "#" . $statut . "#");
 
-// Vérification si le contrôle est valide
 ?>
 
 <!DOCTYPE html>
