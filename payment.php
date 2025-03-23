@@ -81,7 +81,7 @@ if (file_exists($transactionsFile)) {
 $transactions[] = $transactionData;
 file_put_contents($transactionsFile, json_encode($transactions, JSON_PRETTY_PRINT));
 
-$retour = "http://localhost/Luxaltura/return_payment.php?voyage_id=" . urlencode($voyageId) . "&hotel=" . urlencode($hotelNom);
+$retour = "http://localhost:8080/Luxaltura/return_payment.php?voyage_id=" . urlencode($voyageId) . "&hotel=" . urlencode($hotelNom);
 
 $control = md5($api_key . "#" . $transactionData['transaction_id'] . "#" . $montant . "#MI-3_I#" . $retour . "#");
 ?>
@@ -92,7 +92,7 @@ $control = md5($api_key . "#" . $transactionData['transaction_id'] . "#" . $mont
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css" />
     <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
-    <title>Payment</title>
+    <title>Luxaltura - Payment</title>
 </head>
 <body>
     <header>
@@ -101,29 +101,31 @@ $control = md5($api_key . "#" . $transactionData['transaction_id'] . "#" . $mont
         <img src="https://imgur.com/F38OAQx.jpg" width="150" height="150" class="logo" />
     </header>
 
-    <div class="resume">
-        <section>
-            <h2>Payment Summary</h2>
-            <p><strong>Selected Trip:</strong> <?php echo htmlspecialchars($selectedVoyage['ville'] . ', ' . $selectedVoyage['pays']); ?></p>
-            <p><strong>Hotel:</strong> <?php echo htmlspecialchars($hotelNom); ?></p>
-            <p><strong>Activities:</strong></p>
-            <ul>
-                <?php foreach ($activites as $activite): ?>
-                    <?php list($activiteNom, $activitePrix) = explode('|', $activite); ?>
-                    <li><?php echo htmlspecialchars($activiteNom); ?> - <?php echo htmlspecialchars($activitePrix); ?> €</li>
-                <?php endforeach; ?>
-            </ul>
-            <p><strong>Total Amount:</strong> <?php echo htmlspecialchars($montant); ?> €</p>
+    <div class="resume-container">
+        <div class="resume">
+            <section>
+                <h2>Payment Summary</h2>
+                <p><strong>Selected Trip:</strong> <?php echo htmlspecialchars($selectedVoyage['ville'] . ', ' . $selectedVoyage['pays']); ?></p>
+                <p><strong>Hotel:</strong> <?php echo htmlspecialchars($hotelNom); ?></p>
+                <p><strong>Activities:</strong></p>
+                <ul>
+                    <?php foreach ($activites as $activite): ?>
+                        <?php list($activiteNom, $activitePrix) = explode('|', $activite); ?>
+                        <li><?php echo htmlspecialchars($activiteNom); ?> - <?php echo htmlspecialchars($activitePrix); ?> €</li>
+                    <?php endforeach; ?>
+                </ul>
+                <p><strong>Total Amount:</strong> <?php echo htmlspecialchars($montant); ?> €</p>
 
-            <form action="https://www.plateforme-smc.fr/cybank/index.php" method="POST">
-                <input type="hidden" name="transaction" value="<?php echo htmlspecialchars($transactionData['transaction_id']); ?>">
-                <input type="hidden" name="montant" value="<?php echo htmlspecialchars($montant); ?>">
-                <input type="hidden" name="vendeur" value="MI-3_I">
-                <input type="hidden" name="retour" value="<?php echo htmlspecialchars($retour); ?>">
-                <input type="hidden" name="control" value="<?php echo htmlspecialchars($control); ?>">
-                <button type="submit" class="button">Confirm and Pay</button>
-            </form>
-        </section>
+                <form action="https://www.plateforme-smc.fr/cybank/index.php" method="POST">
+                    <input type="hidden" name="transaction" value="<?php echo htmlspecialchars($transactionData['transaction_id']); ?>">
+                    <input type="hidden" name="montant" value="<?php echo htmlspecialchars($montant); ?>">
+                    <input type="hidden" name="vendeur" value="MI-3_I">
+                    <input type="hidden" name="retour" value="<?php echo htmlspecialchars($retour); ?>">
+                    <input type="hidden" name="control" value="<?php echo htmlspecialchars($control); ?>">
+                    <button type="submit" class="button">Confirm and Pay</button>
+                </form>
+            </section>
+        </div>
     </div>
 
     <footer>

@@ -54,5 +54,12 @@
         "age": 19,
         "email": "orn213@gmail.com",
         "pass": "213"
+    },
+    {
+        "lastname": "TAHRI",
+        "name": "Nabila",
+        "age": 19,
+        "email": "orn213@gmail.com",
+        "pass": "213"
     }
 ]

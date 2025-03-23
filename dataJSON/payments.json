@@ -43,5 +43,513 @@
         "voyageId": "7",
         "hotel": "The Prince Park Tower Tokyo",
         "date": "2025-03-23 14:46:43"
+    },
+    {
+        "transaction_id": "369FBFA5B8",
+        "montant": 17650,
+        "voyage_id": "1",
+        "hotel": "Sofitel Algiers Hamma Garden",
+        "activites": [
+            "Visit the Casbah of Algiers|20",
+            "Discover the Jardin d'Essai|10",
+            "Boat trip to Rachgoun Island|50",
+            "Taste traditional Algerian cuisine|30"
+        ],
+        "user_email": "do@gmail.Com",
+        "date": "2025-03-23 19:27:34"
+    },
+    {
+        "transaction_id": "F38AC2984B",
+        "montant": 58305,
+        "voyage_id": "5",
+        "hotel": "The Novotel Toronto Centre",
+        "activites": [
+            "Visit the CN Tower|35",
+            "Explore Toronto Islands|30",
+            "Stroll through High Park|0",
+            "Visit the Ripley's Aquarium|120"
+        ],
+        "user_email": "orn213@gmail.com",
+        "date": "2025-03-23 19:36:20"
+    },
+    {
+        "transaction_id": "C171AEBDF2",
+        "montant": 58305,
+        "voyage_id": "5",
+        "hotel": "The Novotel Toronto Centre",
+        "activites": [
+            "Visit the CN Tower|35",
+            "Explore Toronto Islands|30",
+            "Stroll through High Park|0",
+            "Visit the Ripley's Aquarium|120"
+        ],
+        "user_email": "orn213@gmail.com",
+        "date": "2025-03-23 19:36:50"
+    },
+    {
+        "transaction_id": "91971C29E8",
+        "montant": 7165,
+        "voyage_id": "7",
+        "hotel": "The Prince Park Tower Tokyo",
+        "activites": [
+            "Visit Senso-ji Temple|0",
+            "Visit Tokyo Tower|20",
+            "Visit the Tokyo Palace|35",
+            "Walk through Ueno Park|10"
+        ],
+        "user_email": "orn213@gmail.com",
+        "date": "2025-03-23 19:40:28"
+    },
+    {
+        "transaction_id": "FF8FFC7262",
+        "montant": 2895,
+        "voyage_id": "14",
+        "hotel": "Troms\u00f8 Lodge & Camping",
+        "activites": [
+            "See the Northern Lights|50",
+            "Dog sledding safari|80",
+            "Walk around Troms\u00f8 Island|0",
+            "Hike Mount Storsteinen|25"
+        ],
+        "user_email": "orn213@gmail.com",
+        "date": "2025-03-23 19:41:12"
+    },
+    {
+        "transaction": "FF8FFC7262",
+        "montant": "2895",
+        "vendeur": "MI-3_I",
+        "statut": "accepted",
+        "voyageId": "14",
+        "hotel": "Troms\u00f8 Lodge & Camping",
+        "date": "2025-03-23 19:41:21"
+    },
+    {
+        "transaction": "FF8FFC7262",
+        "montant": "2895",
+        "vendeur": "MI-3_I",
+        "statut": "accepted",
+        "voyageId": "14",
+        "hotel": "Troms\u00f8 Lodge & Camping",
+        "date": "2025-03-23 19:41:52"
+    },
+    {
+        "transaction": "FF8FFC7262",
+        "montant": "2895",
+        "vendeur": "MI-3_I",
+        "statut": "accepted",
+        "voyageId": "14",
+        "hotel": "Troms\u00f8 Lodge & Camping",
+        "date": "2025-03-23 19:45:10"
+    },
+    {
+        "transaction": "FF8FFC7262",
+        "montant": "2895",
+        "vendeur": "MI-3_I",
+        "statut": "accepted",
+        "voyageId": "14",
+        "hotel": "Troms\u00f8 Lodge & Camping",
+        "date": "2025-03-23 19:45:49"
+    },
+    {
+        "transaction": "FF8FFC7262",
+        "montant": "2895",
+        "vendeur": "MI-3_I",
+        "statut": "accepted",
+        "voyageId": "14",
+        "hotel": "Troms\u00f8 Lodge & Camping",
+        "date": "2025-03-23 19:45:57"
+    },
+    {
+        "transaction": "FF8FFC7262",
+        "montant": "2895",
+        "vendeur": "MI-3_I",
+        "statut": "accepted",
+        "voyageId": "14",
+        "hotel": "Troms\u00f8 Lodge & Camping",
+        "date": "2025-03-23 19:49:04"
+    },
+    {
+        "transaction": "FF8FFC7262",
+        "montant": "2895",
+        "vendeur": "MI-3_I",
+        "statut": "accepted",
+        "voyageId": "14",
+        "hotel": "Troms\u00f8 Lodge & Camping",
+        "date": "2025-03-23 19:50:30"
+    },
+    {
+        "transaction": "FF8FFC7262",
+        "montant": "2895",
+        "vendeur": "MI-3_I",
+        "statut": "accepted",
+        "voyageId": "14",
+        "hotel": "Troms\u00f8 Lodge & Camping",
+        "date": "2025-03-23 19:50:33"
+    },
+    {
+        "transaction": "FF8FFC7262",
+        "montant": "2895",
+        "vendeur": "MI-3_I",
+        "statut": "accepted",
+        "voyageId": "14",
+        "hotel": "Troms\u00f8 Lodge & Camping",
+        "date": "2025-03-23 19:50:59"
+    },
+    {
+        "transaction": "FF8FFC7262",
+        "montant": "2895",
+        "vendeur": "MI-3_I",
+        "statut": "accepted",
+        "voyageId": "14",
+        "hotel": "Troms\u00f8 Lodge & Camping",
+        "date": "2025-03-23 19:51:00"
+    },
+    {
+        "transaction": "FF8FFC7262",
+        "montant": "2895",
+        "vendeur": "MI-3_I",
+        "statut": "accepted",
+        "voyageId": "14",
+        "hotel": "Troms\u00f8 Lodge & Camping",
+        "date": "2025-03-23 19:51:56"
+    },
+    {
+        "transaction": "FF8FFC7262",
+        "montant": "2895",
+        "vendeur": "MI-3_I",
+        "statut": "accepted",
+        "voyageId": "14",
+        "hotel": "Troms\u00f8 Lodge & Camping",
+        "date": "2025-03-23 19:52:31"
+    },
+    {
+        "transaction": "FF8FFC7262",
+        "montant": "2895",
+        "vendeur": "MI-3_I",
+        "statut": "accepted",
+        "voyageId": "14",
+        "hotel": "Troms\u00f8 Lodge & Camping",
+        "date": "2025-03-23 19:54:18"
+    },
+    {
+        "transaction": "FF8FFC7262",
+        "montant": "2895",
+        "vendeur": "MI-3_I",
+        "statut": "accepted",
+        "voyageId": "14",
+        "hotel": "Troms\u00f8 Lodge & Camping",
+        "date": "2025-03-23 19:54:24"
+    },
+    {
+        "transaction": "FF8FFC7262",
+        "montant": "2895",
+        "vendeur": "MI-3_I",
+        "statut": "accepted",
+        "voyageId": "14",
+        "hotel": "Troms\u00f8 Lodge & Camping",
+        "date": "2025-03-23 19:55:10"
+    },
+    {
+        "transaction": "FF8FFC7262",
+        "montant": "2895",
+        "vendeur": "MI-3_I",
+        "statut": "accepted",
+        "voyageId": "14",
+        "hotel": "Troms\u00f8 Lodge & Camping",
+        "date": "2025-03-23 19:55:45"
+    },
+    {
+        "transaction": "FF8FFC7262",
+        "montant": "2895",
+        "vendeur": "MI-3_I",
+        "statut": "accepted",
+        "voyageId": "14",
+        "hotel": "Troms\u00f8 Lodge & Camping",
+        "date": "2025-03-23 19:57:04"
+    },
+    {
+        "transaction": "FF8FFC7262",
+        "montant": "2895",
+        "vendeur": "MI-3_I",
+        "statut": "accepted",
+        "voyageId": "14",
+        "hotel": "Troms\u00f8 Lodge & Camping",
+        "date": "2025-03-23 19:57:10"
+    },
+    {
+        "transaction": "FF8FFC7262",
+        "montant": "2895",
+        "vendeur": "MI-3_I",
+        "statut": "accepted",
+        "voyageId": "14",
+        "hotel": "Troms\u00f8 Lodge & Camping",
+        "date": "2025-03-23 19:57:11"
+    },
+    {
+        "transaction": "FF8FFC7262",
+        "montant": "2895",
+        "vendeur": "MI-3_I",
+        "statut": "accepted",
+        "voyageId": "14",
+        "hotel": "Troms\u00f8 Lodge & Camping",
+        "date": "2025-03-23 19:57:11"
+    },
+    {
+        "transaction": "FF8FFC7262",
+        "montant": "2895",
+        "vendeur": "MI-3_I",
+        "statut": "accepted",
+        "voyageId": "14",
+        "hotel": "Troms\u00f8 Lodge & Camping",
+        "date": "2025-03-23 19:57:11"
+    },
+    {
+        "transaction": "FF8FFC7262",
+        "montant": "2895",
+        "vendeur": "MI-3_I",
+        "statut": "accepted",
+        "voyageId": "14",
+        "hotel": "Troms\u00f8 Lodge & Camping",
+        "date": "2025-03-23 19:57:11"
+    },
+    {
+        "transaction": "FF8FFC7262",
+        "montant": "2895",
+        "vendeur": "MI-3_I",
+        "statut": "accepted",
+        "voyageId": "14",
+        "hotel": "Troms\u00f8 Lodge & Camping",
+        "date": "2025-03-23 19:57:11"
+    },
+    {
+        "transaction": "FF8FFC7262",
+        "montant": "2895",
+        "vendeur": "MI-3_I",
+        "statut": "accepted",
+        "voyageId": "14",
+        "hotel": "Troms\u00f8 Lodge & Camping",
+        "date": "2025-03-23 19:57:11"
+    },
+    {
+        "transaction": "FF8FFC7262",
+        "montant": "2895",
+        "vendeur": "MI-3_I",
+        "statut": "accepted",
+        "voyageId": "14",
+        "hotel": "Troms\u00f8 Lodge & Camping",
+        "date": "2025-03-23 19:57:12"
+    },
+    {
+        "transaction": "FF8FFC7262",
+        "montant": "2895",
+        "vendeur": "MI-3_I",
+        "statut": "accepted",
+        "voyageId": "14",
+        "hotel": "Troms\u00f8 Lodge & Camping",
+        "date": "2025-03-23 19:57:15"
+    },
+    {
+        "transaction": "FF8FFC7262",
+        "montant": "2895",
+        "vendeur": "MI-3_I",
+        "statut": "accepted",
+        "voyageId": "14",
+        "hotel": "Troms\u00f8 Lodge & Camping",
+        "date": "2025-03-23 19:58:11"
+    },
+    {
+        "transaction": "FF8FFC7262",
+        "montant": "2895",
+        "vendeur": "MI-3_I",
+        "statut": "accepted",
+        "voyageId": "14",
+        "hotel": "Troms\u00f8 Lodge & Camping",
+        "date": "2025-03-23 19:58:14"
+    },
+    {
+        "transaction": "FF8FFC7262",
+        "montant": "2895",
+        "vendeur": "MI-3_I",
+        "statut": "accepted",
+        "voyageId": "14",
+        "hotel": "Troms\u00f8 Lodge & Camping",
+        "date": "2025-03-23 19:58:15"
+    },
+    {
+        "transaction": "FF8FFC7262",
+        "montant": "2895",
+        "vendeur": "MI-3_I",
+        "statut": "accepted",
+        "voyageId": "14",
+        "hotel": "Troms\u00f8 Lodge & Camping",
+        "date": "2025-03-23 19:58:39"
+    },
+    {
+        "transaction": "FF8FFC7262",
+        "montant": "2895",
+        "vendeur": "MI-3_I",
+        "statut": "accepted",
+        "voyageId": "14",
+        "hotel": "Troms\u00f8 Lodge & Camping",
+        "date": "2025-03-23 20:00:41"
+    },
+    {
+        "transaction": "FF8FFC7262",
+        "montant": "2895",
+        "vendeur": "MI-3_I",
+        "statut": "accepted",
+        "voyageId": "14",
+        "hotel": "Troms\u00f8 Lodge & Camping",
+        "date": "2025-03-23 20:00:42"
+    },
+    {
+        "transaction": "FF8FFC7262",
+        "montant": "2895",
+        "vendeur": "MI-3_I",
+        "statut": "accepted",
+        "voyageId": "14",
+        "hotel": "Troms\u00f8 Lodge & Camping",
+        "date": "2025-03-23 20:00:42"
+    },
+    {
+        "transaction": "FF8FFC7262",
+        "montant": "2895",
+        "vendeur": "MI-3_I",
+        "statut": "accepted",
+        "voyageId": "14",
+        "hotel": "Troms\u00f8 Lodge & Camping",
+        "date": "2025-03-23 20:00:42"
+    },
+    {
+        "transaction": "FF8FFC7262",
+        "montant": "2895",
+        "vendeur": "MI-3_I",
+        "statut": "accepted",
+        "voyageId": "14",
+        "hotel": "Troms\u00f8 Lodge & Camping",
+        "date": "2025-03-23 20:00:42"
+    },
+    {
+        "transaction": "FF8FFC7262",
+        "montant": "2895",
+        "vendeur": "MI-3_I",
+        "statut": "accepted",
+        "voyageId": "14",
+        "hotel": "Troms\u00f8 Lodge & Camping",
+        "date": "2025-03-23 20:00:42"
+    },
+    {
+        "transaction": "FF8FFC7262",
+        "montant": "2895",
+        "vendeur": "MI-3_I",
+        "statut": "accepted",
+        "voyageId": "14",
+        "hotel": "Troms\u00f8 Lodge & Camping",
+        "date": "2025-03-23 20:00:42"
+    },
+    {
+        "transaction": "FF8FFC7262",
+        "montant": "2895",
+        "vendeur": "MI-3_I",
+        "statut": "accepted",
+        "voyageId": "14",
+        "hotel": "Troms\u00f8 Lodge & Camping",
+        "date": "2025-03-23 20:00:43"
+    },
+    {
+        "transaction": "FF8FFC7262",
+        "montant": "2895",
+        "vendeur": "MI-3_I",
+        "statut": "accepted",
+        "voyageId": "14",
+        "hotel": "Troms\u00f8 Lodge & Camping",
+        "date": "2025-03-23 20:00:43"
+    },
+    {
+        "transaction": "FF8FFC7262",
+        "montant": "2895",
+        "vendeur": "MI-3_I",
+        "statut": "accepted",
+        "voyageId": "14",
+        "hotel": "Troms\u00f8 Lodge & Camping",
+        "date": "2025-03-23 20:00:43"
+    },
+    {
+        "transaction": "FF8FFC7262",
+        "montant": "2895",
+        "vendeur": "MI-3_I",
+        "statut": "accepted",
+        "voyageId": "14",
+        "hotel": "Troms\u00f8 Lodge & Camping",
+        "date": "2025-03-23 20:00:43"
+    },
+    {
+        "transaction": "FF8FFC7262",
+        "montant": "2895",
+        "vendeur": "MI-3_I",
+        "statut": "accepted",
+        "voyageId": "14",
+        "hotel": "Troms\u00f8 Lodge & Camping",
+        "date": "2025-03-23 20:00:43"
+    },
+    {
+        "transaction_id": "818DA010FA",
+        "montant": 3290,
+        "voyage_id": "2",
+        "hotel": "Four Points by Sheraton Oran",
+        "activites": [
+            "Visit Fort Santa Cruz|10",
+            "Boat trip to the Habibas Islands|60",
+            "Walk in El-Madraba Park|10",
+            "Traditional dance performance|30"
+        ],
+        "user_email": "orn213@gmail.com",
+        "date": "2025-03-23 20:01:29"
+    },
+    {
+        "transaction": "818DA010FA",
+        "montant": "3290",
+        "vendeur": "MI-3_I",
+        "statut": "accepted",
+        "voyageId": "2",
+        "hotel": "Four Points by Sheraton Oran",
+        "date": "2025-03-23 20:01:46"
+    },
+    {
+        "transaction": "818DA010FA",
+        "montant": "3290",
+        "vendeur": "MI-3_I",
+        "statut": "accepted",
+        "voyageId": "2",
+        "hotel": "Four Points by Sheraton Oran",
+        "date": "2025-03-23 20:05:07"
+    },
+    {
+        "transaction_id": "52CA4A2E75",
+        "montant": 3290,
+        "voyage_id": "2",
+        "hotel": "Four Points by Sheraton Oran",
+        "activites": [
+            "Visit Fort Santa Cruz|10",
+            "Boat trip to the Habibas Islands|60",
+            "Walk in El-Madraba Park|10",
+            "Traditional dance performance|30"
+        ],
+        "user_email": "orn213@gmail.com",
+        "date": "2025-03-23 20:05:22"
+    },
+    {
+        "transaction_id": "1E1AB45957",
+        "montant": 3290,
+        "voyage_id": "2",
+        "hotel": "Four Points by Sheraton Oran",
+        "activites": [
+            "Visit Fort Santa Cruz|10",
+            "Boat trip to the Habibas Islands|60",
+            "Walk in El-Madraba Park|10",
+            "Traditional dance performance|30"
+        ],
+        "user_email": "orn213@gmail.com",
+        "date": "2025-03-23 20:06:54"
     }
 ]

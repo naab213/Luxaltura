@@ -66,7 +66,7 @@ file_put_contents($paymentDataFile, json_encode($paymentData, JSON_PRETTY_PRINT)
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css" />
     <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
-    <title>Payment Status</title>
+    <title>Luxaltura - Payment Status</title>
 </head>
 
 <body>
@@ -76,23 +76,25 @@ file_put_contents($paymentDataFile, json_encode($paymentData, JSON_PRETTY_PRINT)
         <img src="https://imgur.com/F38OAQx.jpg" width="150" height="150" class="logo" />
     </header>
 
-    <div class="resume">
-        <section>
-            <h2>Payment Summary</h2>
-            <p><strong>Transaction ID:</strong> <?php echo htmlspecialchars($transaction); ?></p>
-            <p><strong>Selected Trip:</strong> <?php echo $selectedVoyage['ville'] . ', ' . $selectedVoyage['pays']; ?></p>
-            <p><strong>Hotel:</strong> <?php echo htmlspecialchars($hotel); ?></p>
-            <p><strong>Amount Paid:</strong> <?php echo $montant; ?> €</p>
-            <p><strong>Status:</strong> <?php echo $statut === 'accepted' ? 'Accepted' : 'Declined'; ?></p>
+    <div class="container">
+        <div class="resume">
+            <section>
+                <h2>Payment Summary</h2>
+                <p><strong>Transaction ID:</strong> <?php echo htmlspecialchars($transaction); ?></p>
+                <p><strong>Selected Trip:</strong> <?php echo $selectedVoyage['ville'] . ', ' . $selectedVoyage['pays']; ?></p>
+                <p><strong>Hotel:</strong> <?php echo htmlspecialchars($hotel); ?></p>
+                <p><strong>Amount Paid:</strong> <?php echo $montant; ?> €</p>
+                <p><strong>Status:</strong> <?php echo $statut === 'accepted' ? 'Accepted' : 'Declined'; ?></p>
 
-            <?php if ($statut === 'accepted'): ?>
-                <p>Thank you for your payment! Your reservation has been confirmed.</p>
-            <?php else: ?>
-                <p>Your payment was declined. Please try again.</p>
-            <?php endif; ?>
+                <?php if ($statut === 'accepted'): ?>
+                    <p>Thank you for your payment! Your reservation has been confirmed.</p>
+                <?php else: ?>
+                    <p>Your payment was declined. Please try again.</p>
+                <?php endif; ?>
 
-            <a href="home.php" class="button">Return to Home</a>
-        </section>
+                <a href="home.php" class="button">Return to Home</a>
+            </section>
+        </div>
     </div>
 
     <footer>
@@ -104,5 +106,4 @@ file_put_contents($paymentDataFile, json_encode($paymentData, JSON_PRETTY_PRINT)
         <span>2025 | MI-03.I ©</span>
     </footer>
 </body>
-
 </html>
