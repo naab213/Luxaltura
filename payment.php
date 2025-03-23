@@ -7,9 +7,8 @@ if (!isset($_SESSION['user_email'])) {
 
 $userEmail = $_SESSION['user_email'];
 
-
 require('getapikey.php');
-$api_key = getAPIKey("MI-3_I"); 
+$api_key = getAPIKey("MI-3_I");
 
 $voyageId = $_POST['voyage_id'] ?? '';
 $hotel = $_POST['hotel'] ?? '';
@@ -21,7 +20,6 @@ if (empty($voyageId)) {
 if (empty($hotel)) {
     die("Erreur : Le nom de l'hôtel est manquant.");
 }
-
 
 $dataFile = 'dataJSON/fly.json';
 if (!file_exists($dataFile)) {
@@ -47,19 +45,15 @@ if (!$selectedVoyage) {
 
 $prixBillet = (float)$selectedVoyage['prix'];
 
-
 $montant = $prixBillet * 2;
-
 
 list($hotelNom, $hotelPrix) = explode('|', $hotel);
 $montant += (float)$hotelPrix;
-
 
 foreach ($activites as $activite) {
     list($activiteNom, $activitePrix) = explode('|', $activite);
     $montant += (float)$activitePrix;
 }
-
 
 $transactionData = [
     'transaction_id' => strtoupper(bin2hex(random_bytes(5))),
@@ -81,7 +75,7 @@ if (file_exists($transactionsFile)) {
 $transactions[] = $transactionData;
 file_put_contents($transactionsFile, json_encode($transactions, JSON_PRETTY_PRINT));
 
-$retour = "http://localhost:8080/Luxaltura/return_payment.php?voyage_id=" . urlencode($voyageId) . "&hotel=" . urlencode($hotelNom);
+$retour = "http://localhost/Luxaltura/return_payment.php?voyage_id=" . urlencode($voyageId) . "&hotel=" . urlencode($hotelNom);
 
 $control = md5($api_key . "#" . $transactionData['transaction_id'] . "#" . $montant . "#MI-3_I#" . $retour . "#");
 ?>
@@ -93,6 +87,7 @@ $control = md5($api_key . "#" . $transactionData['transaction_id'] . "#" . $mont
     <link rel="stylesheet" href="style.css" />
     <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
     <title>Luxaltura - Payment</title>
+   
 </head>
 <body>
     <header>
@@ -105,7 +100,8 @@ $control = md5($api_key . "#" . $transactionData['transaction_id'] . "#" . $mont
         <div class="resume">
             <section>
                 <h2>Payment Summary</h2>
-                <p><strong>Selected Trip:</strong> <?php echo htmlspecialchars($selectedVoyage['ville'] . ', ' . $selectedVoyage['pays']); ?></p>
+                <!-- Afficher le nom du voyage en premier -->
+                <p><strong>Trip:</strong> <?php echo htmlspecialchars($selectedVoyage['ville'] . ', ' . $selectedVoyage['pays']); ?></p>
                 <p><strong>Hotel:</strong> <?php echo htmlspecialchars($hotelNom); ?></p>
                 <p><strong>Activities:</strong></p>
                 <ul>
