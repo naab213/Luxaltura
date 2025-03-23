@@ -1,26 +1,16 @@
-<?php
-$voyages = [
-    ["nom" => "Algeria", "image" => "https://content.r9cdn.net/rimg/dimg/92/01/0c6091fc-city-20461-167be288f16.jpg"],
-    ["nom" => "Brazil", "image" => "https://wallpaperaccess.com/full/4695115.jpg"],
-    ["nom" => "Canada", "image" => "https://5b0988e595225.cdn.sohucs.com/images/20171207/cefea0a8643a4f6abe5b9c3db7decd1b.jpg"],
-    ["nom" => "Japan", "image" => "https://imgur.com/vcMkREB.jpg"],
-    ["nom" => "Morocco", "image" => "https://mylittlekech.com/wp-content/uploads/2023/05/Marrakech-Capitale-de-la-culture-dans-le-monde-islamique-pour-lannee-2024..jpg"],
-    ["nom" => "Oman", "image" => "https://mybayutcdn.bayut.com/mybayut/wp-content/uploads/Travelling-from-Dubai-to-Oman-Cover-02-06.jpg"],
-    ["nom" => "Norway", "image" => "https://www.levoyaging.fr/wp-content/uploads/2021/07/NORCTBAL_tromso-circuits-neige-norvege-tui.jpg"],
-    ["nom" => "Palestine", "image" => "https://i.imgur.com/S7vq6Zd.jpeg"],
-    ["nom" => "Peru", "image" => "https://www.mngturizm.com/tourphotos/peru-bolivya-kolombiya-turu-genel-35393-peru-bolivya-kolombiya-turu-17151740971.jpg"],
-    ["nom" => "Spain", "image" => "https://wallpaperaccess.com/full/348472.jpg"]
-];
 
-// Liste des voyages (après recherche)
-$jsonFile = 'dataJSON/fly.json';
-if(file_exists($jsonFile)){
-    $jsonContent = file_get_contents($jsonFile);
-    $voyages_search = json_decode($jsonContent, true);
+<?php
+//FINIIIIIIIIIIIII
+$dataFile = 'dataJSON/fly.json';
+$flyData = json_decode(file_get_contents($dataFile), true);
+
+// Ensure $flyData is an array
+if (!is_array($flyData)) {
+    $flyData = [];
 }
-else{
-    die('Le fichier JSON n\'a pas été trouvé.');
-}
+
+$voyages = $flyData; // Use the full data for displaying all voyages
+$voyages_search = $flyData; // Use the same data for search functionality
 
 $packs = [
     1 => "Business Elite✨",
@@ -29,10 +19,10 @@ $packs = [
     4 => "Future Sky🚀"
 ];
 
-$search = isset($_GET['request']) ? $_GET['request'] : '';
+$search = isset($_GET['request']) ? trim($_GET['request']) : '';
 
-$filtered_voyages = array_filter($voyages_search, function($voyage) use ($search) {
-    return stripos($voyage['nom'], $search) !== false;
+$filtered_voyages = array_filter($voyages_search, function ($voyage) use ($search) {
+    return isset($voyage['nom']) && stripos($voyage['nom'], $search) !== false; // Check 'nom' key and perform search
 });
 
 $is_searching = !empty($search);
@@ -62,7 +52,7 @@ $is_searching = !empty($search);
 
     <nav>
         <ul>
-            <li><a href="home.html" title="Go to home">Home</a></li>
+            <li><a href="home.php" title="Go to home">Home</a></li>
             <li><a href="presentation.html" title="Our presentation">Presentation</a></li>
             <li><a href="#contact" title="Go to contact">Contact us</a></li>
         </ul>
