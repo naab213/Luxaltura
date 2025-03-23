@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (!isset($error)) {
-        $filePath = 'dataJSON/user_data.json';
+        $filePath = 'dataJSON/user_data.json'; // Use user_data.json for verification
         if (!file_exists($filePath)) {
             $error = "Erreur : le fichier de données est introuvable.";
         } else {
@@ -18,19 +18,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if (!is_array($users)) {
                 $error = "Erreur : les données utilisateur sont corrompues.";
-            } else {
+            } else {     
                 $userFound = false;
 
                 foreach ($users as $user) {
-                    if (strtolower($user['email']) === strtolower($email)) {
+                    if (strtolower($user['email']) === strtolower($email)) { // Check email
                         $userFound = true;
 
-                        if ($password === $user['pass']) {
-                            $_SESSION['user_email'] = $email;
-                            $_SESSION['user_name'] = $user['name'];
-                            $_SESSION['user_lastname'] = $user['lastname'];
-                            $_SESSION['user_age'] = $user['age'];
-                            header("Location: userpage.php");
+                        if ($password === $user['pass']) { // Check password
+                            // Ensure required keys exist in the user array
+                            if (!isset($user['lastname'], $user['name'], $user['age'], $user['email'], $user['pass'])) {
+                                $error = "Erreur : données utilisateur incomplètes.";
+                                break;
+                            }
+
+                            $_SESSION['user_email'] = $email; // Store user email
+                            $_SESSION['user_name'] = $user['name']; // Store user name
+                            $_SESSION['user_lastname'] = $user['lastname']; // Store user lastname
+                            $_SESSION['user_age'] = $user['age']; // Store user age
+
+                            // Ensure the temp directory exists
+                            $tempDir = 'dataJSON/temp/';
+                            if (!is_dir($tempDir)) {
+                                mkdir($tempDir, 0777, true);
+                            }
+
+                            // Create a temporary file with the user's data
+                            $tempFilePath = $tempDir . 'user_' . md5($email) . '.json';
+                            $userData = [
+                                'lastname' => $user['lastname'],
+                                'name' => $user['name'],
+                                'age' => $user['age'],
+                                'email' => $user['email']
+                            ];
+                            file_put_contents($tempFilePath, json_encode($userData, JSON_PRETTY_PRINT));
+
+                            header("Location: home.php"); // Redirect to home page
                             exit();
                         } else {
                             $error = "Mot de passe incorrect.";
