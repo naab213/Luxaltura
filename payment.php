@@ -29,6 +29,7 @@ if (isset($_POST['prix'])) {
     // Vérifier que le prix est un nombre valide
     if (is_numeric($prix) && $prix > 0) {
         $prix = number_format($prix, 2, '.', '');  // Formater le prix à 2 décimales
+        echo "Prix formaté : " . $prix . "<br>";
     } else {
         die("Error: Invalid or missing amount.");
     }
@@ -37,18 +38,27 @@ if (isset($_POST['prix'])) {
 }
 
 $vendeur = "MI-3_I"; 
-$retour = "http://localhost/return_payment.php?session=12345";
+$retour = trim("http://localhost/return_payment.php?session=12345");
 $api_key = getAPIKey($vendeur);
+
 if (!preg_match("/^[0-9a-zA-Z]{15}$/", $api_key)) {
     die("Error : invalid APIkey.");
 }
 
-echo "API Key: $api_key<br>";
-echo "Transaction: $transaction<br>";
-echo "Prix: $prix<br>";
-echo "Vendeur: $vendeur<br>";
-
 $control = md5($api_key . "#" . $transaction . "#" . $prix . "#" . $vendeur . "#" . $retour . "#");
+
+echo "<h3>Vérification des données envoyées :</h3>";
+echo "<pre>";
+print_r([
+    "API Key" => $api_key,
+    "Transaction" => $transaction,
+    "Prix" => $prix,
+    "Vendeur" => $vendeur,
+    "Retour" => $retour,
+    "Hash généré" => $control,
+    "Hash attendu" => md5($api_key . "#" . $transaction . "#" . $prix . "#" . $vendeur . "#" . $retour . "#")
+]);
+echo "</pre>";
 
 ?>
 
@@ -63,7 +73,9 @@ $control = md5($api_key . "#" . $transaction . "#" . $prix . "#" . $vendeur . "#
         <h2>Payment page</h2>
         <p>Amount due : <?php echo htmlspecialchars($prix); ?> €</p>
 
-        <form action="https://www.plateforme-smc.fr/cybank/index.php" method="POST">
+        <pre><?php print_r($_POST); ?></pre>
+
+        <form action="https://www.plateforme-smc.fr/cybank/index.php" method='POST'>
             <input type="hidden" name="transaction" value="<?php echo $transaction; ?>">
             <input type="hidden" name="prix" value="<?php echo $prix; ?>">
             <input type="hidden" name="vendeur" value="<?php echo $vendeur; ?>">
