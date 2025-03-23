@@ -1,13 +1,13 @@
 <?php
 session_start();
 
-// Vérifiez si l'utilisateur est connecté
+
 if (!isset($_SESSION['user_email'])) {
     header("Location: sign_in.php");
     exit();
 }
 
-// Charger les données de paiement depuis le fichier JSON
+
 $paymentDataFile = 'dataJSON/payments.json';
 if (!file_exists($paymentDataFile)) {
     die("Erreur : Fichier de données des paiements introuvable.");
@@ -18,9 +18,9 @@ if (json_last_error() !== JSON_ERROR_NONE) {
     die("Erreur : Impossible de charger les données des paiements (fichier JSON corrompu).");
 }
 
-// Filtrer les transactions pour l'utilisateur connecté
+
 $userPayments = array_filter($paymentData, function ($payment) {
-    // Vérifiez si la clé 'user_email' existe dans le tableau $payment
+    
     return isset($payment['user_email']) && $payment['user_email'] === $_SESSION['user_email'];
 });
 ?>
