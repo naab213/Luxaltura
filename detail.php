@@ -71,12 +71,23 @@ $heure_arrivee_retour = date("H:i", strtotime("+$duree_vol hours", strtotime("08
         <h1>Summary of Your Trip</h1>
         <span class="separator"></span>
         <img src="https://imgur.com/F38OAQx.jpg" width="200" height="200" class="logo" />
+        <div class="auth-links">
+            <?php if (isset($_SESSION['user_email'])): ?>
+                <!-- Afficher ces liens si l'utilisateur est connecté -->
+                <a href="userpage.php" title="My Account">My Account</a>
+                <a href="logout.php" title="Log out">Log out</a>
+            <?php else: ?>
+                <!-- Afficher ces liens si l'utilisateur n'est pas connecté -->
+                <a href="sign_in.php" title="Sign in">Sign in</a>
+                <a href="sign_up.php" title="Sign up">Sign up</a>
+            <?php endif; ?>
+        </div>
     </header>
 
     <nav>
         <ul>
-            <li><a href="home.html" title="Go to home">Home</a></li>
-            <li><a href="presentation.html" title="Our presentation">Presentation</a></li>
+            <li><a href="home.php" title="Go to home">Home</a></li>
+            <li><a href="presentation.php" title="Our presentation">Presentation</a></li>
             <li><a href="#contact" title="Go to contact">Contact us</a></li>
         </ul>
     </nav>
