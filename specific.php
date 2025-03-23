@@ -1,10 +1,10 @@
-
 <?php
-//FINIIIIIIIIIIIII
+session_start();
+
 $dataFile = 'dataJSON/fly.json';
 $flyData = json_decode(file_get_contents($dataFile), true);
 
-// Ensure $flyData is an array
+
 if (!is_array($flyData)) {
     $flyData = [];
 }
@@ -21,7 +21,7 @@ $voyages = [
     ["nom" => "Peru", "image" => "https://www.mngturizm.com/tourphotos/peru-bolivya-kolombiya-turu-genel-35393-peru-bolivya-kolombiya-turu-17151740971.jpg"],
     ["nom" => "Spain", "image" => "https://wallpaperaccess.com/full/348472.jpg"]
 ];
-$voyages_search = $flyData; // Use the same data for search functionality
+$voyages_search = $flyData; 
 
 $packs = [
     1 => "Business Elite✨",
@@ -33,7 +33,7 @@ $packs = [
 $search = isset($_GET['request']) ? trim($_GET['request']) : '';
 
 $filtered_voyages = array_filter($voyages_search, function ($voyage) use ($search) {
-    return isset($voyage['nom']) && stripos($voyage['nom'], $search) !== false; // Check 'nom' key and perform search
+    return isset($voyage['nom']) && stripos($voyage['nom'], $search) !== false; 
 });
 
 $is_searching = !empty($search);
@@ -56,15 +56,22 @@ $is_searching = !empty($search);
         <span class="separator"></span>
         <img src="https://imgur.com/F38OAQx.jpg" width="200" height="200" class="logo" />
         <div class="auth-links">
-            <a href="sign_in.php" title="Sign in">Sign in</a>
-            <a href="sign_up.php" title="Sign up">Sign up</a>
+            <?php if (isset($_SESSION['user_email'])): ?>
+             
+                <a href="userpage.php" title="My Account">My Account</a>
+                <a href="logout.php" title="Log out">Log out</a>
+            <?php else: ?>
+              
+                <a href="sign_in.php" title="Sign in">Sign in</a>
+                <a href="sign_up.php" title="Sign up">Sign up</a>
+            <?php endif; ?>
         </div>
     </header>
 
     <nav>
         <ul>
             <li><a href="home.php" title="Go to home">Home</a></li>
-            <li><a href="presentation.html" title="Our presentation">Presentation</a></li>
+            <li><a href="presentation.php" title="Our presentation">Presentation</a></li>
             <li><a href="#contact" title="Go to contact">Contact us</a></li>
         </ul>
     </nav>
