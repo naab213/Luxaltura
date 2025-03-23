@@ -16,6 +16,11 @@ if (empty($transaction) || empty($montant) || empty($vendeur) || empty($statut) 
 }
 
 // Récupérez la clé API
+
+$retour = "http://localhost/Luxaltura/return_payment.php?session=12345";
+
+require('getapikey.php');
+
 $api_key = getAPIKey($vendeur);
 if (!preg_match("/^[0-9a-zA-Z]{15}$/", $api_key)) {
     die("Erreur : API Key invalide.");

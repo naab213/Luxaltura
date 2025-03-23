@@ -67,6 +67,17 @@ if (empty($control)) {
         <h2>Payment page</h2>
         <p>Amount due : <?php echo $montant; ?> </p>
 
+<<<<<<< HEAD
+=======
+            <h4>Payment Details</h4>
+
+            <form action="https://www.plateforme-smc.fr/cybank/index.php" method="POST">
+                <input type="hidden" name="transaction" value="<?php echo $transaction; ?>">
+                <input type="hidden" name="prix" value="<?php echo $prix; ?>">
+                <input type="hidden" name="vendeur" value="<?php echo $vendeur; ?>">
+                <input type="hidden" name="retour" value="<?php echo $retour; ?>">
+                <input type="hidden" name="control" value="<?php echo $control; ?>">
+>>>>>>> 1d678e7 ([PHASE 2] fin)
 
         <form action="https://www.plateforme-smc.fr/cybank/index.php" method="POST">
 
