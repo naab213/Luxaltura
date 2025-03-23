@@ -1,89 +1,204 @@
+<?php
+session_start(); // Démarrez la session pour gérer l'état de connexion
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" href="style.css" />
-        <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
-        <title>Luxaltura - Presentation</title>
-    </head>
 
-    <body>
-        <header>
-            <h1>Luxaltura</h1>
-            <span class="separator"></span>
-            <img src="https://imgur.com/F38OAQx.jpg" width="200" height="200" class="logo" />
-            <div class="auth-links">
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
+    <title>Luxaltura - Home</title>
+</head>
+
+<body>
+    <header>
+        <h1>Luxaltura - Elevate Your Journey, Embrace Prestige</h1>
+        <span class="separator"></span>
+        <img src="https://imgur.com/F38OAQx.jpg" width="150" height="150" class="logo" />
+        <div class="auth-links">
+            <?php if (isset($_SESSION['user_email'])): ?>
+                <!-- Afficher ces liens si l'utilisateur est connecté -->
+                <a href="userpage.php" title="My Account">My Account</a>
+                <a href="logout.php" title="Log out">Log out</a>
+            <?php else: ?>
+                <!-- Afficher ces liens si l'utilisateur n'est pas connecté -->
                 <a href="sign_in.php" title="Sign in">Sign in</a>
                 <a href="sign_up.php" title="Sign up">Sign up</a>
-            </div>
-            <form id="search" action="/recherche" method="GET">
-                <input type="text"id="psearch" placeholder="Search..." id="request" required>
-            </form>
-        </header>
+            <?php endif; ?>
+        </div>
+    </header>
 
-        <nav>
-            <ul>
-                <li><a href="home.html" title="Go to home">Home</a></li>
-                <li><a href="specific.php" title="Go to my bookings">Bookings</a></li>
-                <li><a href="#contact" title="Go to contact">Contact us</a></li>
-            </ul>
-        </nav>
+    <nav>
+        <ul>
+            <li><a href="presentation.html" title="Our presentation">Presentation</a></li>
+            <li><a href="specific.php" title="Go to my bookings">Bookings</a></li>
+            <li><a href="#contact" title="Go to contact">Contact us</a></li>
+        </ul>
+    </nav>
 
-        <div class="presentation">
-            <section>
-                <p>
-                    <center>
-                        Welcome to Luxaltura, your one-of-a-kind travel agency, specializing in exceptional aerial experiences.
-                        Founded in 2022, Luxaltura doesn't just let you book a flight—it offers you an unforgettable moment. We
-                        provide the opportunity to travel aboard the aircraft of your choice while enjoying thrilling activities
-                        upon arrival at your destination.
-                        Whether you dream of a spectacular loop in the air or a skydiving jump for an adrenaline rush, we have
-                        options to satisfy all your desires. Our diverse fleet allows you to select the aircraft that best suits
-                        your expectations, whether it’s a private jet for a peaceful flight or a sportier aircraft for a more
-                        intense experience.
-                        We serve top destinations around the world, from paradise beaches to majestic mountains, ensuring safe,
-                        comfortable, and memorable flights.
-                        Take off with Luxaltura, where every journey is a tailor-made adventure, blending luxury, thrills, and
-                        exploration. Ready for takeoff? Discover our offers now and choose the experience that will mark your
-                        life. Luxaltura, redefining the art of travel.
-                    </center>
-                </p>
-            </section>
+    <div class="resume">
+        <section>
+            <h3><br>Welcome to Luxaltura!</br></h3>
+            <p>Looking for an extraordinary vacation? Let us immerse you in a premium experience and take you to new
+                heights. Simply choose a package, and we'll take care of the rest — especially of you!</p>
+        </section>
 
-            <div id="booking">
-                <section>
-                    <table cellspacing="8">
-                        <tr>
-                            <td>
-                                <img src="https://aeroaffaires.fr/wp-content/uploads/2019/04/gulfstream_g650_interior_11.jpg" width="375" height="225" />
-                                <p><center>Business Elite✨: private jet travel with access to exclusive lounges</center></p>
-                            </td>
-                            <td>
-                                <img src="https://www.24matins.fr/wp-content/uploads/2025/02/avion-mirage-1200x800.jpeg" width="375" height="225" />
-                                <p><center>Military Experience✈️: flight in a military aircraft with a simulator and a visit to an airbase</center></p>
-                            </td>
-                            <td>
-                                <img src="https://images.rtl.fr/~c/1200v800/funradio/www/968583-top-gun-voltige.jpg" width="375" height="225" />
-                                <p><center>Adrenaline Flight🎢: aerobatic flight experience with a looping session</center></p>
-                            </td>
-                            <td>
-                                <img src="https://ds.static.rtbf.be/article/image/1920x1920/3/0/1/45d137e1c41f62393dfcbec23e90f401-1692360856.jpg" width="372" height="225" />
-                                <p><center>Future Sky🚀: experience aboard an innovative aircraft with a futuristic simulator immersion</center></p>
-                            </td>
-                        </tr>
+        <section class="table-section">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Business Elite✨</th>
+                        <th colspan="2">Military Experience✈️</th>
+                        <th>Adrenaline Flight🎢</th>
+                        <th>Future Sky🚀</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <img src="https://imgur.com/01L6dOi.jpg" width="302" height="225" />
+                        </td>
+                        <td>
+                            <img src="https://imgur.com/XLTcar5.jpg" width="302" height="225" />
+                        </td>
+                        <td>
+                            <img src="https://imgur.com/8rFGyYW.jpg" width="302" height="225" />
+                        </td>
+                        <td>
+                            <img src="https://imgur.com/uQWPIoQ.jpg" width="302" height="225" />
+                        </td>
+                        <td>
+                            <img src="https://imgur.com/6YdCUwZ.jpg" width="302" height="225" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <h2>
+            <center> Our best selections ✨</center>
+        </h2>
+        <div class="table-container">
+            <a href="detail.php?id=7&date=2025-03-23&pays=%7E+Japan" class="table-best-link">
+                <section class="table-best">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Japan - Adrenaline Flight🎢</th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <div class="img-container">
+                                        <img src="https://www.gotokyo.org/fr/plan/tokyo-outline/images/main.jpg"
+                                            width="300" height="150" />
+                                        <div class="overlay-text">Le plus populaire
+                                            8⭐/10
+                                        </div>
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Haneda - International Airport | Tokyo</td>
+                            </tr>
+                            <tr>
+                                <td>The Prince Park Tower Tokyo</td>
+                            </tr>
+                            <tr>
+                                <td>4 activities</td>
+                            </tr>
+                            <tr>
+                                <td>Price : ???€</td>
+                            </tr>
+                        </tbody>
                     </table>
                 </section>
-            </div>
-        </div>
+            </a>
 
-        <footer>
-            <div id = "contact">
-                <section>
-                    <p><br>Contact us</br><a href = "mailto:luxalturaagency@outlook.com">luxalturaagency@outlook.com</a></p>
+            <a href="detail.php?id=3&date=2025-03-23&pays=~+Brazil" class="table-best-link">
+                <section class="table-best">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Brasilia - Military Experience✈️</th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <div class="img-container">
+                                        <img src="https://media.istockphoto.com/id/481054970/fr/photo/brasilia-s-cerrado-coucher-du-soleil-pont-jk.jpg?s=612x612&w=0&k=20&c=6l5RyoXCYNax-035G1XxC_nDWBo0po3f_UKgcB-F-ms="
+                                            width="300" height="150" />
+                                        <div class="overlay-text">Le mieux noté
+                                            10⭐/10
+                                        </div>
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Presidente Juscelino Kubitschek - International Airport | Brasilia</td>
+                            </tr>
+                            <tr>
+                                <td>Royal Tulip Brasília Alvorada</td>
+                            </tr>
+                            <tr>
+                                <td>4 activities</td>
+                            </tr>
+                            <tr>
+                                <td>Price : ???€</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </section>
-            </div>
-            <span>2025 | MI-03.I ©</span>
-        </footer>
-    </body>
-</html>
+            </a>
 
+            <a href="detail.php?id=14&date=2025-03-23&pays=~+Norway" class="table-best-link">
+                <section class="table-best">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tromso - Future Sky🚀</th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <div class="img-container">
+                                        <img src="https://static.nationalgeographic.fr/files/styles/image_3200/public/gettyimages-1446646686.jpg?w=1600&h=1067"
+                                            width="300" height="150" />
+                                        <div class="overlay-text">Le plus relaxant
+                                            9.5⭐/10
+                                        </div>
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Tromsø Airport | Tromsø</td>
+                            </tr>
+                            <tr>
+                                <td>Tromsø Lodge & Camping</td>
+                            </tr>
+                            <tr>
+                                <td>4 activities</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <div id="contact">
+            <section>
+                <p><br>Contact us</br><a href="mailto:luxalturaagency@outlook.com">luxalturaagency@outlook.com</a></p>
+            </section>
+        </div>
+        <span>2025 | MI-03.I ©</span>
+    </footer>
+</body>
+
+</html>
