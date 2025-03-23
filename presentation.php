@@ -19,20 +19,20 @@ session_start(); // Démarrez la session pour gérer l'état de connexion
         <img src="https://imgur.com/F38OAQx.jpg" width="150" height="150" class="logo" />
         <div class="auth-links">
             <?php if (isset($_SESSION['user_email'])): ?>
-                <!-- Afficher ces liens si l'utilisateur est connecté -->
-                <a href="userpage.php" title="My Account">My Account</a>
-                <a href="logout.php" title="Log out">Log out</a>
+            <!-- Afficher ces liens si l'utilisateur est connecté -->
+            <a href="userpage.php" title="My Account">My Account</a>
+            <a href="logout.php" title="Log out">Log out</a>
             <?php else: ?>
-                <!-- Afficher ces liens si l'utilisateur n'est pas connecté -->
-                <a href="sign_in.php" title="Sign in">Sign in</a>
-                <a href="sign_up.php" title="Sign up">Sign up</a>
+            <!-- Afficher ces liens si l'utilisateur n'est pas connecté -->
+            <a href="sign_in.php" title="Sign in">Sign in</a>
+            <a href="sign_up.php" title="Sign up">Sign up</a>
             <?php endif; ?>
         </div>
     </header>
 
     <nav>
         <ul>
-            <li><a href="presentation.html" title="Our presentation">Presentation</a></li>
+            <li><a href="presentation.php" title="Our presentation">Presentation</a></li>
             <li><a href="specific.php" title="Go to my bookings">Bookings</a></li>
             <li><a href="#contact" title="Go to contact">Contact us</a></li>
         </ul>
