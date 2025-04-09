@@ -80,7 +80,7 @@ $is_searching = !empty($search);
         <div class="container">
             <h2>Search and Filters</h2>
             <form id="search" action="" method="GET">
-                <input type="text" placeholder="Search..." id="request" name="request" value="<?php echo htmlspecialchars($search); ?>" required>
+                <input type="text" placeholder="Search..." id="request" name="request" value="<?php echo htmlspecialchars($search); ?>">
     
                 <div class="field">
                     <label for="date">Select a date to go:</label>
@@ -94,6 +94,24 @@ $is_searching = !empty($search);
                         <option value="Military">Military Experience✈️</option>
                         <option value="Adrenaline">Adrenaline Flight🎢</option>
                         <option value="Future">Future Sky🚀</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="continent">Select a continent:</label>
+                    <select id="continent" name="continent">
+                        <option value="Africa">Africa 🐫</option>
+                        <option value="Asia">Asia ⛩️</option>
+                        <option value="Europe">Europe 🏙️</option>
+                        <option value="America">America 🌉</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="continent">Select a tranch of price:</label>
+                    <select id="tranch-price" name="tranch-price">
+                        <option value="price">1200€ - 4000€ ✨</option>
+                        <option value="price">4100€ - 7000€ ⭐</option>
+                        <option value="price">7100€ - 16000€ 💫</option>
+                        <option value="price">16100€ - 56000€ 🌟</option>
                     </select>
                 </div>
 
