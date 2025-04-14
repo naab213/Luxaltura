@@ -1,20 +1,19 @@
 <?php
 session_start();
 
-
-if (!isset($_SESSION['user_email'])) {
+if(!isset($_SESSION['user_email'])){
     header("Location: sign_in.php");
     exit();
 }
 
 
 $paymentDataFile = 'dataJSON/payments.json';
-if (!file_exists($paymentDataFile)) {
+if(!file_exists($paymentDataFile)){
     die("Erreur : Fichier de données des paiements introuvable.");
 }
 
 $paymentData = json_decode(file_get_contents($paymentDataFile), true);
-if (json_last_error() !== JSON_ERROR_NONE) {
+if(json_last_error() !== JSON_ERROR_NONE){
     die("Erreur : Impossible de charger les données des paiements (fichier JSON corrompu).");
 }
 
@@ -115,56 +114,6 @@ $userPayments = array_filter($paymentData, function ($payment) {
 
     <button onclick="logout()">Logout</button>
 
-    <script>
-        function edit(fieldId) {
-            const inputField = document.getElementById(fieldId);
-            inputField.disabled = !inputField.disabled;
-        }
-
-        function updateForm() {
-            const fields = {
-                lastname: document.getElementById('lastname').value,
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                age: document.getElementById('age').value,
-                password: document.getElementById('pw').value
-            };
-
-            fetch('update_user.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(fields)
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert('Profile updated successfully!');
-                } else {
-                    alert('Error updating profile: ' + data.message);
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('An error occurred while updating the profile.');
-            });
-
-            const inputFields = document.querySelectorAll('input');
-            inputFields.forEach(field => field.disabled = true);
-        }
-
-        function logout() {
-            fetch('logout.php', { method: 'POST' })
-                .then(() => {
-                    window.location.href = 'sign_in.php';
-                })
-                .catch(error => {
-                    console.error('Error during logout:', error);
-                });
-        }
-    </script>
-
     <footer>
         <div id="contact">
             <section>
@@ -173,6 +122,6 @@ $userPayments = array_filter($paymentData, function ($payment) {
         </div>
         <span>2025 | MI-03.I ©</span>
     </footer>
+    <script src="JS/userpage.js"></script>
 </body>
-
 </html>

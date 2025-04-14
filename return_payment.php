@@ -10,20 +10,20 @@ $voyageId = $_GET['voyage_id'] ?? '';
 $hotel = $_GET['hotel'] ?? ''; 
 
 
-if (empty($transaction) || empty($montant) || empty($vendeur) || empty($statut) || empty($control) || empty($voyageId)) {
+if(empty($transaction) || empty($montant) || empty($vendeur) || empty($statut) || empty($control) || empty($voyageId)){
     die("Erreur : données de retour manquantes.");
 }
 
 
 $api_key = getAPIKey($vendeur);
-if (!preg_match("/^[0-9a-zA-Z]{15}$/", $api_key)) {
+if(!preg_match("/^[0-9a-zA-Z]{15}$/", $api_key)){
     die("Erreur : API Key invalide.");
 }
 
 
 $calculatedControl = md5($api_key . "#" . $transaction . "#" . $montant . "#" . $vendeur . "#" . $statut . "#");
 
-if ($calculatedControl !== $control) {
+if($calculatedControl !== $control){
     die("Erreur : la valeur de contrôle est invalide.");
 }
 
@@ -31,14 +31,14 @@ $dataFile = 'dataJSON/fly.json';
 $flyData = json_decode(file_get_contents($dataFile), true);
 
 $selectedVoyage = null;
-foreach ($flyData as $voyage) {
-    if ($voyage['id'] == $voyageId) {
+foreach ($flyData as $voyage){
+    if($voyage['id'] == $voyageId){
         $selectedVoyage = $voyage;
         break;
     }
 }
 
-if (!$selectedVoyage) {
+if(!$selectedVoyage){
     die("Erreur : Voyage non trouvé.");
 }
 
@@ -92,7 +92,7 @@ file_put_contents($paymentDataFile, json_encode($paymentData, JSON_PRETTY_PRINT)
                     <p>Your payment was declined. Please try again.</p>
                 <?php endif; ?>
 
-                <a href="home.php" class="button">Return to Home</a>
+                <a href="userpage.php" class="button">Return to Home</a>
             </section>
         </div>
     </div>

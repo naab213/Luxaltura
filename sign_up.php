@@ -1,5 +1,5 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if($_SERVER["REQUEST_METHOD"] == "POST"){
     $lastname = isset($_POST["lastname"]) ? htmlspecialchars($_POST["lastname"]) : "";
     $name = isset($_POST["name"]) ? htmlspecialchars($_POST["name"]) : "";
     $age = isset($_POST["age"]) ? intval($_POST["age"]) : 0;
@@ -8,11 +8,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pass = isset($_POST["pass"]) ? htmlspecialchars($_POST["pass"]) : "";
     $passwordconf = isset($_POST["passwordconf"]) ? htmlspecialchars($_POST["passwordconf"]) : "";
 
-    if ($email !== $emailconf) {
-        $error = "Les emails ne correspondent pas.";
-    } elseif ($pass !== $passwordconf) {
-        $error = "Les mots de passe ne correspondent pas.";
-    } else {
+    if($email !== $emailconf){
+        $error = "The emails do not match.";
+    }
+    elseif($pass !== $passwordconf){
+        $error = "The passwords do not match.";
+    }
+    else{
         $userData = array(
             "lastname" => $lastname,
             "name" => $name,
@@ -22,10 +24,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         );
 
         $file = 'dataJSON/user_data.json';
-        if (file_exists($file)) {
+        if(file_exists($file)){
             $jsonData = file_get_contents($file);
             $data = json_decode($jsonData, true);
-        } else {
+        }
+        else{
             $data = array();
         }
 
@@ -33,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         file_put_contents($file, json_encode($data, JSON_PRETTY_PRINT));
 
-        $success = "Inscription réussie ! Merci, $name, pour votre inscription.";
+        $success = "Registration successful! Thank you, $name, for your registration.";
     }
 }
 ?>
@@ -59,9 +62,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <nav>
         <ul>
-            <li><a href="home.html" title="Go to home">Home</a></li>
-            <li><a href="presentation.html" title="Our presentation">Presentation</a></li>
-            <li><a href="specific.html" title="Go to my bookings">Bookings</a></li>
+            <li><a href="home.php" title="Go to home">Home</a></li>
+            <li><a href="presentation.php" title="Our presentation">Presentation</a></li>
+            <li><a href="specific.php" title="Go to my bookings">Bookings</a></li>
             <li><a href="#contact" title="Go to contact">Contact us</a></li>
         </ul>
     </nav>
@@ -72,31 +75,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <p style="color: red;"><?php echo $error; ?></p>
         <?php elseif (isset($success)): ?>
             <p style="color: green;"><?php echo $success; ?></p>
-            <a href="sign_in.php">Se connecter</a>
+            <a href="sign_in.php">Sign in</a>
         <?php else: ?>
             <form action="sign_up.php" method="post">
-                <label for="lastname">Nom :</label>
+                <label for="lastname">Lastname :</label>
                 <input type="text" id="lastname" name="lastname" required>
 
-                <label for="name">Prénom :</label>
+                <label for="name">Name :</label>
                 <input type="text" id="name" name="name" required>
 
-                <label for="age">Âge :</label>
+                <label for="age">Age :</label>
                 <input type="number" id="age" name="age" required>
 
                 <label for="email">Email :</label>
                 <input type="email" id="email" name="email" required>
 
-                <label for="emailconf">Confirmer Email :</label>
+                <label for="emailconf">Confirm email :</label>
                 <input type="email" id="emailconf" name="emailconf" required>
 
-                <label for="pass">Mot de passe :</label>
+                <label for="pass">MPassword :</label>
                 <input type="password" id="pass" name="pass" required>
 
-                <label for="passwordconf">Confirmer Mot de passe :</label>
+                <label for="passwordconf">Confirm password :</label>
                 <input type="password" id="passwordconf" name="passwordconf" required>
 
-                <button type="submit">S'inscrire</button>
+                <button type="submit">Sign up</button>
             </form>
         <?php endif; ?>
     </div>

@@ -1,10 +1,10 @@
 <?php
 session_start();
 
-if (isset($_SESSION['user_id'])) {
+if(isset($_SESSION['user_id'])){
     // Supprimer le fichier temporaire
     $tempFilePath = 'dataJSON/temp/user_' . $_SESSION['user_id'] . '.json';
-    if (file_exists($tempFilePath)) {
+    if(file_exists($tempFilePath)){
         unlink($tempFilePath);
     }
 }

@@ -32,7 +32,7 @@ session_start(); // Démarrez la session pour gérer l'état de connexion
 
     <nav>
         <ul>
-            <li><a href="presentation.php" title="Our presentation">Presentation</a></li>
+            <li><a href="presentation.html" title="Our presentation">Presentation</a></li>
             <li><a href="specific.php" title="Go to my bookings">Bookings</a></li>
             <li><a href="#contact" title="Go to contact">Contact us</a></li>
         </ul>
@@ -111,7 +111,7 @@ session_start(); // Démarrez la session pour gérer l'état de connexion
                                 <td>4 activities</td>
                             </tr>
                             <tr>
-                                <td>Price : ???€</td>
+                                <td>Price : 7165.00€</td>
                             </tr>
                         </tbody>
                     </table>
@@ -148,7 +148,7 @@ session_start(); // Démarrez la session pour gérer l'état de connexion
                                 <td>4 activities</td>
                             </tr>
                             <tr>
-                                <td>Price : ???€</td>
+                                <td>Price : 5005.00€</td>
                             </tr>
                         </tbody>
                     </table>
@@ -183,6 +183,9 @@ session_start(); // Démarrez la session pour gérer l'état de connexion
                             </tr>
                             <tr>
                                 <td>4 activities</td>
+                            </tr>
+                            <tr>
+                                <td>Price : 2895.00€</td>
                             </tr>
                         </tbody>
                     </table>

@@ -551,3 +551,59 @@ footer .footer-container {
     height: 600px;
     margin-top: 20px;
 }
+
+/* --------------- SHOPPING STYLES --------------- */
+
+.auth-cart-container {
+    top: 20px; 
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.cart {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 12px;
+    border: 2px solid #6e5e5e;
+    background-color: white;
+    color: #6e5e5e;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+}
+
+.cart a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+}
+
+.cart i {
+    font-size: 24px;
+    margin-right: 8px;
+}
+
+.cart-count {
+    font-size: 18px;
+    margin-left: 5px;
+    color: #6e5e5e;
+    transition: color 0.3s ease;
+}
+
+.cart:hover {
+    background-color: #6e5e5e;
+    color: white;
+}
+
+.cart:hover .cart-count {
+    color: white;
+}
+

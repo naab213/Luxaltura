@@ -1,34 +1,37 @@
 <?php
 session_start();
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST['email']) && isset($_POST['password'])) {
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    if(isset($_POST['email']) && isset($_POST['password'])){
         $email = trim($_POST['email']);
         $password = trim($_POST['password']);
-    } else {
-        $error = "Veuillez remplir tous les champs.";
+    }
+    else{
+        $error = "Please fill in all the fields.";
     }
 
-    if (!isset($error)) {
+    if(!isset($error)){
         $filePath = 'dataJSON/user_data.json'; // Use user_data.json for verification
-        if (!file_exists($filePath)) {
-            $error = "Erreur : le fichier de données est introuvable.";
-        } else {
+        if(!file_exists($filePath)){
+            $error = "Error: the data file is not found.";
+        }
+        else{
             $users = json_decode(file_get_contents($filePath), true);
 
-            if (!is_array($users)) {
-                $error = "Erreur : les données utilisateur sont corrompues.";
-            } else {     
+            if(!is_array($users)){
+                $error = "Error: the user data is corrupted.";
+            }
+            else{     
                 $userFound = false;
 
-                foreach ($users as $user) {
-                    if (strtolower($user['email']) === strtolower($email)) { // Check email
+                foreach ($users as $user){
+                    if(strtolower($user['email']) === strtolower($email)){ // Check email
                         $userFound = true;
 
-                        if ($password === $user['pass']) { // Check password
+                        if($password === $user['pass']){ // Check password
                             // Ensure required keys exist in the user array
-                            if (!isset($user['lastname'], $user['name'], $user['age'], $user['email'], $user['pass'])) {
-                                $error = "Erreur : données utilisateur incomplètes.";
+                            if(!isset($user['lastname'], $user['name'], $user['age'], $user['email'], $user['pass'])){
+                                $error = "Error: incomplete user data.";
                                 break;
                             }
 
@@ -39,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                             // Ensure the temp directory exists
                             $tempDir = 'dataJSON/temp/';
-                            if (!is_dir($tempDir)) {
+                            if(!is_dir($tempDir)){
                                 mkdir($tempDir, 0777, true);
                             }
 
@@ -55,15 +58,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                             header("Location: home.php"); // Redirect to home page
                             exit();
-                        } else {
-                            $error = "Mot de passe incorrect.";
+                        }
+                        else{
+                            $error = "Incorrect password.";
                         }
                         break;
                     }
                 }
 
-                if (!$userFound) {
-                    $error = "Aucun utilisateur trouvé avec cet email.";
+                if(!$userFound){
+                    $error = "No user found with this email.";
                 }
             }
         }
@@ -102,7 +106,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="container">
         <h2>Sign In</h2>
         <?php if (isset($error)): ?>
-            <p style="color: red;"><?php echo $error; ?></p>
+            <p style="color: black;"><?php echo $error; ?></p>
         <?php endif; ?>
         <form id="signin" action="sign_in.php" method="post">
             <input type="email" name="email" placeholder="Email" id="email" required>

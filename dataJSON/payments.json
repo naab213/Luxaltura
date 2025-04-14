@@ -551,5 +551,117 @@
         ],
         "user_email": "orn213@gmail.com",
         "date": "2025-03-23 20:06:54"
+    },
+    {
+        "transaction_id": "10703F86C4",
+        "montant": 16000,
+        "voyage_id": "1",
+        "hotel": "Mercure Algiers Congress Center",
+        "activites": [
+            "Visit the Casbah of Algiers",
+            "Discover the Jardin d'Essai",
+            "Boat trip to Rachgoun Island",
+            "Taste traditional Algerian cuisine"
+        ],
+        "user_email": "abdel@gmail.com",
+        "date": "2025-04-14 10:24:30"
+    },
+    {
+        "transaction_id": "AD8C296920",
+        "montant": 16000,
+        "voyage_id": "1",
+        "hotel": "Mercure Algiers Congress Center",
+        "activites": [
+            "Visit the Casbah of Algiers",
+            "Discover the Jardin d'Essai",
+            "Boat trip to Rachgoun Island",
+            "Taste traditional Algerian cuisine"
+        ],
+        "user_email": "abdel@gmail.com",
+        "date": "2025-04-14 10:41:50"
+    },
+    {
+        "transaction_id": "09022C5B4A",
+        "montant": 16000,
+        "voyage_id": "1",
+        "hotel": "Mercure Algiers Congress Center",
+        "activites": [
+            "Visit the Casbah of Algiers",
+            "Discover the Jardin d'Essai",
+            "Boat trip to Rachgoun Island",
+            "Taste traditional Algerian cuisine"
+        ],
+        "user_email": "abdel@gmail.com",
+        "date": "2025-04-14 10:42:16"
+    },
+    {
+        "transaction_id": "B0962C1E07",
+        "montant": 17035,
+        "voyage_id": "1",
+        "hotel": "Mercure Algiers Congress Center",
+        "activites": [
+            "Visit the Casbah of Algiers",
+            "Discover the Jardin d'Essai",
+            "Boat trip to Rachgoun Island",
+            "Cable car ride over the Bay of Algiers"
+        ],
+        "user_email": "abdel@gmail.com",
+        "date": "2025-04-14 10:46:57"
+    },
+    {
+        "transaction_id": "B493C6B480",
+        "montant": 5080,
+        "voyage_id": "15",
+        "hotel": "Al-Quds Luxury Hotel",
+        "activites": [
+            "Visit Al-Aqsa Mosque",
+            "Explore Ancient Gaza City",
+            "Taste Maftoul",
+            "Visit Al-Omari Mosque"
+        ],
+        "user_email": "abdel@gmail.com",
+        "date": "2025-04-14 10:51:04"
+    },
+    {
+        "transaction_id": "E7C20F955A",
+        "montant": 6550,
+        "voyage_id": "20",
+        "hotel": "MYR Marqu\u00e9s House",
+        "activites": [
+            "Visit the City of Arts and Sciences",
+            "Stroll through Turia Park",
+            "Visit Valencia Old Town",
+            "Cycle through Albufera Gardens"
+        ],
+        "user_email": "abdel@gmail.com",
+        "date": "2025-04-14 10:54:57"
+    },
+    {
+        "transaction_id": "3B3F5147EF",
+        "montant": 3115,
+        "voyage_id": "6",
+        "hotel": "Empire Suites",
+        "activites": [
+            "Visit Mount Royal",
+            "Excursion to Sainte-H\u00e9l\u00e8ne Island",
+            "Do Ziplining MTL Zipline",
+            "Taste Montreal Bagels"
+        ],
+        "user_email": "abdel@gmail.com",
+        "date": "2025-04-14 11:02:16"
+    },
+    {
+        "transaction_id": "8FD3ABF8A0",
+        "montant": 17070,
+        "voyage_id": "13",
+        "hotel": "Scandic Holmenkollen Park",
+        "activites": [
+            "Visit the Viking Ship Museum",
+            "Cruise on the Oslo Fjord",
+            "Walk through Aker Brygge",
+            "Cross-country skiing at Holmenkollen"
+        ],
+        "user_email": "ab@gmail.com",
+        "date": "2025-04-14 13:37:06"
     }
 ]

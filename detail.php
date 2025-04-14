@@ -1,15 +1,16 @@
 <?php
 session_start();
-if (!isset($_SESSION['user_email'])) {
+if(!isset($_SESSION['user_email'])){
     header("Location: sign_in.php");
     exit;
 }
 
 $jsonFile = 'dataJSON/fly.json';
-if (file_exists($jsonFile)) {
+if(file_exists($jsonFile)){
     $jsonContent = file_get_contents($jsonFile);
     $voyages_search = json_decode($jsonContent, true);
-} else {
+}
+else{
     die('Le fichier JSON n\'a pas été trouvé.');
 }
 
@@ -21,30 +22,31 @@ $packs = [
 ];
 
 $id = isset($_GET['id']) ? $_GET['id'] : '';
-if (empty($id)) {
+if(empty($id)){
     die('ID de voyage non valide.');
 }
 
 $selected_voyage = null;
-foreach ($voyages_search as $voyage) {
+foreach ($voyages_search as $voyage){
     if ($voyage['id'] == $id) {
         $selected_voyage = $voyage;
         break;
     }
 }
 
-if (!$selected_voyage) {
+if(!$selected_voyage){
     die('Voyage non trouvé.');
 }
 
 $departure_date = isset($_GET['date']) ? $_GET['date'] : '';
 $return_date = '';
 
-if (!empty($departure_date)) {
+if(!empty($departure_date)){
     $date_parts = explode('-', $departure_date);
-    if (count($date_parts) == 3 && checkdate($date_parts[1], $date_parts[2], $date_parts[0])) {
+    if(count($date_parts) == 3 && checkdate($date_parts[1], $date_parts[2], $date_parts[0])){
         $return_date = date('Y-m-d', strtotime($departure_date . ' +8 days'));
-    } else {
+    }
+    else{
         $departure_date = '';
         $return_date = '';
         echo "<script>alert('Date de départ non valide.');</script>";
@@ -71,17 +73,24 @@ $heure_arrivee_retour = date("H:i", strtotime("+$duree_vol hours", strtotime("08
         <h1>Summary of Your Trip</h1>
         <span class="separator"></span>
         <img src="https://imgur.com/F38OAQx.jpg" width="200" height="200" class="logo" />
+        <div class="auth-cart-container">
         <div class="auth-links">
             <?php if (isset($_SESSION['user_email'])): ?>
-                <!-- Afficher ces liens si l'utilisateur est connecté -->
                 <a href="userpage.php" title="My Account">My Account</a>
                 <a href="logout.php" title="Log out">Log out</a>
             <?php else: ?>
-                <!-- Afficher ces liens si l'utilisateur n'est pas connecté -->
                 <a href="sign_in.php" title="Sign in">Sign in</a>
                 <a href="sign_up.php" title="Sign up">Sign up</a>
             <?php endif; ?>
         </div>
+
+        <div class="cart">
+            <a href="cart.html" title="Your Cart">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count">0</span>
+            </a>
+        </div>
+    </div>
     </header>
 
     <nav>
@@ -98,6 +107,7 @@ $heure_arrivee_retour = date("H:i", strtotime("+$duree_vol hours", strtotime("08
             <form action="payment.php" method="POST">
                 <input type="hidden" name="voyage_id" value="<?php echo $id; ?>" />
                 <input type="hidden" name="montant" value="<?php echo $selected_voyage['prix']; ?>" />
+                <input type="hidden" name="montant" id="montant" value="<?php echo $selected_voyage['prix']; ?>" />
                 <div class="voyage-details">
                     <div class="image">
                         <img src="<?php echo $selected_voyage['image']; ?>" alt="Image du voyage"/>
@@ -137,7 +147,7 @@ $heure_arrivee_retour = date("H:i", strtotime("+$duree_vol hours", strtotime("08
                         <h4 class="hot">Choose your hotel :</h4>
                         <select name="hotel" required>
                             <?php foreach ($selected_voyage['hotels'] as $hotel): ?>
-                                <option value="<?php echo $hotel['nom']; ?>|<?php echo $hotel['prix']; ?>">
+                                <option value="<?php echo $hotel['nom']; ?>" data-price="<?php echo $hotel['prix']; ?>">
                                     <?php echo $hotel['nom']; ?> - <?php echo $hotel['prix']; ?> €
                                 </option>
                             <?php endforeach; ?>
@@ -154,12 +164,21 @@ $heure_arrivee_retour = date("H:i", strtotime("+$duree_vol hours", strtotime("08
                         foreach ($activites as $activite): ?>
                             <select name="activites[]" required>
                                 <?php foreach ($activite as $option): ?>
-                                    <option value="<?php echo $option['nom']; ?>|<?php echo $option['prix']; ?>">
+                                    <option value="<?php echo $option['nom']; ?>" data-price="<?php echo $option['prix']; ?>">
                                         <?php echo $option['nom']; ?> - <?php echo $option['prix']; ?> €
                                     </option>
                                 <?php endforeach; ?>
                             </select>
                         <?php endforeach; ?>
+
+                        <p><strong>All price :</strong> <span id="totalPrice">0 €</span></p>
+                        
+                        <form id="add-to-cart-form">
+                            <input type="hidden" name="voyage_id" value="<?php echo $id; ?>" />
+                            <input type="hidden" name="voyage_name" value="<?php echo $selected_voyage['ville'] . ', ' . $selected_voyage['pays']; ?>" />
+                            <input type="hidden" name="voyage_price" value="<?php echo $selected_voyage['prix']; ?>" />
+                            <button type="button" class="add-to-cart-btn" onclick="addToCart('<?php echo $id; ?>', '<?php echo $selected_voyage['ville'] . ', ' . $selected_voyage['pays']; ?>', <?php echo $selected_voyage['prix']; ?>)">Add to Shopping basket</button>
+                        </form>
 
                         <div class="button-group">
                             <button type="submit" class="validate-btn">Confirm the reservation</button>
@@ -179,5 +198,7 @@ $heure_arrivee_retour = date("H:i", strtotime("+$duree_vol hours", strtotime("08
         </div>
         <span>2025 | MI-03.I ©</span>
     </footer>
+    <script src="JS/shoppingbasket.js"></script>
+    <script src="JS/updatePrice.js"></script>
 </body>
 </html>

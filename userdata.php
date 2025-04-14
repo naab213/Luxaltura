@@ -1,5 +1,5 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if($_SERVER["REQUEST_METHOD"] == "POST"){
     $lastname = isset($_POST["lastname"]) ? htmlspecialchars($_POST["lastname"]) : "";
     $name = isset($_POST["name"]) ? htmlspecialchars($_POST["name"]) : "";
     $age = isset($_POST["age"]) ? intval($_POST["age"]) : 0;
@@ -9,12 +9,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $passwordconf = isset($_POST["passwordconf"]) ? htmlspecialchars($_POST["passwordconf"]) : "";
 
     
-    if ($email !== $emailconf) {
+    if($email !== $emailconf){
         echo "Les emails ne correspondent pas.";
         exit;
     }
     
-    if ($pass !== $passwordconf) {
+    if($pass !== $passwordconf){
         echo "Les mots de passe ne correspondent pas.";
         exit;
     }
@@ -30,10 +30,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     $file = 'dataJSON/user_data.json';
-    if (file_exists($file)) {
+    if(file_exists($file)){
         $jsonData = file_get_contents($file);
         $data = json_decode($jsonData, true);
-    } else {
+    }
+    else{
         $data = array();
     }
 

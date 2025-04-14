@@ -11,13 +11,13 @@ require('getapikey.php');
 $api_key = getAPIKey("MI-3_I");
 
 $voyageId = $_POST['voyage_id'] ?? '';
-$hotel = $_POST['hotel'] ?? '';
+$hotelId = $_POST['hotel'] ?? '';
 $activites = $_POST['activites'] ?? [];
 
 if (empty($voyageId)) {
     die("Erreur : L'ID du voyage est manquant.");
 }
-if (empty($hotel)) {
+if (empty($hotelId)) {
     die("Erreur : Le nom de l'hôtel est manquant.");
 }
 
@@ -45,14 +45,43 @@ if (!$selectedVoyage) {
 
 $prixBillet = (float)$selectedVoyage['prix'];
 
+$selectedHotel = null;
+foreach ($selectedVoyage['hotels'] as $hotel) {
+    if ($hotel['nom'] === $hotelId) {
+        $selectedHotel = $hotel;
+        break;
+    }
+}
+
+if (!$selectedHotel) {
+    die("Erreur : L'hôtel sélectionné n'a pas été trouvé.");
+}
+
+$hotelNom = $selectedHotel['nom'];
+$hotelPrix = (float)$selectedHotel['prix'];
+
 $montant = $prixBillet * 2;
+$montant += $hotelPrix;
 
-list($hotelNom, $hotelPrix) = explode('|', $hotel);
-$montant += (float)$hotelPrix;
 
-foreach ($activites as $activite) {
-    list($activiteNom, $activitePrix) = explode('|', $activite);
-    $montant += (float)$activitePrix;
+foreach ($activites as $activiteId) {
+    $activiteData = null;
+    foreach ($selectedVoyage as $key => $activitesListe) {
+        if (strpos($key, 'activite') === 0) {
+            foreach ($activitesListe as $activite) {
+                if ($activite['nom'] === $activiteId) {
+                    $activiteData = $activite;
+                    break;
+                }
+            }
+        }
+    }
+
+    if ($activiteData) {
+        $activiteNom = $activiteData['nom'];
+        $activitePrix = (float)$activiteData['prix'];
+        $montant += $activitePrix;
+    }
 }
 
 $transactionData = [
@@ -81,17 +110,16 @@ $control = md5($api_key . "#" . $transactionData['transaction_id'] . "#" . $mont
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css" />
     <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
-    <title>Luxaltura - Payment</title>
-   
+    <title>Luxaltura - Paiement</title>
 </head>
 <body>
     <header>
-        <h1>Luxaltura - Elevate Your Journey, Embrace Prestige</h1>
+        <h1>Luxaltura - Élevez Votre Voyage, Embrassez le Prestige</h1>
         <span class="separator"></span>
         <img src="https://imgur.com/F38OAQx.jpg" width="150" height="150" class="logo" />
     </header>
@@ -99,18 +127,31 @@ $control = md5($api_key . "#" . $transactionData['transaction_id'] . "#" . $mont
     <div class="resume-container">
         <div class="resume">
             <section>
-                <h2>Payment Summary</h2>
-                <!-- Afficher le nom du voyage en premier -->
-                <p><strong>Trip:</strong> <?php echo htmlspecialchars($selectedVoyage['ville'] . ', ' . $selectedVoyage['pays']); ?></p>
-                <p><strong>Hotel:</strong> <?php echo htmlspecialchars($hotelNom); ?></p>
-                <p><strong>Activities:</strong></p>
+                <h2>Résumé de la commande</h2>
+                <p><strong>Voyage:</strong> <?php echo htmlspecialchars($selectedVoyage['ville'] . ', ' . $selectedVoyage['pays']); ?></p>
+                <p><strong>Hôtel:</strong> <?php echo htmlspecialchars($hotelNom); ?></p>
+                <p><strong>Activités:</strong></p>
                 <ul>
-                    <?php foreach ($activites as $activite): ?>
-                        <?php list($activiteNom, $activitePrix) = explode('|', $activite); ?>
-                        <li><?php echo htmlspecialchars($activiteNom); ?> - <?php echo htmlspecialchars($activitePrix); ?> €</li>
+                    <?php foreach ($activites as $activiteId): ?>
+                        <?php
+                            $activiteData = null;
+                            foreach ($selectedVoyage as $key => $activitesListe) {
+                                if (strpos($key, 'activite') === 0) {
+                                    foreach ($activitesListe as $activite) {
+                                        if ($activite['nom'] === $activiteId) {
+                                            $activiteData = $activite;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                        ?>
+                        <?php if ($activiteData): ?>
+                            <li><?php echo htmlspecialchars($activiteData['nom']); ?> - <?php echo htmlspecialchars($activiteData['prix']); ?> €</li>
+                        <?php endif; ?>
                     <?php endforeach; ?>
                 </ul>
-                <p><strong>Total Amount:</strong> <?php echo htmlspecialchars($montant); ?> €</p>
+                <p><strong>Montant total:</strong> <?php echo htmlspecialchars($montant); ?> €</p>
 
                 <form action="https://www.plateforme-smc.fr/cybank/index.php" method="POST">
                     <input type="hidden" name="transaction" value="<?php echo htmlspecialchars($transactionData['transaction_id']); ?>">
@@ -118,7 +159,7 @@ $control = md5($api_key . "#" . $transactionData['transaction_id'] . "#" . $mont
                     <input type="hidden" name="vendeur" value="MI-3_I">
                     <input type="hidden" name="retour" value="<?php echo htmlspecialchars($retour); ?>">
                     <input type="hidden" name="control" value="<?php echo htmlspecialchars($control); ?>">
-                    <button type="submit" class="button">Confirm and Pay</button>
+                    <button type="submit" class="button">Confirmer et Payer</button>
                 </form>
             </section>
         </div>
@@ -127,7 +168,7 @@ $control = md5($api_key . "#" . $transactionData['transaction_id'] . "#" . $mont
     <footer>
         <div id="contact">
             <section>
-                <p>Contact us: <a href="mailto:luxalturaagency@outlook.com">luxalturaagency@outlook.com</a></p>
+                <p>Contactez-nous : <a href="mailto:luxalturaagency@outlook.com">luxalturaagency@outlook.com</a></p>
             </section>
         </div>
         <span>2025 | MI-03.I ©</span>
