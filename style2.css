@@ -101,7 +101,7 @@ nav ul {
 
 nav li {
     font-family: Verdana;
-    color: black;
+    color: #5A4D4D;
     font-size: 14px;
     margin: 0 20px;
     text-align: center;
@@ -109,7 +109,7 @@ nav li {
 
 nav a {
     text-decoration: none;
-    color: black;
+    color: #5A4D4D;
     padding: 10px;
     font-size: 16px;
     transition: background 0.3s ease;
@@ -168,7 +168,7 @@ input, select {
 button {
     width: 100%;
     padding: 12px;
-    background: black;
+    background: #5A4D4D;
     color: #F5F5F5;
     border: none;
     border-radius: 5px;
@@ -325,7 +325,7 @@ footer .footer-container {
 
 #search-results a {
     text-decoration: none;
-    color: black;
+    color: #5A4D4D;
 }
 
 /* Conteneur parent des tableaux */
@@ -400,7 +400,7 @@ footer .footer-container {
 
 .table-container a {
     text-decoration: none;
-    color: black;
+    color: #5A4D4D;
 }
 
 .table-best:hover {
@@ -472,7 +472,7 @@ footer .footer-container {
 .detail-page button {
     width: 30%;
     padding: 15px;
-    background: black;
+    background: #5A4D4D;
     color: #F5F5F5;
     border: none;
     border-radius: 5px;
@@ -534,7 +534,7 @@ footer .footer-container {
     display: inline-block;
     margin-top: 20px;
     text-decoration: none;
-    background: black;
+    background: #5A4D4D;
     color: #F5F5F5;
     padding: 10px 20px;
     border-radius: 5px;
