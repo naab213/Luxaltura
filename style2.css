@@ -32,7 +32,7 @@ body {
 .auth-links a {
     padding: 12px 25px;
     border: 2px solid #BFA4A4;
-    background-color: white;
+    background-color: #F5F5F5;
     color: #BFA4A4;
     font-size: 16px;
     font-weight: bold;
@@ -43,7 +43,7 @@ body {
 
 .auth-links a:hover {
     background-color: #BFA4A4;
-    color: white;
+    color: #F5F5F5;
 }
 
 /* --------------- NAVBAR STYLES --------------- */
@@ -117,7 +117,7 @@ nav a {
 
 nav a:hover {
     background-color: #3d3737;
-    color: white;
+    color: #F5F5F5;
 }
 
 #psearch {
@@ -169,7 +169,7 @@ button {
     width: 100%;
     padding: 12px;
     background: black;
-    color: white;
+    color: #F5F5F5;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -183,7 +183,7 @@ button:hover {
 .search-btn {
     padding: 10px;
     font-size: 20px;
-    color: white;
+    color: #F5F5F5;
     border: 1px solid #ccc;
     cursor: pointer;
     display: flex;
@@ -211,7 +211,7 @@ footer {
 
 footer nav a {
     text-decoration: none;
-    color: white;
+    color: #F5F5F5;
     margin: 0 10px;
     font-size: 16px;
 }
@@ -243,7 +243,7 @@ footer .footer-container {
     left: 50%;
     transform: translate(-50%, -50%);
     background: rgba(0, 0, 0, 0.7);
-    color: white;
+    color: #F5F5F5;
     padding: 10px;
     border-radius: 5px;
     opacity: 0;
@@ -257,7 +257,7 @@ footer .footer-container {
 
 /* Appliquer un style à chaque ligne avec l'ID "line" */
 #search-results tr#line {
-    background-color: white;
+    background-color: #F5F5F5;
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     padding: 15px;
@@ -318,7 +318,7 @@ footer .footer-container {
     display: block;
     font-size: 0.8em;
     font-style: italic;
-    color: #6e5e5e;
+    color: #BFA4A4;
     margin-top: 5px;
     text-align: right;
 }
@@ -341,7 +341,7 @@ footer .footer-container {
 
 .table-best {
     padding: 10px;
-    background-color: white;
+    background-color: #F5F5F5;
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -383,7 +383,7 @@ footer .footer-container {
     transform: translateX(-50%);
     background-color: #A88F8F;
     font-family: Verdana;
-    color: white;
+    color: #F5F5F5;
     font-size: 14px;
     width: 100%;
     text-align: center;
@@ -473,7 +473,7 @@ footer .footer-container {
     width: 30%;
     padding: 15px;
     background: black;
-    color: white;
+    color: #F5F5F5;
     border: none;
     border-radius: 5px;
     font-size: 18px;
@@ -535,7 +535,7 @@ footer .footer-container {
     margin-top: 20px;
     text-decoration: none;
     background: black;
-    color: white;
+    color: #F5F5F5;
     padding: 10px 20px;
     border-radius: 5px;
 }
@@ -569,7 +569,7 @@ footer .footer-container {
     justify-content: center;
     padding: 6px 12px;
     border: 2px solid #BFA4A4;
-    background-color: white;
+    background-color: #F5F5F5;
     color: #BFA4A4;
     font-size: 16px;
     font-weight: bold;
@@ -600,9 +600,9 @@ footer .footer-container {
 
 .cart:hover {
     background-color: #BFA4A4;
-    color: white;
+    color: #F5F5F5;
 }
 
 .cart:hover .cart-count {
-    color: white;
+    color: #F5F5F5;
 }
