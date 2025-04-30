@@ -1,7 +1,7 @@
 /* --------------- GLOBAL STYLES --------------- */
 body {
     font-family: Cinzel;
-    background-color: #E7C7B9;
+    background-color: #DCC3C3;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -60,7 +60,7 @@ nav {
 /* --------------- GLOBAL STYLES --------------- */
 body {
     font-family: Cinzel;
-    background-color: #E7C7B9;
+    background-color: #DCC3C3;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -71,7 +71,7 @@ body {
 header {
     text-align: center;
     padding: 20px;
-    background-color: #E7C7B9;
+    background-color: #DCC3C3;
 }
 
 header h1 {
@@ -217,7 +217,7 @@ footer nav a {
 }
 
 footer nav a:hover {
-    color: #E7C7B9;
+    color: #DCC3C3;
 }
 
 footer .footer-container {

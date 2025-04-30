@@ -113,7 +113,14 @@ $control = md5($api_key . "#" . $transactionData['transaction_id'] . "#" . $mont
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css" />
+    <?php
+    if(isset($_COOKIE['mode']) && $_COOKIE['mode'] === 'clair'){
+        echo '<link rel="stylesheet" href="style2.css" />';
+    }
+    else{
+        echo '<link rel="stylesheet" href="style.css" />';
+    }
+    ?>
     <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
     <title>Luxaltura - Paiement</title>
 </head>

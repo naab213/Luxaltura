@@ -20,7 +20,14 @@ $voyages = [
 <head>
     <meta charset="utf-8" />
     <title>Luxaltura - Bookings</title>
-    <link rel="stylesheet" href="style.css" />
+    <?php
+    if(isset($_COOKIE['mode']) && $_COOKIE['mode'] === 'clair'){
+        echo '<link rel="stylesheet" href="style2.css" />';
+    }
+    else{
+        echo '<link rel="stylesheet" href="style.css" />';
+    }
+    ?>
     <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
@@ -45,7 +52,7 @@ $voyages = [
     <nav>
         <ul>
             <li><a href="home.php" title="Go to home">Home</a></li>
-            <li><a href="presentation.html" title="Our presentation">Presentation</a></li>
+            <li><a href="presentation.php" title="Our presentation">Presentation</a></li>
             <li><a href="#contact" title="Go to contact">Contact us</a></li>
         </ul>
     </nav>

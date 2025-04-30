@@ -63,7 +63,14 @@ $heure_arrivee_retour = date("H:i", strtotime("+$duree_vol hours", strtotime("08
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="style.css" />
+    <?php
+    if(isset($_COOKIE['mode']) && $_COOKIE['mode'] === 'clair'){
+        echo '<link rel="stylesheet" href="style2.css" />';
+    }
+    else{
+        echo '<link rel="stylesheet" href="style.css" />';
+    }
+    ?>
     <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
     <title>Détails de Voyage - Luxaltura</title>

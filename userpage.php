@@ -31,7 +31,14 @@ $userPayments = array_filter($paymentData, function ($payment) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Luxaltura - My Account</title>
-    <link rel="stylesheet" href="style.css" />
+    <?php
+    if(isset($_COOKIE['mode']) && $_COOKIE['mode'] === 'clair'){
+        echo '<link rel="stylesheet" href="style2.css" />';
+    }
+    else{
+        echo '<link rel="stylesheet" href="style.css" />';
+    }
+    ?>
     <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
@@ -46,7 +53,7 @@ $userPayments = array_filter($paymentData, function ($payment) {
     <nav>
         <ul>
             <li><a href="home.php" title="Go to home">Home</a></li>
-            <li><a href="presentation.html" title="Our presentation">Presentation</a></li>
+            <li><a href="presentation.php" title="Our presentation">Presentation</a></li>
             <li><a href="specific.php" title="Go to my bookings">Bookings</a></li>
             <li><a href="#contact" title="Go to contact">Contact us</a></li>
         </ul>

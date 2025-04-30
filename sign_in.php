@@ -79,7 +79,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="style.css" />
+    <?php
+    if(isset($_COOKIE['mode']) && $_COOKIE['mode'] === 'clair'){
+        echo '<link rel="stylesheet" href="style2.css" />';
+    }
+    else{
+        echo '<link rel="stylesheet" href="style.css" />';
+    }
+    ?>
     <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
     <title>Luxaltura - Sign In</title>
 </head>
@@ -97,7 +104,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <nav>
         <ul>
             <li><a href="home.php" title="Go to home">Home</a></li>
-            <li><a href="presentation.html" title="Our presentation">Presentation</a></li>
+            <li><a href="presentation.php" title="Our presentation">Presentation</a></li>
             <li><a href="specific.php" title="Go to my bookings">Bookings</a></li>
             <li><a href="#contact" title="Go to contact">Contact us</a></li>
         </ul>

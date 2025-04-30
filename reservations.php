@@ -1,8 +1,13 @@
 <?php
 session_start();
 $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
+setcookie("mode", "sombre", time()+3600*24*30, "/");
 
-if(!$user_id){
+if($user_id){
+    setcookie("mode", "clair", time()+3600*24*30, "/");
+}
+
+if($user_id && isset($_COOKIE['mode'])){
     die("Erreur : utilisateur non connecté.");
 }
 
