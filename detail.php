@@ -205,7 +205,6 @@ $heure_arrivee_retour = date("H:i", strtotime("+$duree_vol hours", strtotime("08
         </div>
         <span>2025 | MI-03.I ©</span>
     </footer>
-    <script src="JS/shoppingbasket.js"></script>
     <script src="JS/updatePrice.js"></script>
 </body>
 </html>
