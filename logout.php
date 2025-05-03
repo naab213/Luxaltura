@@ -1,5 +1,4 @@
-<?php
-session_start();
+<?php require_once 'init.php';
 
 if(isset($_SESSION['user_id'])){
     // Supprimer le fichier temporaire

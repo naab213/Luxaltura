@@ -677,5 +677,19 @@
         ],
         "user_email": "abdel@gmail.com",
         "date": "2025-04-30 11:32:44"
+    },
+    {
+        "transaction_id": "4BB6B94D79",
+        "montant": 7165,
+        "voyage_id": "7",
+        "hotel": "The Prince Park Tower Tokyo",
+        "activites": [
+            "Visit Senso-ji Temple",
+            "Visit Tokyo Tower",
+            "Discover Ueno Park and its museums",
+            "Sushi tasting at Tsukiji Market"
+        ],
+        "user_email": "abdel@gmail.com",
+        "date": "2025-05-01 11:23:08"
     }
 ]

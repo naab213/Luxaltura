@@ -1,10 +1,12 @@
-<?php
-session_start();
+<?php 
+require_once 'init.php';
 if(!isset($_SESSION['user_email'])){
     header("Location: sign_in.php");
     exit;
 }
+?>
 
+<?php include 'header.php';
 $jsonFile = 'dataJSON/fly.json';
 if(file_exists($jsonFile)){
     $jsonContent = file_get_contents($jsonFile);

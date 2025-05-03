@@ -1,8 +1,9 @@
+<?php require_once 'init.php';?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <?php
+        <?php include 'header.php';
         if(isset($_COOKIE['mode']) && $_COOKIE['mode'] === 'clair'){
             echo '<link rel="stylesheet" href="style2.css" />';
         }

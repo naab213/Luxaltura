@@ -1,5 +1,4 @@
-<?php
-session_start();
+<?php require_once 'init.php';
 if (!isset($_SESSION['user_email'])) {
     header('Location: sign_in.php?error=not_connected');
     exit();
@@ -108,7 +107,7 @@ $retour = "http://localhost/Luxaltura/return_payment.php?voyage_id=" . urlencode
 
 $control = md5($api_key . "#" . $transactionData['transaction_id'] . "#" . $montant . "#MI-3_I#" . $retour . "#");
 ?>
-
+<?php include 'header.php'; ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>

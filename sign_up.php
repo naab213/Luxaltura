@@ -1,4 +1,4 @@
-<?php
+<?php require_once 'init.php';
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     $lastname = isset($_POST["lastname"]) ? htmlspecialchars($_POST["lastname"]) : "";
     $name = isset($_POST["name"]) ? htmlspecialchars($_POST["name"]) : "";
@@ -40,6 +40,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 }
 ?>
+<?php include 'header.php'; ?>
 <!DOCTYPE html>
 <html lang="fr">
 

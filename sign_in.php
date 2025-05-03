@@ -1,5 +1,4 @@
-<?php
-session_start();
+<?php require_once 'init.php';
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(isset($_POST['email']) && isset($_POST['password'])){
@@ -74,6 +73,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 }
 ?>
+<?php include 'header.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 

@@ -1,4 +1,4 @@
-<?php
+<?php require_once 'init.php';
 require('getapikey.php');
 
 $transaction = $_GET['transaction'] ?? '';
@@ -58,7 +58,7 @@ $paymentData[] = [
 
 file_put_contents($paymentDataFile, json_encode($paymentData, JSON_PRETTY_PRINT));
 ?>
-
+<?php include 'header.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 

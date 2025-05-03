@@ -1,5 +1,4 @@
-<?php
-session_start();
+<?php require_once 'init.php';
 $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 setcookie("mode", "sombre", time()+3600*24*30, "/");
 
@@ -19,7 +18,7 @@ $userReservations = array_filter($reservations, function ($reservation) use ($us
     return $reservation['user_id'] === $user_id;
 });
 ?>
-
+<?php include 'header.php'; ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>

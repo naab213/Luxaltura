@@ -1,5 +1,4 @@
-<?php
-session_start();
+<?php require_once 'init.php';
 
 if(!isset($_SESSION['user_email'])){
     header("Location: sign_in.php");
@@ -23,7 +22,7 @@ $userPayments = array_filter($paymentData, function ($payment) {
     return isset($payment['user_email']) && $payment['user_email'] === $_SESSION['user_email'];
 });
 ?>
-
+<?php include 'header.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 

@@ -1,7 +1,5 @@
-<?php
-session_start(); // Démarrez la session pour gérer l'état de connexion
-?>
-
+<?php require_once 'init.php';?>
+<?php include 'header.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 

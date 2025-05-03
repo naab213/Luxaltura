@@ -1,5 +1,4 @@
-<?php
-session_start();
+<?php require_once 'init.php';
 
 $voyages = [
     ["nom" => "Algeria", "image" => "https://content.r9cdn.net/rimg/dimg/92/01/0c6091fc-city-20461-167be288f16.jpg"],
@@ -14,7 +13,7 @@ $voyages = [
     ["nom" => "Spain", "image" => "https://wallpaperaccess.com/full/348472.jpg"]
 ];
 ?>
-
+<?php include 'header.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
