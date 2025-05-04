@@ -705,5 +705,51 @@
         ],
         "user_email": "abdel@gmail.com",
         "date": "2025-05-03 16:34:32"
+    },
+    {
+        "transaction_id": "F1F4577F7B",
+        "montant": 2965,
+        "voyage_id": "2",
+        "hotel": "Le Meridien Oran Hotel",
+        "activites": [
+            "Corniche Beach",
+            "Explore El Khemis Caves",
+            "Guided tour of the Ahmed Zabana Museum",
+            "Seafood tasting"
+        ],
+        "user_email": "abdel@gmail.com",
+        "date": "2025-05-04 21:08:10"
+    },
+    {
+        "transaction_id": "6681471353",
+        "montant": 2965,
+        "voyage_id": "2",
+        "hotel": "Le Meridien Oran Hotel",
+        "activites": [
+            "Corniche Beach",
+            "Explore El Khemis Caves",
+            "Guided tour of the Ahmed Zabana Museum",
+            "Seafood tasting"
+        ],
+        "user_email": "abdel@gmail.com",
+        "date": "2025-05-04 21:08:53"
+    },
+    {
+        "transaction_id": "660EA204A9",
+        "montant": 2860,
+        "voyage_id": "2",
+        "hotel": "Le Meridien Oran Hotel",
+        "activites": [],
+        "user_email": "abdel@gmail.com",
+        "date": "2025-05-04 21:10:24"
+    },
+    {
+        "transaction_id": "BFDC3EADDB",
+        "montant": 2860,
+        "voyage_id": "2",
+        "hotel": "Le Meridien Oran Hotel",
+        "activites": [],
+        "user_email": "abdel@gmail.com",
+        "date": "2025-05-04 21:14:59"
     }
 ]

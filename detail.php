@@ -1,20 +1,16 @@
 <?php 
 require_once 'init.php';
-if(!isset($_SESSION['user_email'])){
+if (!isset($_SESSION['user_email'])) {
     header("Location: sign_in.php");
     exit;
 }
-?>
+include 'header.php';
 
-<?php include 'header.php';
 $jsonFile = 'dataJSON/fly.json';
-if(file_exists($jsonFile)){
-    $jsonContent = file_get_contents($jsonFile);
-    $voyages_search = json_decode($jsonContent, true);
+if (!file_exists($jsonFile)) {
+    die("The JSON file was not found.");
 }
-else{
-    die('Le fichier JSON n\'a pas été trouvé.');
-}
+$voyages_search = json_decode(file_get_contents($jsonFile), true);
 
 $packs = [
     1 => "Business Elite✨",
@@ -23,38 +19,26 @@ $packs = [
     4 => "Future Sky🚀"
 ];
 
-$id = isset($_GET['id']) ? $_GET['id'] : '';
-if(empty($id)){
-    die('ID de voyage non valide.');
-}
+$id = $_GET['id'] ?? '';
+if (empty($id)) die('Invalid trip ID.');
 
 $selected_voyage = null;
-foreach ($voyages_search as $voyage){
+foreach ($voyages_search as $voyage) {
     if ($voyage['id'] == $id) {
         $selected_voyage = $voyage;
         break;
     }
 }
+if (!$selected_voyage) die('Trip not found.');
 
-if(!$selected_voyage){
-    die('Voyage non trouvé.');
-}
-
-$departure_date = isset($_GET['date']) ? $_GET['date'] : '';
+$departure_date = $_GET['date'] ?? '';
 $return_date = '';
-
-if(!empty($departure_date)){
+if (!empty($departure_date)) {
     $date_parts = explode('-', $departure_date);
-    if(count($date_parts) == 3 && checkdate($date_parts[1], $date_parts[2], $date_parts[0])){
+    if (count($date_parts) == 3 && checkdate($date_parts[1], $date_parts[2], $date_parts[0])) {
         $return_date = date('Y-m-d', strtotime($departure_date . ' +8 days'));
     }
-    else{
-        $departure_date = '';
-        $return_date = '';
-        echo "<script>alert('Date de départ non valide.');</script>";
-    }
 }
-
 $duree_vol = $selected_voyage['duree'];
 $heure_depart = strtotime("08:00:00");
 $heure_arrivee_aller = date("H:i", strtotime("+$duree_vol hours", $heure_depart));
@@ -64,25 +48,18 @@ $heure_arrivee_retour = date("H:i", strtotime("+$duree_vol hours", strtotime("08
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <?php
-    if(isset($_COOKIE['mode']) && $_COOKIE['mode'] === 'clair'){
-        echo '<link rel="stylesheet" href="style2.css" />';
-    }
-    else{
-        echo '<link rel="stylesheet" href="style.css" />';
-    }
-    ?>
+    <meta charset="UTF-8">
+    <title>Trip Details</title>
+    <link rel="stylesheet" href="<?= isset($_COOKIE['mode']) && $_COOKIE['mode'] === 'clair' ? 'style2.css' : 'style.css' ?>">
     <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
-    <title>Détails de Voyage - Luxaltura</title>
 </head>
 <body class="detail-page">
-    <header>
-        <h1>Summary of Your Trip</h1>
+
+<header>
+        <h1>Choose your package and embark on a unique experience</h1>
         <span class="separator"></span>
         <img src="https://imgur.com/F38OAQx.jpg" width="200" height="200" class="logo" />
-        <div class="auth-cart-container">
         <div class="auth-links">
             <?php if (isset($_SESSION['user_email'])): ?>
                 <a href="userpage.php" title="My Account">My Account</a>
@@ -92,14 +69,6 @@ $heure_arrivee_retour = date("H:i", strtotime("+$duree_vol hours", strtotime("08
                 <a href="sign_up.php" title="Sign up">Sign up</a>
             <?php endif; ?>
         </div>
-
-        <div class="cart">
-            <a href="cart.php" title="Your Cart">
-                <i class="fas fa-shopping-cart"></i>
-                <span class="cart-count">0</span>
-            </a>
-        </div>
-    </div>
     </header>
 
     <nav>
@@ -110,104 +79,102 @@ $heure_arrivee_retour = date("H:i", strtotime("+$duree_vol hours", strtotime("08
         </ul>
     </nav>
 
-    <section>
-        <div class="container">
-            <h2 class="title">Trip Details</h2>
-            <form action="payment.php" method="POST">
-                <input type="hidden" name="voyage_id" value="<?php echo $id; ?>" />
-                <input type="hidden" name="montant" value="<?php echo $selected_voyage['prix']; ?>" />
-                <input type="hidden" name="montant" id="montant" value="<?php echo $selected_voyage['prix']; ?>" />
-                <div class="voyage-details">
-                    <div class="image">
-                        <img src="<?php echo $selected_voyage['image']; ?>" alt="Image du voyage"/>
-                    </div>
-                    <div class="details">
-                        <h3><?php echo $selected_voyage['ville'] . ', ' . $selected_voyage['pays']; ?></h3>
-                        <p><strong>Activities :</strong> <?php echo $packs[$selected_voyage['pack']] ?? 'Non défini'; ?></p>
-                        <p><strong>Price :</strong> <?php echo $selected_voyage['prix']; ?> €</p>
-                        <h4 class="hotel">Recommended Hotels :</h4>
-                        <ul>
-                            <?php foreach ($selected_voyage['hotels'] as $hotel): ?>
+<section>
+    <div class="container">
+        <h2 class="title">Trip Details</h2>
+
+        <form action="payment.php" method="POST">
+            <input type="hidden" name="voyage_id" value="<?= $id ?>">
+            <input type="hidden" name="amount" id="montant" value="<?= $selected_voyage['prix'] ?>">
+            <div class="voyage-details">
+                <div class="image">
+                    <img src="<?= $selected_voyage['image'] ?>" alt="Trip Image">
+                </div>
+                <div class="details">
+                    <h3><?= $selected_voyage['ville'] . ', ' . $selected_voyage['pays'] ?></h3>
+                    <p><strong>Activities:</strong> <?= $packs[$selected_voyage['pack']] ?? 'Not defined' ?></p>
+                    <p><strong>Price:</strong> <?= $selected_voyage['prix'] ?> €</p>
+
+                    <h4 class="hotel">Recommended Hotels:</h4>
+                    <ul>
+                        <?php foreach ($selected_voyage['hotels'] as $hotel): ?>
                             <li class="hotel-item">
                                 <div class="hotel-info">
-                                    <strong><?php echo $hotel['nom']; ?></strong><br>
-                                    <span><?php echo $hotel['prix']; ?> €</span>
+                                    <strong><?= $hotel['nom'] ?></strong><br>
+                                    <span><?= $hotel['prix'] ?> €</span>
                                 </div>
                                 <div class="hotel-image">
-                                    <img src="<?php echo $hotel['image']; ?>" alt="<?php echo $hotel['nom']; ?>" width="300" height="150" />
+                                    <img src="<?= $hotel['image'] ?>" alt="<?= $hotel['nom'] ?>" width="300" height="150">
                                 </div>
                             </li>
-                            <?php endforeach; ?>
-                        </ul>
+                        <?php endforeach; ?>
+                    </ul>
 
-                        <label for="departure">Departure Date :</label>
-                        <input type="date" id="departure" name="departure" value="<?php echo $departure_date; ?>" required />
+                    <label for="departure">Departure Date:</label>
+                    <input type="date" id="departure" name="departure" value="<?= $departure_date ?>" required>
 
-                        <label for="return">Return Date :</label>
-                        <input type="date" id="return" name="return" value="<?php echo $return_date; ?>" readonly required />
+                    <label for="return">Return Date:</label>
+                    <input type="date" id="return" name="return" value="<?= $return_date ?>" readonly required>
 
-                        <h4 class="flight-info">
-                            <strong>Flight Departure (Going):</strong> CDG at 08:00 AM<br>
-                            <strong>Flight Arrival (Going):</strong> <?php echo $heure_arrivee_aller; ?> at <?php echo isset($selected_voyage['arrive']) ? $selected_voyage['arrive'] : 'N/A'; ?><br><br>
-                            <strong>Flight Departure (Return):</strong> <?php echo isset($selected_voyage['arrive']) ? $selected_voyage['arrive'] : 'N/A'; ?> at 08:00 AM<br>
-                            <strong>Flight Arrival (Return):</strong> CDG at <?php echo $heure_arrivee_retour; ?>
-                        </h4>
+                    <h4>Choose your hotel:</h4>
+                    <select name="hotel" required>
+                        <?php foreach ($selected_voyage['hotels'] as $hotel): ?>
+                            <option value="<?= $hotel['nom'] ?>" data-price="<?= $hotel['prix'] ?>">
+                                <?= $hotel['nom'] ?> - <?= $hotel['prix'] ?> €
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
 
-                        <h4 class="hot">Choose your hotel :</h4>
-                        <select name="hotel" required>
-                            <?php foreach ($selected_voyage['hotels'] as $hotel): ?>
-                                <option value="<?php echo $hotel['nom']; ?>" data-price="<?php echo $hotel['prix']; ?>">
-                                    <?php echo $hotel['nom']; ?> - <?php echo $hotel['prix']; ?> €
+                    <h4>Choose your activities:</h4>
+                    <?php
+                    $activites = [
+                        $selected_voyage['activite1'],
+                        $selected_voyage['activite2'],
+                        $selected_voyage['activite3'],
+                        $selected_voyage['activite4']
+                    ];
+                    foreach ($activites as $activite): ?>
+                        <select name="activites[]" required>
+                            <?php foreach ($activite as $option): ?>
+                                <option value="<?= $option['nom'] ?>" data-price="<?= $option['prix'] ?>">
+                                    <?= $option['nom'] ?> - <?= $option['prix'] ?> €
                                 </option>
                             <?php endforeach; ?>
                         </select>
+                    <?php endforeach; ?>
 
-                        <h4 class="act">Choose your activities:</h4>
-                        <?php
-                        $activites = [
-                            'activite1' => $selected_voyage['activite1'],
-                            'activite2' => $selected_voyage['activite2'],
-                            'activite3' => $selected_voyage['activite3'],
-                            'activite4' => $selected_voyage['activite4']
-                        ];
-                        foreach ($activites as $activite): ?>
-                            <select name="activites[]" required>
-                                <?php foreach ($activite as $option): ?>
-                                    <option value="<?php echo $option['nom']; ?>" data-price="<?php echo $option['prix']; ?>">
-                                        <?php echo $option['nom']; ?> - <?php echo $option['prix']; ?> €
-                                    </option>
-                                <?php endforeach; ?>
-                            </select>
-                        <?php endforeach; ?>
+                    <p><strong>Total Price:</strong> <span id="totalPrice">0 €</span></p>
 
-                        <p><strong>All price :</strong> <span id="totalPrice">0 €</span></p>
-                        <div class="button-group">
-                            <button type="submit" class="validate-btn">Confirm the reservation</button>
-                            <button type="button" class="back-btn" onclick="window.location.href='specific.php'">Return to booking</button>
-                        </div>
+                    <div class="button-group"> 
+                        <button type="submit" class="validate-btn">Confirm the reservation</button>
+                        <button type="button" class="back-btn" onclick="window.location.href='specific.php'">Return to booking</button>
                     </div>
                 </div>
-            </form>
-            <form action="cart.php" method="POST" style="text-align: center;">
-                 <input type="hidden" name="add_to_cart" value="1">
-                 <input type="hidden" name="id" value="<?= $id ?>">
-                 <input type="hidden" name="name" value="<?= htmlspecialchars($selected_voyage['ville'] . ', ' . $selected_voyage['pays']) ?>">
-                 <input type="hidden" name="price" value="<?= $selected_voyage['prix'] ?>">
-                 <button type="submit" class="add-to-cart-btn">
-                 <i class="fas fa-cart-plus"></i> Add to Cart
-                 </button>
-            </form>
-        </div>
-    </section>
+            </div>
+        </form>
 
-    <footer>
-        <div id="contact">
-            <section>
-                <p><br>Contact us</br><a href="mailto:luxalturaagency@outlook.com">luxalturaagency@outlook.com</a></p>
-            </section>
-        </div>
-        <span>2025 | MI-03.I ©</span>
-    </footer>
-    <script src="JS/updatePrice.js"></script>
+        <form id="addToCartForm" action="cart.php" method="POST" style="text-align: center;">
+            <input type="hidden" name="add_to_cart" value="1">
+            <input type="hidden" name="id" value="<?= $id ?>">
+            <input type="hidden" name="name" value="<?= htmlspecialchars($selected_voyage['ville'] . ', ' . $selected_voyage['pays']) ?>">
+            <input type="hidden" name="base_price" value="<?= $selected_voyage['prix'] ?>">
+            <input type="hidden" name="hotel" id="selected_hotel">
+            <input type="hidden" name="activities" id="selected_activities">
+            <input type="hidden" name="total_price" id="hidden_total_price">
+            <button type="submit" class="add-to-cart-btn">
+                <i class="fas fa-cart-plus"></i> Add to Cart
+            </button>
+        </form>
+    </div>
+</section>
+
+<footer>
+    <div id="contact">
+        <p>Contact us <a href="mailto:luxalturaagency@outlook.com">luxalturaagency@outlook.com</a></p>
+    </div>
+    <span>2025 | MI-03.I ©</span>
+</footer>
+
+<script src="JS/updatePrice.js"></script>
 </body>
 </html>
