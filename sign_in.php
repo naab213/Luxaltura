@@ -1,51 +1,46 @@
-<?php require_once 'init.php';
+<?php
+session_start();
 
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-    if(isset($_POST['email']) && isset($_POST['password'])){
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['email']) && isset($_POST['password'])) {
         $email = trim($_POST['email']);
         $password = trim($_POST['password']);
-    }
-    else{
+    } else {
         $error = "Please fill in all the fields.";
     }
 
-    if(!isset($error)){
-        $filePath = 'dataJSON/user_data.json'; // Use user_data.json for verification
-        if(!file_exists($filePath)){
+    if (!isset($error)) {
+        $filePath = 'dataJSON/user_data.json';
+        if (!file_exists($filePath)) {
             $error = "Error: the data file is not found.";
-        }
-        else{
+        } else {
             $users = json_decode(file_get_contents($filePath), true);
 
-            if(!is_array($users)){
+            if (!is_array($users)) {
                 $error = "Error: the user data is corrupted.";
-            }
-            else{     
+            } else {
                 $userFound = false;
 
-                foreach ($users as $user){
-                    if(strtolower($user['email']) === strtolower($email)){ // Check email
+                foreach ($users as $user) {
+                    if (strtolower($user['email']) === strtolower($email)) {
                         $userFound = true;
 
-                        if($password === $user['pass']){ // Check password
-                            // Ensure required keys exist in the user array
-                            if(!isset($user['lastname'], $user['name'], $user['age'], $user['email'], $user['pass'])){
+                        if ($password === $user['pass']) {
+                            if (!isset($user['lastname'], $user['name'], $user['age'], $user['email'], $user['pass'])) {
                                 $error = "Error: incomplete user data.";
                                 break;
                             }
 
-                            $_SESSION['user_email'] = $email; // Store user email
-                            $_SESSION['user_name'] = $user['name']; // Store user name
-                            $_SESSION['user_lastname'] = $user['lastname']; // Store user lastname
-                            $_SESSION['user_age'] = $user['age']; // Store user age
+                            $_SESSION['user_email'] = $email;
+                            $_SESSION['user_name'] = $user['name'];
+                            $_SESSION['user_lastname'] = $user['lastname'];
+                            $_SESSION['user_age'] = $user['age'];
 
-                            // Ensure the temp directory exists
                             $tempDir = 'dataJSON/temp/';
-                            if(!is_dir($tempDir)){
+                            if (!is_dir($tempDir)) {
                                 mkdir($tempDir, 0777, true);
                             }
 
-                            // Create a temporary file with the user's data
                             $tempFilePath = $tempDir . 'user_' . md5($email) . '.json';
                             $userData = [
                                 'lastname' => $user['lastname'],
@@ -55,17 +50,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             ];
                             file_put_contents($tempFilePath, json_encode($userData, JSON_PRETTY_PRINT));
 
-                            header("Location: home.php"); // Redirect to home page
+                            header("Location: home.php");
                             exit();
-                        }
-                        else{
+                        } else {
                             $error = "Incorrect password.";
                         }
                         break;
                     }
                 }
 
-                if(!$userFound){
+                if (!$userFound) {
                     $error = "No user found with this email.";
                 }
             }
@@ -73,25 +67,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 }
 ?>
-<?php include 'header.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <?php
-    if(isset($_COOKIE['mode']) && $_COOKIE['mode'] === 'clair'){
-        echo '<link rel="stylesheet" href="style2.css" />';
-    }
-    else{
-        echo '<link rel="stylesheet" href="style.css" />';
-    }
-    ?>
+
+    <meta charset=" utf-8" />
+    <link rel="stylesheet" href="style.css" />
     <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css" />
     <title>Luxaltura - Sign In</title>
 </head>
 
 <body>
+
     <header>
         <h1>Luxaltura</h1>
         <span class="separator"></span>
@@ -113,23 +102,33 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <div class="container">
         <h2>Sign In</h2>
         <?php if (isset($error)): ?>
-            <p style="color: black;"><?php echo $error; ?></p>
+            <p class="error-message"><?php echo $error; ?></p>
         <?php endif; ?>
         <form id="signin" action="sign_in.php" method="post">
-            <input type="email" name="email" placeholder="Email" id="email" required>
-            <input type="password" name="password" placeholder="Password" id="pw" required>
-            <button type="submit">Sign In</button>
+            <div class="input-box">
+                <input type="email" name="email" placeholder="Email" id="email" required maxlength="50" data-counter="email-counter">
+                <i class="uil uil-envelope icon"></i>
+                <span class="counter" id="email-counter">0/50</span>
+            </div>
+
+            <div class="input-box">
+                <input type="password" name="password" placeholder="Password" id="password" required maxlength="20" data-counter="password-counter">
+                <i class="uil uil-lock icon"></i>
+                <i class="uil uil-eye-slash pw-toggle"></i>
+                <span class="counter" id="password-counter">0/20</span>
+            </div>
+
+            <button type="submit" class="auth-button">Sign In</button>
         </form>
     </div>
-
+    <script src="JS/sign_in.js"></script>
     <footer>
         <div id="contact">
             <section>
-                <p><br>Contact us</br><a href="mailto:luxalturaagency@outlook.com">luxalturaagency@outlook.com</a></p>
+                <p><br>Contact us </br><a href="mailto:luxalturaagency@outlook.com">luxalturaagency@outlook.com</a></p>
             </section>
         </div>
         <span>2025 | MI-03.I ©</span>
     </footer>
-</body>
 
 </html>
