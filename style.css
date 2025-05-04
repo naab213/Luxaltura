@@ -590,48 +590,4 @@ footer .footer-container {
     color: white;
 }
 
-.error-message {
-    color: red;
-    font-size: 12px;
-    margin-top: 5px;
-    display: block;
-}
-
-input.error {
-    border-color: red;
-}
-
-.field {
-    margin-bottom: 20px;
-  }
-  
-  .field label {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 8px;
-  }
-  
-  .input-group {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  .input-group input {
-    flex: 1;
-  }
-  
-  .edit-btn, .cancel-btn {
-    padding: 6px 12px;
-    font-size: 14px;
-    border: none;
-    background-color: var(--primary-color);
-    color: white;
-    border-radius: 4px;
-    transition: background-color 0.3s;
-  }
-  
-  .edit-btn:hover, .cancel-btn:hover {
-    background-color: var(--hover-color);
-  }
 
