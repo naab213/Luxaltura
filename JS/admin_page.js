@@ -1,15 +1,22 @@
 function simulateUpdate(button) {
-    
+    const row = button.closest('tr');
+    row.style.backgroundColor = '#ccc';
     button.disabled = true;
-    button.textContent = "Update...";
 
-    
     setTimeout(() => {
-        
+        row.style.backgroundColor = '';
         button.disabled = false;
-        button.textContent = "Modifier";
+        alert("Mise à jour simulée avec succès !");
+    }, 5000);
+}
 
-        
-        alert("Update simulated with success!");
-    }, 3000); 
+function cancelUser(button) {
+    const row = button.closest('tr');
+    const nom = row.children[0].textContent;
+    const prenom = row.children[1].textContent;
+
+    if (confirm(`Voulez-vous vraiment supprimer l'utilisateur ${prenom} ${nom} ?`)) {
+        row.remove();
+        alert("Utilisateur supprimé.");
+    }
 }

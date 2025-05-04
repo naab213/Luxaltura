@@ -1,133 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" href="style.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
-        <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
-        <title>Luxaltura - Admins</title>
-    </head>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
+    <title>Luxaltura - Admins</title>
+</head>
 
-    <body>
-        <header>
-            <h1>Our users</h1>
-        </header>
+<body>
+    <header>
+        <h1>Our users</h1>
+    </header>
 
-        <section>
-            <table border="5" style="background-color: white; width: 100%; text-align: left;">
-                <thead>
-                    <tr>
-                        <th>Nom</th>
-                        <th>Prénom</th>
-                        <th>Mail</th>
-                        <th>Numéro de téléphone</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Arlabelek</td>
-                        <td>Nabil</td>
-                        <td>nabil.arlabelek@example.com</td>
-                        <td>06 27 07 19 91</td>
-                        <td>
-                            <button class="update-btn" onclick="simulateUpdate(this)">Modifier</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Laamiri</td>
-                        <td>Najoua</td>
-                        <td>najoua.laamiri@example.com</td>
-                        <td>06 30 06 19 94</td>
-                        <td>
-                            <button class="update-btn" onclick="simulateUpdate(this)">Modifier</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Choi</td>
-                        <td>Seung-hyun</td>
-                        <td>seung-hyun.choi@example.com</td>
-                        <td>07 04 11 19 87</td>
-                        <td>
-                            <button class="update-btn" onclick="simulateUpdate(this)">Modifier</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Exarchopoulos</td>
-                        <td>Adèle</td>
-                        <td>adele.exarchopoulos@example.com</td>
-                        <td>06 22 11 19 93</td>
-                        <td>
-                            <button class="update-btn" onclick="simulateUpdate(this)">Modifier</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Garfield</td>
-                        <td>Andrew</td>
-                        <td>andrew.garfield@example.com</td>
-                        <td>07 20 08 19 83</td>
-                        <td>
-                            <button class="update-btn" onclick="simulateUpdate(this)">Modifier</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Souhaili</td>
-                        <td>Omar</td>
-                        <td>omar.souhaili@example.com</td>
-                        <td>07 19 07 19 89</td>
-                        <td>
-                            <button class="update-btn" onclick="simulateUpdate(this)">Modifier</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Da Silva Santos Júnior</td>
-                        <td>Neymar</td>
-                        <td>neymar.dssjunior@example.com</td>
-                        <td>07 05 02 19 92</td>
-                        <td>
-                            <button class="update-btn" onclick="simulateUpdate(this)">Modifier</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Taarabt</td>
-                        <td>Adel</td>
-                        <td>adel.taarabt@example.com</td>
-                        <td>06 24 05 19 89</td>
-                        <td>
-                            <button class="update-btn" onclick="simulateUpdate(this)">Modifier</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Chaïbi</td>
-                        <td>Farès</td>
-                        <td>fares.chaibi@example.com</td>
-                        <td>07 28 11 20 02</td>
-                        <td>
-                            <button class="update-btn" onclick="simulateUpdate(this)">Modifier</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Braïki</td>
-                        <td>Bassem</td>
-                        <td>bassem.braiki@example.com</td>
-                        <td>06 20 08 19 80</td>
-                        <td>
-                            <button class="update-btn" onclick="simulateUpdate(this)">Modifier</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+    <section>
+        <table border="5" style="background-color: white; width: 100%; text-align: left;">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Mail</th>
+                    <th>Numéro de téléphone</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Arlabelek</td>
+                    <td>Nabil</td>
+                    <td>nabil.arlabelek@example.com</td>
+                    <td>06 27 07 19 91</td>
+                    <td>
+                        <button onclick="simulateUpdate(this)">Modifier</button>
+                        <button onclick="cancelUser(this)">Supprimer</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Laamiri</td>
+                    <td>Najoua</td>
+                    <td>najoua.laamiri@example.com</td>
+                    <td>06 30 06 19 94</td>
+                    <td>
+                        <button onclick="simulateUpdate(this)">Modifier</button>
+                        <button onclick="cancelUser(this)">Supprimer</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Choi</td>
+                    <td>Seung-hyun</td>
+                    <td>seung-hyun.choi@example.com</td>
+                    <td>07 04 11 19 87</td>
+                    <td>
+                        <button onclick="simulateUpdate(this)">Modifier</button>
+                        <button onclick="cancelUser(this)">Supprimer</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Exarchopoulos</td>
+                    <td>Adèle</td>
+                    <td>adele.exarchopoulos@example.com</td>
+                    <td>06 22 11 19 93</td>
+                    <td>
+                        <button onclick="simulateUpdate(this)">Modifier</button>
+                        <button onclick="cancelUser(this)">Supprimer</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Garfield</td>
+                    <td>Andrew</td>
+                    <td>andrew.garfield@example.com</td>
+                    <td>07 20 08 19 83</td>
+                    <td>
+                        <button onclick="simulateUpdate(this)">Modifier</button>
+                        <button onclick="cancelUser(this)">Supprimer</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Souhaili</td>
+                    <td>Omar</td>
+                    <td>omar.souhaili@example.com</td>
+                    <td>07 19 07 19 89</td>
+                    <td>
+                        <button onclick="simulateUpdate(this)">Modifier</button>
+                        <button onclick="cancelUser(this)">Supprimer</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Da Silva Santos Júnior</td>
+                    <td>Neymar</td>
+                    <td>neymar.dssjunior@example.com</td>
+                    <td>07 05 02 19 92</td>
+                    <td>
+                        <button onclick="simulateUpdate(this)">Modifier</button>
+                        <button onclick="cancelUser(this)">Supprimer</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Taarabt</td>
+                    <td>Adel</td>
+                    <td>adel.taarabt@example.com</td>
+                    <td>06 24 05 19 89</td>
+                    <td>
+                        <button onclick="simulateUpdate(this)">Modifier</button>
+                        <button onclick="cancelUser(this)">Supprimer</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Chaïbi</td>
+                    <td>Farès</td>
+                    <td>fares.chaibi@example.com</td>
+                    <td>07 28 11 20 02</td>
+                    <td>
+                        <button onclick="simulateUpdate(this)">Modifier</button>
+                        <button onclick="cancelUser(this)">Supprimer</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Braïki</td>
+                    <td>Bassem</td>
+                    <td>bassem.braiki@example.com</td>
+                    <td>06 20 08 19 80</td>
+                    <td>
+                        <button onclick="simulateUpdate(this)">Modifier</button>
+                        <button onclick="cancelUser(this)">Supprimer</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
 
-        <footer>
-            <div id = "contact">
-                <section>
-                    <p><br>Contact us</br><a href = "mailto:luxalturaagency@outlook.com">luxalturaagency@outlook.com</a></p>
-                </section>
-            </div>
-            <span> 2025 | MI-03.I ©</span>
-        </footer>
+    <footer>
+        <div id="contact">
+            <section>
+                <p><br>Contact us</br><a href="mailto:luxalturaagency@outlook.com">luxalturaagency@outlook.com</a></p>
+            </section>
+        </div>
+        <span> 2025 | MI-03.I ©</span>
+    </footer>
 
-        <script src="JS/admin_page.js"></script>
-    </body>
+    <script src="JS/admin_page.js"></script>
+</body>
 </html>

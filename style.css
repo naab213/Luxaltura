@@ -634,12 +634,4 @@ input.error {
   .edit-btn:hover, .cancel-btn:hover {
     background-color: var(--hover-color);
   }
-  
-  .cancel-btn {
-    display: none;
-  }
-  
-  .cancel-btn.show {
-    display: inline-block;
-  }
-  
+
