@@ -65,41 +65,41 @@ $userPayments = array_filter($paymentData, function ($payment) {
                 <button type="button" class="edit-btn" onclick="editField('lastname')">
                     <i class="fas fa-pencil-alt"></i>
                 </button>
-                <button type="button" class="cancel-btn" onclick="cancelEdit('lastname')" style="display: none;">Cancel</button>
+                <button type="button" class="cancel-btn" onclick="cancelEdit('lastname')"">Cancel</button>
             </div>
-            <div class="field">
-                <input type="text" id="name" value="<?php echo htmlspecialchars($_SESSION['user_name']); ?>" disabled required>
-                <button type="button" class="edit-btn" onclick="editField('name')">
-                    <i class="fas fa-pencil-alt"></i>
-                </button>
-                <button type="button" class="cancel-btn" onclick="cancelEdit('name')" style="display: none;">Cancel</button>
+            <div class=" field">
+                    <input type="text" id="name" value="<?php echo htmlspecialchars($_SESSION['user_name']); ?>" disabled required>
+                    <button type="button" class="edit-btn" onclick="editField('name')">
+                        <i class="fas fa-pencil-alt"></i>
+                    </button>
+                    <button type="button" class="cancel-btn" onclick="cancelEdit('name')">Cancel</button>
             </div>
             <div class="field">
                 <input type="email" id="email" value="<?php echo htmlspecialchars($_SESSION['user_email']); ?>" disabled required>
                 <button type="button" class="edit-btn" onclick="editField('email')">
                     <i class="fas fa-pencil-alt"></i>
                 </button>
-                <button type="button" class="cancel-btn" onclick="cancelEdit('email')" style="display: none;">Cancel</button>
+                <button type="button" class="cancel-btn" onclick="cancelEdit('email')">Cancel</button>
             </div>
             <div class="field">
                 <input type="number" id="age" value="<?php echo htmlspecialchars($_SESSION['user_age']); ?>" disabled required>
                 <button type="button" class="edit-btn" onclick="editField('age')">
                     <i class="fas fa-pencil-alt"></i>
                 </button>
-                <button type="button" class="cancel-btn" onclick="cancelEdit('age')" style="display: none;">Cancel</button>
+                <button type="button" class="cancel-btn" onclick="cancelEdit('age')">Cancel</button>
             </div>
             <div class="field">
                 <input type="password" id="pw" placeholder="Enter a new password" disabled>
                 <button type="button" class="edit-btn" onclick="editField('pw')">
                     <i class="fas fa-pencil-alt"></i>
                 </button>
-                <button type="button" class="cancel-btn" onclick="cancelEdit('pw')" style="display: none;">Cancel</button>
+                <button type="button" class="cancel-btn" onclick="cancelEdit('pw')">Cancel</button>
             </div>
             <div class="field">
                 <input type="password" id="pwconf" placeholder="Confirm password" disabled>
             </div>
 
-            <button type="submit" id="submitBtn" style="display: none;">Soumettre</button>
+            <button type="submit" id="submitBtn">Update</button>
         </form>
     </div>
 
