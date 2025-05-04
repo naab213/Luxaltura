@@ -691,5 +691,19 @@
         ],
         "user_email": "abdel@gmail.com",
         "date": "2025-05-01 11:23:08"
+    },
+    {
+        "transaction_id": "F6EA730CFF",
+        "montant": 1815,
+        "voyage_id": "10",
+        "hotel": "Melliber Appart Hotel",
+        "activites": [
+            "Visit Hassan II Mosque",
+            "Explore the Habous Quarter",
+            "Taste Pastilla",
+            "Visit the foundation museum"
+        ],
+        "user_email": "abdel@gmail.com",
+        "date": "2025-05-03 16:34:32"
     }
 ]

@@ -94,7 +94,7 @@ $heure_arrivee_retour = date("H:i", strtotime("+$duree_vol hours", strtotime("08
         </div>
 
         <div class="cart">
-            <a href="cart.html" title="Your Cart">
+            <a href="cart.php" title="Your Cart">
                 <i class="fas fa-shopping-cart"></i>
                 <span class="cart-count">0</span>
             </a>
@@ -181,20 +181,21 @@ $heure_arrivee_retour = date("H:i", strtotime("+$duree_vol hours", strtotime("08
                         <?php endforeach; ?>
 
                         <p><strong>All price :</strong> <span id="totalPrice">0 €</span></p>
-                        
-                        <form id="add-to-cart-form">
-                            <input type="hidden" name="voyage_id" value="<?php echo $id; ?>" />
-                            <input type="hidden" name="voyage_name" value="<?php echo $selected_voyage['ville'] . ', ' . $selected_voyage['pays']; ?>" />
-                            <input type="hidden" name="voyage_price" value="<?php echo $selected_voyage['prix']; ?>" />
-                            <button type="button" class="add-to-cart-btn" onclick="addToCart('<?php echo $id; ?>', '<?php echo $selected_voyage['ville'] . ', ' . $selected_voyage['pays']; ?>', <?php echo $selected_voyage['prix']; ?>)">Add to Shopping basket</button>
-                        </form>
-
                         <div class="button-group">
                             <button type="submit" class="validate-btn">Confirm the reservation</button>
                             <button type="button" class="back-btn" onclick="window.location.href='specific.php'">Return to booking</button>
                         </div>
                     </div>
                 </div>
+            </form>
+            <form action="cart.php" method="POST" style="text-align: center;">
+                 <input type="hidden" name="add_to_cart" value="1">
+                 <input type="hidden" name="id" value="<?= $id ?>">
+                 <input type="hidden" name="name" value="<?= htmlspecialchars($selected_voyage['ville'] . ', ' . $selected_voyage['pays']) ?>">
+                 <input type="hidden" name="price" value="<?= $selected_voyage['prix'] ?>">
+                 <button type="submit" class="add-to-cart-btn">
+                 <i class="fas fa-cart-plus"></i> Add to Cart
+                 </button>
             </form>
         </div>
     </section>
