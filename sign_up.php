@@ -1,20 +1,27 @@
-<?php require_once 'init.php';
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-    $lastname = isset($_POST["lastname"]) ? htmlspecialchars($_POST["lastname"]) : "";
-    $name = isset($_POST["name"]) ? htmlspecialchars($_POST["name"]) : "";
-    $age = isset($_POST["age"]) ? intval($_POST["age"]) : 0;
-    $email = isset($_POST["email"]) ? htmlspecialchars($_POST["email"]) : "";
-    $emailconf = isset($_POST["emailconf"]) ? htmlspecialchars($_POST["emailconf"]) : "";
-    $pass = isset($_POST["pass"]) ? htmlspecialchars($_POST["pass"]) : "";
-    $passwordconf = isset($_POST["passwordconf"]) ? htmlspecialchars($_POST["passwordconf"]) : "";
+<?php
+session_start();
 
-    if($email !== $emailconf){
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $lastname = isset($_POST["lastname"]) ? htmlspecialchars(trim($_POST["lastname"])) : "";
+    $name = isset($_POST["name"]) ? htmlspecialchars(trim($_POST["name"])) : "";
+    $age = isset($_POST["age"]) ? intval($_POST["age"]) : 0;
+    $email = isset($_POST["email"]) ? htmlspecialchars(trim($_POST["email"])) : "";
+    $emailconf = isset($_POST["emailconf"]) ? htmlspecialchars(trim($_POST["emailconf"])) : "";
+    $pass = isset($_POST["pass"]) ? htmlspecialchars(trim($_POST["pass"])) : "";
+    $passwordconf = isset($_POST["passwordconf"]) ? htmlspecialchars(trim($_POST["passwordconf"])) : "";
+
+    // Validation des champs
+    if (empty($lastname) || empty($name) || empty($age) || empty($email) || empty($emailconf) || empty($pass) || empty($passwordconf)) {
+        $error = "All fields are required.";
+    } elseif ($email !== $emailconf) {
         $error = "The emails do not match.";
-    }
-    elseif($pass !== $passwordconf){
+    } elseif ($pass !== $passwordconf) {
         $error = "The passwords do not match.";
-    }
-    else{
+    } elseif ($age <= 0) {
+        $error = "Please enter a valid age.";
+    } else {
+
         $userData = array(
             "lastname" => $lastname,
             "name" => $name,
@@ -23,37 +30,41 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             "pass" => $pass
         );
 
+
         $file = 'dataJSON/user_data.json';
-        if(file_exists($file)){
+
+
+        if (file_exists($file)) {
             $jsonData = file_get_contents($file);
             $data = json_decode($jsonData, true);
-        }
-        else{
+        } else {
             $data = array();
         }
 
+
         $data[] = $userData;
 
+
         file_put_contents($file, json_encode($data, JSON_PRETTY_PRINT));
+
 
         $success = "Registration successful! Thank you, $name, for your registration.";
     }
 }
 ?>
-<?php include 'header.php'; ?>
 <!DOCTYPE html>
 <html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <?php
-    if(isset($_COOKIE['mode']) && $_COOKIE['mode'] === 'clair'){
+    if (isset($_COOKIE['mode']) && $_COOKIE['mode'] === 'clair') {
         echo '<link rel="stylesheet" href="style2.css" />';
-    }
-    else{
+    } else {
         echo '<link rel="stylesheet" href="style.css" />';
     }
     ?>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css" />
     <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
     <title>Luxaltura - Sign up</title>
 </head>
@@ -87,31 +98,44 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <?php else: ?>
             <form action="sign_up.php" method="post">
                 <label for="lastname">Lastname :</label>
-                <input type="text" id="lastname" name="lastname" required>
+                <input type="text" id="lastname" name="lastname" required maxlength="50" data-counter="lastname-counter">
+                <span class="counter" id="lastname-counter">0/50
+
+                </span>
 
                 <label for="name">Name :</label>
-                <input type="text" id="name" name="name" required>
+                <input type="text" id="name" name="name" required maxlength="50" data-counter="name-counter">
+                <span class="counter" id="name-counter">0/50</span>
 
                 <label for="age">Age :</label>
                 <input type="number" id="age" name="age" required>
 
                 <label for="email">Email :</label>
-                <input type="email" id="email" name="email" required>
+                <input type="email" id="email" name="email" required maxlength="50" data-counter="email-counter">
+                <span class="counter" id="email-counter">0/50</span>
 
                 <label for="emailconf">Confirm email :</label>
-                <input type="email" id="emailconf" name="emailconf" required>
+                <input type="email" id="emailconf" name="emailconf" required maxlength="50" data-counter="emailconf-counter">
+                <span class="counter" id="emailconf-counter">0/50</span>
 
-                <label for="pass">MPassword :</label>
-                <input type="password" id="pass" name="pass" required>
+                <div class="input_box">Password
+                    <input type="password" name="pass" placeholder="Password" required maxlength="20" data-counter="password-counter">
+                    <i class="uil uil-lock"></i>
+                    <i class="uil uil-eye-slash pw-toggle"></i>
+                    <span class="counter" id="password-counter">0/20</span>
+                </div>
 
-                <label for="passwordconf">Confirm password :</label>
-                <input type="password" id="passwordconf" name="passwordconf" required>
-
+                <div class="input_box">Confirm Password
+                    <input type="password" name="passwordconf" placeholder="Confirm Password" required maxlength="20" data-counter="passwordconf-counter">
+                    <i class="uil uil-lock"></i>
+                    <i class="uil uil-eye-slash pw-toggle"></i>
+                    <span class="counter" id="passwordconf-counter">0/20</span>
+                </div>
                 <button type="submit">Sign up</button>
             </form>
         <?php endif; ?>
     </div>
-
+    <script src="JS/sign_up.js"></script>
     <footer>
         <div id="contact">
             <section>
