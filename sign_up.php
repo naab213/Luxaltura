@@ -1,8 +1,9 @@
-<?php
-session_start();
+<?php require_once 'init.php';
+
+$theme = isset($_COOKIE['mode']) && $_COOKIE['mode'] === 'clair' ? 'clair' : 'sombre';
+$cssFile = $theme === 'clair' ? 'style2.css' : 'style.css';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
     $lastname = isset($_POST["lastname"]) ? htmlspecialchars(trim($_POST["lastname"])) : "";
     $name = isset($_POST["name"]) ? htmlspecialchars(trim($_POST["name"])) : "";
     $age = isset($_POST["age"]) ? intval($_POST["age"]) : 0;
@@ -52,24 +53,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
+<?php include 'header.php'; ?>
 <!DOCTYPE html>
 <html lang="fr">
 
 <head>
     <meta charset="UTF-8">
-    <?php
-    if (isset($_COOKIE['mode']) && $_COOKIE['mode'] === 'clair') {
-        echo '<link rel="stylesheet" href="style2.css" />';
-    } else {
-        echo '<link rel="stylesheet" href="style.css" />';
-    }
-    ?>
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css" />
+    <link rel="stylesheet" href="<?php echo $cssFile; ?>" />
     <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css" />
     <title>Luxaltura - Sign up</title>
 </head>
 
 <body>
+    <form action="/switch.php" method="post" style="position: fixed; bottom: 50px; right: 30px;">
+        <button type="submit">
+            <?php echo $theme === 'clair' ? 'Switch to dark mode' : 'Switch to light mode'; ?>
+        </button>
+    </form>
+    
     <header>
         <h1>Luxaltura</h1>
         <span class="separator"></span>

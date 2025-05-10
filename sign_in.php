@@ -1,5 +1,7 @@
-<?php require_once 'init.php'; ?>
-<?php include 'header.php';
+<?php require_once 'init.php';
+
+$theme = isset($_COOKIE['mode']) && $_COOKIE['mode'] === 'clair' ? 'clair' : 'sombre';
+$cssFile = $theme === 'clair' ? 'style2.css' : 'style.css';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['email']) && isset($_POST['password'])) {
         $email = trim($_POST['email']);
@@ -73,13 +75,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
 
     <meta charset=" utf-8" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="<?php echo $cssFile; ?>" />
     <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css" />
     <title>Luxaltura - Sign In</title>
 </head>
 
 <body>
+
+    <form action="/switch.php" method="post" style="position: fixed; bottom: 50px; right: 30px;">
+        <button type="submit">
+            <?php echo $theme === 'clair' ? 'Switch to dark mode' : 'Switch to light mode'; ?>
+        </button>
+    </form>
 
     <header>
         <h1>Luxaltura</h1>
@@ -104,7 +112,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <?php if (isset($error)): ?>
             <p class="error-message"><?php echo $error; ?></p>
         <?php endif; ?>
-        <form id="signin" action="sign_in.php" method="post">
+        <form id="signin" action="sign_in.php" method="post";>
             <div class="input-box">
                 <input type="email" name="email" placeholder="Email" id="email" required maxlength="50" data-counter="email-counter">
                 <i class="uil uil-envelope icon"></i>

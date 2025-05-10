@@ -5,6 +5,6 @@ $newMode = $currentMode === 'clair' ? 'sombre' : 'clair';
 
 setcookie("mode", $newMode, time() + 3600 * 24 * 30, "/");
 
-$redirect = $_SERVER['HTTP_REFERER'] ?? 'home.php';
+$redirect = $_SERVER['HTTP_REFERER'] ?? 'sign_in.php';
 header("Location: $redirect");
 exit;
