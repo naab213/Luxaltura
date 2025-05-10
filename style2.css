@@ -168,6 +168,7 @@ input, select {
 button {
     width: 100%;
     padding: 12px;
+    margin: 10px 0;
     background: #5A4D4D;
     color: #F5F5F5;
     border: none;

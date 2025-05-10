@@ -1,6 +1,5 @@
-<?php
-session_start();
-
+<?php require_once 'init.php'; ?>
+<?php include 'header.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['email']) && isset($_POST['password'])) {
         $email = trim($_POST['email']);
@@ -67,6 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
