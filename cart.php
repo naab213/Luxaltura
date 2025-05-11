@@ -8,7 +8,6 @@ if (!isset($_SESSION['user_email'])) {
 
 require_once 'init.php';
 
-// Ajouter une réservation au panier
 if (isset($_POST['add_to_cart'])) {
     $id = $_POST['id'] ?? '';
     $name = $_POST['name'] ?? '';
@@ -33,7 +32,6 @@ if (isset($_POST['add_to_cart'])) {
 
         $_SESSION['cart'][] = $reservation_item;
 
-        // Sauvegarder dans le fichier JSON
         $user_email = $_SESSION['user_email'];
         $reservation = [
             'email' => $user_email,
@@ -54,7 +52,6 @@ if (isset($_POST['add_to_cart'])) {
     }
 }
 
-// Supprimer une réservation spécifique
 if (isset($_POST['remove_item']) && isset($_POST['index'])) {
     $index = (int)$_POST['index'];
     if (isset($_SESSION['cart'][$index])) {
@@ -64,14 +61,12 @@ if (isset($_POST['remove_item']) && isset($_POST['index'])) {
     exit;
 }
 
-// Vider le panier complet
 if (isset($_POST['remove_cart'])) {
     unset($_SESSION['cart']);
     header("Location: cart.php");
     exit;
 }
 
-// Charger les données d'un voyage
 function loadVoyageData($voyageId) {
     if (!file_exists('dataJSON/fly.json')) return null;
 
