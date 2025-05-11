@@ -1,5 +1,7 @@
-<?php 
+<?php
 require_once 'init.php';
+
+
 if (!isset($_SESSION['user_email'])) {
     header("Location: sign_in.php");
     exit;
@@ -44,7 +46,6 @@ $heure_depart = strtotime("08:00:00");
 $heure_arrivee_aller = date("H:i", strtotime("+$duree_vol hours", $heure_depart));
 $heure_arrivee_retour = date("H:i", strtotime("+$duree_vol hours", strtotime("08:00:00")));
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,27 +58,27 @@ $heure_arrivee_retour = date("H:i", strtotime("+$duree_vol hours", strtotime("08
 <body class="detail-page">
 
 <header>
-        <h1>Choose your package and embark on a unique experience</h1>
-        <span class="separator"></span>
-        <img src="https://imgur.com/F38OAQx.jpg" width="200" height="200" class="logo" />
-        <div class="auth-links">
-            <?php if (isset($_SESSION['user_email'])): ?>
-                <a href="userpage.php" title="My Account">My Account</a>
-                <a href="logout.php" title="Log out">Log out</a>
-            <?php else: ?>
-                <a href="sign_in.php" title="Sign in">Sign in</a>
-                <a href="sign_up.php" title="Sign up">Sign up</a>
-            <?php endif; ?>
-        </div>
-    </header>
+    <h1>Choose your package and embark on a unique experience</h1>
+    <span class="separator"></span>
+    <img src="https://imgur.com/F38OAQx.jpg" width="200" height="200" class="logo" />
+    <div class="auth-links">
+        <?php if (isset($_SESSION['user_email'])): ?>
+            <a href="userpage.php" title="My Account">My Account</a>
+            <a href="logout.php" title="Log out">Log out</a>
+        <?php else: ?>
+            <a href="sign_in.php" title="Sign in">Sign in</a>
+            <a href="sign_up.php" title="Sign up">Sign up</a>
+        <?php endif; ?>
+    </div>
+</header>
 
-    <nav>
-        <ul>
-            <li><a href="home.php" title="Go to home">Home</a></li>
-            <li><a href="presentation.php" title="Our presentation">Presentation</a></li>
-            <li><a href="#contact" title="Go to contact">Contact us</a></li>
-        </ul>
-    </nav>
+<nav>
+    <ul>
+        <li><a href="home.php">Home</a></li>
+        <li><a href="presentation.php">Presentation</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
 
 <section>
     <div class="container">
