@@ -751,5 +751,377 @@
         "activites": [],
         "user_email": "abdel@gmail.com",
         "date": "2025-05-04 21:14:59"
+    },
+    {
+        "transaction_id": "B1EF6125BC",
+        "amount": 7165,
+        "reservations": [
+            {
+                "city": "Tokyo",
+                "country": "~ Japan",
+                "flight_price": 2300,
+                "hotel": "The Prince Park Tower Tokyo",
+                "hotel_price": 2500,
+                "activities": []
+            }
+        ],
+        "user_email": "abdel@gmail.com",
+        "date": "2025-05-14 12:12:43"
+    },
+    {
+        "transaction_id": "B675354352",
+        "amount": 14330,
+        "reservations": [
+            {
+                "city": "Tokyo",
+                "country": "~ Japan",
+                "flight_price": 2300,
+                "hotel": "The Prince Park Tower Tokyo",
+                "hotel_price": 2500,
+                "activities": []
+            },
+            {
+                "city": "Tokyo",
+                "country": "~ Japan",
+                "flight_price": 2300,
+                "hotel": "The Prince Park Tower Tokyo",
+                "hotel_price": 2500,
+                "activities": []
+            }
+        ],
+        "user_email": "abdel@gmail.com",
+        "date": "2025-05-14 12:14:37"
+    },
+    {
+        "transaction_id": "E220E3F50F",
+        "amount": 5005,
+        "reservations": [
+            {
+                "city": "Brasilia",
+                "country": "~ Brazil",
+                "flight_price": 1800,
+                "hotel": "Royal Tulip Bras\u00edlia Alvorada",
+                "hotel_price": 1290,
+                "activities": [
+                    {
+                        "nom": "Visit the Modern Architecture of Brasilia",
+                        "prix": "40"
+                    },
+                    {
+                        "nom": "Boat tour on Lake Parano\u00e1",
+                        "prix": "50"
+                    },
+                    {
+                        "nom": "Walk in Brasilia National Park",
+                        "prix": "10"
+                    },
+                    {
+                        "nom": "Visit the National Museum of Image and Sound",
+                        "prix": "15"
+                    }
+                ]
+            }
+        ],
+        "user_email": "abdel@gmail.com",
+        "date": "2025-05-14 12:14:47"
+    },
+    {
+        "transaction_id": "9C68BDE721",
+        "amount": 19335,
+        "reservations": [
+            {
+                "city": "Tokyo",
+                "country": "~ Japan",
+                "flight_price": 2300,
+                "hotel": "The Prince Park Tower Tokyo",
+                "hotel_price": 2500,
+                "activities": []
+            },
+            {
+                "city": "Tokyo",
+                "country": "~ Japan",
+                "flight_price": 2300,
+                "hotel": "The Prince Park Tower Tokyo",
+                "hotel_price": 2500,
+                "activities": []
+            },
+            {
+                "city": "Brasilia",
+                "country": "~ Brazil",
+                "flight_price": 1800,
+                "hotel": "Royal Tulip Bras\u00edlia Alvorada",
+                "hotel_price": 1290,
+                "activities": []
+            }
+        ],
+        "user_email": "abdel@gmail.com",
+        "date": "2025-05-14 12:15:00"
+    },
+    {
+        "transaction_id": "D99AC61E0C",
+        "amount": 12905,
+        "reservations": [
+            {
+                "city": "Brasilia",
+                "country": "~ Brazil",
+                "flight_price": 1800,
+                "hotel": "Royal Tulip Bras\u00edlia Alvorada",
+                "hotel_price": 1290,
+                "activities": []
+            },
+            {
+                "city": "Troms\u00f8",
+                "country": "~ Norway",
+                "flight_price": 620,
+                "hotel": "Troms\u00f8 Lodge & Camping",
+                "hotel_price": 1500,
+                "activities": []
+            },
+            {
+                "city": "Brasilia",
+                "country": "~ Brazil",
+                "flight_price": 1800,
+                "hotel": "Royal Tulip Bras\u00edlia Alvorada",
+                "hotel_price": 1290,
+                "activities": []
+            }
+        ],
+        "user_email": "abdel@gmail.com",
+        "date": "2025-05-14 12:16:48"
+    },
+    {
+        "transaction_id": "F80BAA398D",
+        "amount": 7165,
+        "reservations": [
+            {
+                "city": "Tokyo",
+                "country": "~ Japan",
+                "flight_price": 2300,
+                "hotel": "The Prince Park Tower Tokyo",
+                "hotel_price": 2500,
+                "activities": [
+                    {
+                        "nom": "Visit Senso-ji Temple",
+                        "prix": "0"
+                    },
+                    {
+                        "nom": "Visit Tokyo Tower",
+                        "prix": "20"
+                    },
+                    {
+                        "nom": "Discover Ueno Park and its museums",
+                        "prix": "15"
+                    },
+                    {
+                        "nom": "Sushi tasting at Tsukiji Market",
+                        "prix": "30"
+                    }
+                ]
+            }
+        ],
+        "user_email": "abdel@gmail.com",
+        "date": "2025-05-14 12:16:55"
+    },
+    {
+        "transaction_id": "C4E381FC04",
+        "amount": 12905,
+        "reservations": [
+            {
+                "city": "Brasilia",
+                "country": "~ Brazil",
+                "flight_price": 1800,
+                "hotel": "Royal Tulip Bras\u00edlia Alvorada",
+                "hotel_price": 1290,
+                "activities": []
+            },
+            {
+                "city": "Troms\u00f8",
+                "country": "~ Norway",
+                "flight_price": 620,
+                "hotel": "Troms\u00f8 Lodge & Camping",
+                "hotel_price": 1500,
+                "activities": []
+            },
+            {
+                "city": "Brasilia",
+                "country": "~ Brazil",
+                "flight_price": 1800,
+                "hotel": "Royal Tulip Bras\u00edlia Alvorada",
+                "hotel_price": 1290,
+                "activities": []
+            }
+        ],
+        "user_email": "abdel@gmail.com",
+        "date": "2025-05-14 12:17:00"
+    },
+    {
+        "transaction_id": "3B4E2AE1C6",
+        "amount": 15800,
+        "reservations": [
+            {
+                "city": "Brasilia",
+                "country": "~ Brazil",
+                "flight_price": 1800,
+                "hotel": "Royal Tulip Bras\u00edlia Alvorada",
+                "hotel_price": 1290,
+                "activities": []
+            },
+            {
+                "city": "Troms\u00f8",
+                "country": "~ Norway",
+                "flight_price": 620,
+                "hotel": "Troms\u00f8 Lodge & Camping",
+                "hotel_price": 1500,
+                "activities": []
+            },
+            {
+                "city": "Brasilia",
+                "country": "~ Brazil",
+                "flight_price": 1800,
+                "hotel": "Royal Tulip Bras\u00edlia Alvorada",
+                "hotel_price": 1290,
+                "activities": []
+            },
+            {
+                "city": "Troms\u00f8",
+                "country": "~ Norway",
+                "flight_price": 620,
+                "hotel": "Troms\u00f8 Lodge & Camping",
+                "hotel_price": 1500,
+                "activities": []
+            }
+        ],
+        "user_email": "abdel@gmail.com",
+        "date": "2025-05-14 12:17:11"
+    },
+    {
+        "transaction_id": "50A614F86E",
+        "amount": 2895,
+        "reservations": [
+            {
+                "city": "Troms\u00f8",
+                "country": "~ Norway",
+                "flight_price": 620,
+                "hotel": "Troms\u00f8 Lodge & Camping",
+                "hotel_price": 1500,
+                "activities": []
+            }
+        ],
+        "user_email": "abdel@gmail.com",
+        "date": "2025-05-14 12:17:30"
+    },
+    {
+        "transaction_id": "28A074BE54",
+        "amount": 5005,
+        "reservations": [
+            {
+                "city": "Brasilia",
+                "country": "~ Brazil",
+                "flight_price": 1800,
+                "hotel": "Royal Tulip Bras\u00edlia Alvorada",
+                "hotel_price": 1290,
+                "activities": [
+                    {
+                        "nom": "Visit the Modern Architecture of Brasilia",
+                        "prix": "40"
+                    },
+                    {
+                        "nom": "Boat tour on Lake Parano\u00e1",
+                        "prix": "50"
+                    },
+                    {
+                        "nom": "Walk in Brasilia National Park",
+                        "prix": "10"
+                    },
+                    {
+                        "nom": "Visit the National Museum of Image and Sound",
+                        "prix": "15"
+                    }
+                ]
+            }
+        ],
+        "user_email": "abdel@gmail.com",
+        "date": "2025-05-14 12:17:38"
+    },
+    {
+        "transaction_id": "C5AAC48146",
+        "amount": 2895,
+        "reservations": [
+            {
+                "city": "Troms\u00f8",
+                "country": "~ Norway",
+                "flight_price": 620,
+                "hotel": "Troms\u00f8 Lodge & Camping",
+                "hotel_price": 1500,
+                "activities": []
+            }
+        ],
+        "user_email": "abdel@gmail.com",
+        "date": "2025-05-14 12:17:57"
+    },
+    {
+        "transaction_id": "F80B390112",
+        "amount": 7165,
+        "reservations": [
+            {
+                "city": "Tokyo",
+                "country": "~ Japan",
+                "flight_price": 2300,
+                "hotel": "The Prince Park Tower Tokyo",
+                "hotel_price": 2500,
+                "activities": [
+                    {
+                        "nom": "Visit Senso-ji Temple",
+                        "prix": "0"
+                    },
+                    {
+                        "nom": "Visit Tokyo Tower",
+                        "prix": "20"
+                    },
+                    {
+                        "nom": "Discover Ueno Park and its museums",
+                        "prix": "15"
+                    },
+                    {
+                        "nom": "Sushi tasting at Tsukiji Market",
+                        "prix": "30"
+                    }
+                ]
+            }
+        ],
+        "user_email": "abdel@gmail.com",
+        "date": "2025-05-14 12:18:13"
+    },
+    {
+        "transaction_id": "DBD039D85F",
+        "amount": 15065,
+        "reservations": [
+            {
+                "city": "Brasilia",
+                "country": "~ Brazil",
+                "flight_price": 1800,
+                "hotel": "Royal Tulip Bras\u00edlia Alvorada",
+                "hotel_price": 1290,
+                "activities": []
+            },
+            {
+                "city": "Tokyo",
+                "country": "~ Japan",
+                "flight_price": 2300,
+                "hotel": "The Prince Park Tower Tokyo",
+                "hotel_price": 2500,
+                "activities": []
+            },
+            {
+                "city": "Troms\u00f8",
+                "country": "~ Norway",
+                "flight_price": 620,
+                "hotel": "Troms\u00f8 Lodge & Camping",
+                "hotel_price": 1500,
+                "activities": []
+            }
+        ],
+        "user_email": "abdel@gmail.com",
+        "date": "2025-05-14 12:19:23"
     }
 ]

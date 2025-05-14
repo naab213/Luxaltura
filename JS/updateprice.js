@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const basePriceInput = document.getElementById('montant');
 
     function updateSelections() {
+
         const hotelName = hotelSelect.value;
         const hotelPrice = parseFloat(hotelSelect.selectedOptions[0].dataset.price || 0);
 
@@ -15,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
         let activitiesTotal = 0;
         activitySelects.forEach(select => {
             const opt = select.selectedOptions[0];
-            if (opt) {
+            if (opt && opt.value) {
                 selectedActivities.push(opt.value);
                 activitiesTotal += parseFloat(opt.dataset.price || 0);
             }
@@ -32,8 +33,9 @@ document.addEventListener('DOMContentLoaded', function () {
         totalPriceDisplay.textContent = total.toFixed(2) + " €";
     }
 
-    if (hotelSelect) hotelSelect.addEventListener('change', updateSelections);
+    hotelSelect?.addEventListener('change', updateSelections);
     activitySelects.forEach(select => select.addEventListener('change', updateSelections));
 
-    updateSelections();
+    updateSelections(); 
 });
+

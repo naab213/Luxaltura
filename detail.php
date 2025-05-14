@@ -1,7 +1,6 @@
 <?php
 require_once 'init.php';
 
-
 if (!isset($_SESSION['user_email'])) {
     header("Location: sign_in.php");
     exit;
@@ -42,9 +41,6 @@ if (!empty($departure_date)) {
     }
 }
 $duree_vol = $selected_voyage['duree'];
-$heure_depart = strtotime("08:00:00");
-$heure_arrivee_aller = date("H:i", strtotime("+$duree_vol hours", $heure_depart));
-$heure_arrivee_retour = date("H:i", strtotime("+$duree_vol hours", strtotime("08:00:00")));
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,13 +58,8 @@ $heure_arrivee_retour = date("H:i", strtotime("+$duree_vol hours", strtotime("08
     <span class="separator"></span>
     <img src="https://imgur.com/F38OAQx.jpg" width="200" height="200" class="logo" />
     <div class="auth-links">
-        <?php if (isset($_SESSION['user_email'])): ?>
-            <a href="userpage.php" title="My Account">My Account</a>
-            <a href="logout.php" title="Log out">Log out</a>
-        <?php else: ?>
-            <a href="sign_in.php" title="Sign in">Sign in</a>
-            <a href="sign_up.php" title="Sign up">Sign up</a>
-        <?php endif; ?>
+        <a href="userpage.php">My Account</a>
+        <a href="logout.php">Log out</a>
     </div>
 </header>
 
@@ -84,9 +75,12 @@ $heure_arrivee_retour = date("H:i", strtotime("+$duree_vol hours", strtotime("08
     <div class="container">
         <h2 class="title">Trip Details</h2>
 
-        <form action="payment.php" method="POST">
+        <form id="reservationForm" action="payment.php" method="POST">
             <input type="hidden" name="voyage_id" value="<?= $id ?>">
             <input type="hidden" name="amount" id="montant" value="<?= $selected_voyage['prix'] ?>">
+            <input type="hidden" name="reservations" id="reservations_input">
+            <input type="hidden" name="total" id="total_input">
+
             <div class="voyage-details">
                 <div class="image">
                     <img src="<?= $selected_voyage['image'] ?>" alt="Trip Image">
@@ -95,21 +89,6 @@ $heure_arrivee_retour = date("H:i", strtotime("+$duree_vol hours", strtotime("08
                     <h3><?= $selected_voyage['ville'] . ', ' . $selected_voyage['pays'] ?></h3>
                     <p><strong>Activities:</strong> <?= $packs[$selected_voyage['pack']] ?? 'Not defined' ?></p>
                     <p><strong>Price:</strong> <?= $selected_voyage['prix'] ?> €</p>
-
-                    <h4 class="hotel">Recommended Hotels:</h4>
-                    <ul>
-                        <?php foreach ($selected_voyage['hotels'] as $hotel): ?>
-                            <li class="hotel-item">
-                                <div class="hotel-info">
-                                    <strong><?= $hotel['nom'] ?></strong><br>
-                                    <span><?= $hotel['prix'] ?> €</span>
-                                </div>
-                                <div class="hotel-image">
-                                    <img src="<?= $hotel['image'] ?>" alt="<?= $hotel['nom'] ?>" width="300" height="150">
-                                </div>
-                            </li>
-                        <?php endforeach; ?>
-                    </ul>
 
                     <label for="departure">Departure Date:</label>
                     <input type="date" id="departure" name="departure" value="<?= $departure_date ?>" required>
@@ -146,7 +125,7 @@ $heure_arrivee_retour = date("H:i", strtotime("+$duree_vol hours", strtotime("08
 
                     <p><strong>Total Price:</strong> <span id="totalPrice">0 €</span></p>
 
-                    <div class="button-group"> 
+                    <div class="button-group">
                         <button type="submit" class="validate-btn">Confirm the reservation</button>
                         <button type="button" class="back-btn" onclick="window.location.href='specific.php'">Return to booking</button>
                     </div>
@@ -176,6 +155,53 @@ $heure_arrivee_retour = date("H:i", strtotime("+$duree_vol hours", strtotime("08
     <span>2025 | MI-03.I ©</span>
 </footer>
 
-<script src="JS/updatePrice.js"></script>
+<script>
+function updateTotalAndFields() {
+    const voyageId = document.querySelector("input[name='voyage_id']").value;
+    const hotel = document.querySelector("select[name='hotel']").value;
+    const activites = [...document.querySelectorAll("select[name='activites[]']")].map(select => select.value);
+
+    const hotelPrice = parseFloat(document.querySelector("select[name='hotel'] option:checked")?.dataset.price || 0);
+    const activityPrices = [...document.querySelectorAll("select[name='activites[]']")].map(select => {
+        return parseFloat(select.selectedOptions[0]?.dataset.price || 0);
+    });
+
+    const basePrice = parseFloat(document.getElementById("montant").value);
+    const total = (basePrice * 2) + hotelPrice + activityPrices.reduce((a, b) => a + b, 0);
+
+    document.getElementById("reservations_input").value = JSON.stringify([{
+        voyage_id: voyageId,
+        hotel: hotel,
+        activities: activites
+    }]);
+
+    document.getElementById("total_input").value = total.toFixed(2);
+    document.getElementById("totalPrice").textContent = total.toFixed(2) + " €";
+
+    document.getElementById("selected_hotel").value = hotel;
+    document.getElementById("selected_activities").value = activites.join(', ');
+    document.getElementById("hidden_total_price").value = total.toFixed(2);
+}
+
+document.querySelector("select[name='hotel']").addEventListener("change", updateTotalAndFields);
+document.querySelectorAll("select[name='activites[]']").forEach(select => {
+    select.addEventListener("change", updateTotalAndFields);
+});
+
+document.getElementById('reservationForm').addEventListener('submit', function () {
+    updateTotalAndFields();
+});
+
+document.getElementById('addToCartForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    updateTotalAndFields();
+    setTimeout(() => {
+        document.getElementById('addToCartForm').submit();
+    }, 100);
+});
+
+updateTotalAndFields();
+</script>
+
 </body>
 </html>

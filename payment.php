@@ -22,7 +22,16 @@ $details = [];
 foreach ($reservations as $reservation) {
     $voyageId = $reservation['voyage_id'];
     $hotelNom = $reservation['hotel'];
-    $activites = $reservation['activities'];
+    $activites = $reservation['activities'] ?? [];
+
+if (is_string($activites)) {
+    $activites = json_decode($activites, true);
+}
+
+if (!is_array($activites)) {
+    $activites = [];
+}
+
 
     $flyData = json_decode(file_get_contents('dataJSON/fly.json'), true);
     $selectedVoyage = null;
