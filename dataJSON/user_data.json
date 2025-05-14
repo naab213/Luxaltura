@@ -1,79 +1,79 @@
 [
     {
         "lastname": "Rispot",
-        "name": "DOrin",
-        "age": 0,
-        "email": "",
-        "pass": ""
-    },
-    {
-        "lastname": "Rispot",
-        "name": "DOrin",
-        "age": 0,
-        "email": "",
-        "pass": ""
-    },
-    {
-        "lastname": "Rispot",
-        "name": "DOrin",
-        "age": 0,
-        "email": "",
-        "pass": ""
-    },
-    {
-        "lastname": "RISPOT",
         "name": "Dorian",
         "age": 19,
-        "email": "Do@gmail.Com",
-        "pass": "123"
+        "email": "dorian@gmail.com",
+        "pass": "DO"
     },
     {
-        "lastname": "Boumiz ",
-        "name": "Abdel",
+        "lastname": "Ronaldo",
+        "name": "Cristiano",
+        "age": 49,
+        "email": "ronaldo@gmail.com",
+        "pass": "RO"
+    },
+    {
+        "lastname": "Lionel",
+        "name": "Messi",
+        "age": 94,
+        "email": "messi@gmail.com",
+        "pass": "LI"
+    },
+    {
+        "lastname": "Macron",
+        "name": "Emmanuel",
+        "age": 55,
+        "email": "macron@gmail.com",
+        "pass": "MA"
+    },
+    {
+        "lastname": "Trump",
+        "name": "Donald",
         "age": 54,
-        "email": "abdel@gmail.com",
-        "pass": "DELL"
+        "email": "trump@gmail.com",
+        "pass": "TR"
     },
     {
-        "lastname": "RISPOT ",
-        "name": "Dorian",
-        "age": 19,
-        "email": "do@gmail.Com",
-        "pass": "1234"
+        "lastname": "Tebboune",
+        "name": "Abdelmadjid",
+        "age": 79,
+        "email": "tebboun@gmail.com",
+        "pass": "TE"
     },
     {
-        "lastname": "RISPOT ",
-        "name": "Dorian",
-        "age": 19,
-        "email": "do@gmail.Com",
-        "pass": "1234"
-    },
-    {
-        "lastname": "TAHRI",
-        "name": "Nabila",
-        "age": 19,
-        "email": "orn213@gmail.com",
-        "pass": "213"
+        "lastname": "Bross",
+        "name": "Mario",
+        "age": 5,
+        "email": "mario@gmail.com",
+        "pass": "BR"
     },
     {
         "lastname": "TAHRI",
         "name": "Nabila",
         "age": 19,
-        "email": "orn213@gmail.com",
-        "pass": "213"
+        "email": "nabila@gmail.com",
+        "pass": "NA"
     },
     {
-        "lastname": "a",
-        "name": "b",
+        "lastname": "Benyoucef",
+        "name": "Locqman",
         "age": 19,
-        "email": "ab@gmail.com",
-        "pass": "12"
+        "email": "locqman@gmail.com",
+        "pass": "LO"
     },
     {
-        "lastname": "a",
-        "name": "b",
+        "lastname": "Farid",
+        "name": "Hafsa",
         "age": 19,
-        "email": "ab@gmail.com",
-        "pass": "12"
+        "email": "hafsa@gmail.com",
+        "pass": "HA"
+    },
+    {
+        "lastname": "Bross",
+        "name": "Luigi",
+        "age": 5,
+        "email": "luigi@gmail.com",
+        "pass": "LU"
     }
 ]
