@@ -91,37 +91,20 @@ $duree_vol = $selected_voyage['duree'];
                     <p><strong>Price:</strong> <?= $selected_voyage['prix'] ?> €</p>
 
                     <label for="departure">Departure Date:</label>
-                    <input type="date" id="departure" name="departure" value="<?= $departure_date ?>" required>
+                    <input type="date" id="departure" name="departure" required>
 
                     <label for="return">Return Date:</label>
-                    <input type="date" id="return" name="return" value="<?= $return_date ?>" readonly required>
+                    <input type="date" id="return" name="return" readonly required>
+
 
                     <h4>Choose your hotel:</h4>
-                    <select name="hotel" required>
-                        <?php foreach ($selected_voyage['hotels'] as $hotel): ?>
-                            <option value="<?= $hotel['nom'] ?>" data-price="<?= $hotel['prix'] ?>">
-                                <?= $hotel['nom'] ?> - <?= $hotel['prix'] ?> €
-                            </option>
-                        <?php endforeach; ?>
-                    </select>
+                    <select name="hotel" required></select>
 
                     <h4>Choose your activities:</h4>
-                    <?php
-                    $activites = [
-                        $selected_voyage['activite1'],
-                        $selected_voyage['activite2'],
-                        $selected_voyage['activite3'],
-                        $selected_voyage['activite4']
-                    ];
-                    foreach ($activites as $activite): ?>
-                        <select name="activites[]" required>
-                            <?php foreach ($activite as $option): ?>
-                                <option value="<?= $option['nom'] ?>" data-price="<?= $option['prix'] ?>">
-                                    <?= $option['nom'] ?> - <?= $option['prix'] ?> €
-                                </option>
-                            <?php endforeach; ?>
-                        </select>
-                    <?php endforeach; ?>
+                    <select name="activites[]" required></select>
+                    <select name="activites[]" required></select>
+                    <select name="activites[]" required></select>
+                    <select name="activites[]" required></select>
 
                     <p><strong>Total Price:</strong> <span id="totalPrice">0 €</span></p>
 
@@ -155,53 +138,7 @@ $duree_vol = $selected_voyage['duree'];
     <span>2025 | MI-03.I ©</span>
 </footer>
 
-<script>
-function updateTotalAndFields() {
-    const voyageId = document.querySelector("input[name='voyage_id']").value;
-    const hotel = document.querySelector("select[name='hotel']").value;
-    const activites = [...document.querySelectorAll("select[name='activites[]']")].map(select => select.value);
-
-    const hotelPrice = parseFloat(document.querySelector("select[name='hotel'] option:checked")?.dataset.price || 0);
-    const activityPrices = [...document.querySelectorAll("select[name='activites[]']")].map(select => {
-        return parseFloat(select.selectedOptions[0]?.dataset.price || 0);
-    });
-
-    const basePrice = parseFloat(document.getElementById("montant").value);
-    const total = (basePrice * 2) + hotelPrice + activityPrices.reduce((a, b) => a + b, 0);
-
-    document.getElementById("reservations_input").value = JSON.stringify([{
-        voyage_id: voyageId,
-        hotel: hotel,
-        activities: activites
-    }]);
-
-    document.getElementById("total_input").value = total.toFixed(2);
-    document.getElementById("totalPrice").textContent = total.toFixed(2) + " €";
-
-    document.getElementById("selected_hotel").value = hotel;
-    document.getElementById("selected_activities").value = activites.join(', ');
-    document.getElementById("hidden_total_price").value = total.toFixed(2);
-}
-
-document.querySelector("select[name='hotel']").addEventListener("change", updateTotalAndFields);
-document.querySelectorAll("select[name='activites[]']").forEach(select => {
-    select.addEventListener("change", updateTotalAndFields);
-});
-
-document.getElementById('reservationForm').addEventListener('submit', function () {
-    updateTotalAndFields();
-});
-
-document.getElementById('addToCartForm').addEventListener('submit', function (e) {
-    e.preventDefault();
-    updateTotalAndFields();
-    setTimeout(() => {
-        document.getElementById('addToCartForm').submit();
-    }, 100);
-});
-
-updateTotalAndFields();
-</script>
-
+<script src="JS/updateprice.js"></script>
+<script src="JS/detail.js"></script>
 </body>
 </html>

@@ -178,5 +178,17 @@
             "total_price": 2895
         },
         "timestamp": "2025-05-14 12:19:21"
+    },
+    {
+        "email": "ronaldo@gmail.com",
+        "reservation": {
+            "voyage_id": "1",
+            "voyage_name": "Algiers, ~ Algeria",
+            "voyage_price": 8000,
+            "hotel": "Mercure Algiers Congress Center",
+            "activities": null,
+            "total_price": 17040
+        },
+        "timestamp": "2025-05-14 12:25:10"
     }
 ]
