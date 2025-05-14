@@ -1123,5 +1123,87 @@
         ],
         "user_email": "abdel@gmail.com",
         "date": "2025-05-14 12:19:23"
+    },
+    {
+        "transaction_id": "8411AE8061",
+        "amount": 17040,
+        "reservations": [
+            {
+                "city": "Algiers",
+                "country": "~ Algeria",
+                "flight_price": 8000,
+                "hotel": "Mercure Algiers Congress Center",
+                "hotel_price": 930,
+                "activities": [
+                    {
+                        "nom": "Visit the Casbah of Algiers",
+                        "prix": "20"
+                    },
+                    {
+                        "nom": "Discover the Jardin d'Essai",
+                        "prix": "10"
+                    },
+                    {
+                        "nom": "Boat trip to Rachgoun Island",
+                        "prix": "50"
+                    },
+                    {
+                        "nom": "Taste traditional Algerian cuisine",
+                        "prix": "30"
+                    }
+                ]
+            }
+        ],
+        "user_email": "ronaldo@gmail.com",
+        "date": "2025-05-14 12:24:46"
+    },
+    {
+        "transaction_id": "B36229C88D",
+        "amount": 17035,
+        "reservations": [
+            {
+                "city": "Algiers",
+                "country": "~ Algeria",
+                "flight_price": 8000,
+                "hotel": "Mercure Algiers Congress Center",
+                "hotel_price": 930,
+                "activities": [
+                    {
+                        "nom": "Visit the Casbah of Algiers",
+                        "prix": "20"
+                    },
+                    {
+                        "nom": "Discover the Jardin d'Essai",
+                        "prix": "10"
+                    },
+                    {
+                        "nom": "Boat trip to Rachgoun Island",
+                        "prix": "50"
+                    },
+                    {
+                        "nom": "Cable car ride over the Bay of Algiers",
+                        "prix": "25"
+                    }
+                ]
+            }
+        ],
+        "user_email": "ronaldo@gmail.com",
+        "date": "2025-05-14 12:25:05"
+    },
+    {
+        "transaction_id": "F9F86B390F",
+        "amount": 17040,
+        "reservations": [
+            {
+                "city": "Algiers",
+                "country": "~ Algeria",
+                "flight_price": 8000,
+                "hotel": "Mercure Algiers Congress Center",
+                "hotel_price": 930,
+                "activities": []
+            }
+        ],
+        "user_email": "ronaldo@gmail.com",
+        "date": "2025-05-14 12:25:17"
     }
 ]
