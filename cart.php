@@ -1,5 +1,4 @@
-<?php
-session_start();
+<?php require_once 'init.php';
 
 if (!isset($_SESSION['user_email'])) {
     header("Location: sign_in.php");
@@ -79,12 +78,13 @@ function loadVoyageData($voyageId) {
     return null;
 }
 ?>
+<?php include 'header.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Your Cart - Luxaltura</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="<?= isset($_COOKIE['mode']) && $_COOKIE['mode'] === 'clair' ? 'style2.css' : 'style.css' ?>">
     <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
 </head>
