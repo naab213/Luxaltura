@@ -96,17 +96,35 @@ $duree_vol = $selected_voyage['duree'];
                     <label for="return">Return Date:</label>
                     <input type="date" id="return" name="return" readonly required>
 
-
                     <h4>Choose your hotel:</h4>
-                    <select name="hotel" required></select>
+                    <select name="hotel" id="hotelSelect" required>
+                        <?php foreach ($selected_voyage['hotels'] as $hotel): ?>
+                            <option value="<?= htmlspecialchars($hotel['nom']) ?>">
+                                <?= htmlspecialchars($hotel['nom']) ?> (<?= $hotel['prix'] ?>€)
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
 
                     <h4>Choose your activities:</h4>
-                    <select name="activites[]" required></select>
-                    <select name="activites[]" required></select>
-                    <select name="activites[]" required></select>
-                    <select name="activites[]" required></select>
+                    <?php 
+                    $activityGroups = array_filter($selected_voyage, function($key) {
+                        return strpos($key, 'activite') === 0;
+                    }, ARRAY_FILTER_USE_KEY);
+                    
+                    $i = 0;
+                    foreach ($activityGroups as $group): 
+                        if ($i >= 4) break; ?>
+                        <select name="activites[]" class="activitySelect" required>
+                            <option value="">Select an activity</option>
+                            <?php foreach ($group as $activity): ?>
+                                <option value="<?= htmlspecialchars($activity['nom']) ?>">
+                                    <?= htmlspecialchars($activity['nom']) ?> (<?= $activity['prix'] ?>€)
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    <?php $i++; endforeach; ?>
 
-                    <p><strong>Total Price:</strong> <span id="totalPrice">0 €</span></p>
+                    <p><strong>Total Price:</strong> <span id="totalPrice"><?= $selected_voyage['prix'] ?> €</span></p>
 
                     <div class="button-group">
                         <button type="submit" class="validate-btn">Confirm the reservation</button>
@@ -121,9 +139,9 @@ $duree_vol = $selected_voyage['duree'];
             <input type="hidden" name="id" value="<?= $id ?>">
             <input type="hidden" name="name" value="<?= htmlspecialchars($selected_voyage['ville'] . ', ' . $selected_voyage['pays']) ?>">
             <input type="hidden" name="base_price" value="<?= $selected_voyage['prix'] ?>">
-            <input type="hidden" name="hotel" id="selected_hotel">
+            <input type="hidden" name="hotel" id="selected_hotel" value="<?= $selected_voyage['hotels'][0]['nom'] ?>">
             <input type="hidden" name="activities" id="selected_activities">
-            <input type="hidden" name="total_price" id="hidden_total_price">
+            <input type="hidden" name="total_price" id="hidden_total_price" value="<?= $selected_voyage['prix'] ?>">
             <button type="submit" class="add-to-cart-btn">
                 <i class="fas fa-cart-plus"></i> Add to Cart
             </button>
@@ -138,7 +156,67 @@ $duree_vol = $selected_voyage['duree'];
     <span>2025 | MI-03.I ©</span>
 </footer>
 
-<script src="JS/updateprice.js"></script>
-<script src="JS/detail.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() 
+    document.getElementById('departure').addEventListener('change', function() {
+        const departureDate = new Date(this.value);
+        if (!isNaN(departureDate.getTime())) {
+            const returnDate = new Date(departureDate);
+            returnDate.setDate(returnDate.getDate() + 8);
+            document.getElementById('return').valueAsDate = returnDate;
+        }
+    });
+
+    if (document.getElementById('departure').value) {
+        document.getElementById('departure').dispatchEvent(new Event('change'));
+    }
+
+    const updateTotalPrice = function() {
+        const hotelSelect = document.getElementById('hotelSelect');
+        const activitySelects = document.querySelectorAll('.activitySelect');
+        
+        const selectedHotelOption = hotelSelect.options[hotelSelect.selectedIndex];
+        const hotelPrice = parseFloat(selectedHotelOption.text.match(/\((\d+)€\)/)[1]);
+        
+        let activitiesPrice = 0;
+        const selectedActivities = [];
+        
+        activitySelects.forEach(select => {
+            if (select.value) {
+                const selectedOption = select.options[select.selectedIndex];
+                activitiesPrice += parseFloat(selectedOption.text.match(/\((\d+)€\)/)[1]);
+                selectedActivities.push(select.value);
+            }
+        });
+
+        const basePrice = <?= $selected_voyage['prix'] ?>;
+        const total = (basePrice * 2) + hotelPrice + activitiesPrice;
+        
+        document.getElementById('totalPrice').textContent = total + ' €';
+        document.getElementById('total_input').value = total;
+        document.getElementById('hidden_total_price').value = total;
+        
+        document.getElementById('selected_hotel').value = hotelSelect.value;
+        document.getElementById('selected_activities').value = JSON.stringify(selectedActivities);
+        
+        const reservations = [{
+            voyage_id: <?= $id ?>,
+            voyage_name: "<?= $selected_voyage['ville'] . ', ' . $selected_voyage['pays'] ?>",
+            voyage_price: basePrice,
+            hotel: hotelSelect.value,
+            activities: selectedActivities,
+            total_price: total
+        }];
+        document.getElementById('reservations_input').value = JSON.stringify(reservations);
+    };
+
+    document.getElementById('hotelSelect').addEventListener('change', updateTotalPrice);
+    document.querySelectorAll('.activitySelect').forEach(select => {
+        select.addEventListener('change', updateTotalPrice);
+    });
+
+    updateTotalPrice();
+});
+</script>
 </body>
 </html>
