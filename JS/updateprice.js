@@ -1,40 +1,62 @@
-function updateTotalAndFields() {
-    const voyageId = document.querySelector("input[name='voyage_id']").value;
-    const hotel = document.querySelector("select[name='hotel']").value;
-    const activites = [...document.querySelectorAll("select[name='activites[]']")].map(select => select.value);
+<?php
+header('Content-Type: application/json');
 
-    fetch('updateprice.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            voyage_id: voyageId,
-            hotel: hotel,
-            activities: activites
-        })
-    })
-    .then(response => response.text())
-    .then(text => {
+$voyages = json_decode(file_get_contents('dataJSON/fly.json'), true);
 
-        try {
-            const jsonResponse = JSON.parse(text);
-            console.log("Response JSON:", jsonResponse);
+$data = json_decode(file_get_contents('php://input'), true);
+$voyage_id = $data['voyage_id'] ?? null;
+$selected_hotel = $data['hotel'] ?? null;
+$selected_activities = $data['activities'] ?? [];
 
-            document.getElementById("totalPrice").textContent = jsonResponse.total + " €";
-            document.getElementById("total_input").value = jsonResponse.total;
-        } catch (error) {
-            console.error("Request error:", error);
-        }
-    })
-    .catch(error => {
-        console.error("Request error:", error);
-    });
+if (!$voyage_id) {
+    echo json_encode(['error' => 'Invalid voyage ID']);
+    exit;
 }
 
-document.querySelector("select[name='hotel']").addEventListener("change", updateTotalAndFields);
-document.querySelectorAll("select[name='activites[]']").forEach(select => {
-    select.addEventListener("change", updateTotalAndFields);
-});
+$selected_voyage = null;
+foreach ($voyages as $voyage) {
+    if ($voyage['id'] == $voyage_id) {
+        $selected_voyage = $voyage;
+        break;
+    }
+}
 
-updateTotalAndFields();
+if (!$selected_voyage) {
+    echo json_encode(['error' => 'Voyage not found']);
+    exit;
+}
+
+$base_price = $selected_voyage['prix'] * 2;
+
+$hotel_price = 0;
+foreach ($selected_voyage['hotels'] as $hotel) {
+    if ($hotel['nom'] === $selected_hotel) {
+        $hotel_price = $hotel['prix'];
+        break;
+    }
+}
+
+$activities_price = 0;
+$activity_details = [];
+foreach ($selected_voyage as $key => $group) {
+    if (strpos($key, 'activite') === 0 && is_array($group)) {
+        foreach ($group as $activity) {
+            if (in_array($activity['nom'], $selected_activities)) {
+                $activities_price += $activity['prix'];
+                $activity_details[] = $activity;
+            }
+        }
+    }
+}
+
+$total = $base_price + $hotel_price + $activities_price;
+
+echo json_encode([
+    'success' => true,
+    'base_price' => $base_price,
+    'hotel_price' => $hotel_price,
+    'activities_price' => $activities_price,
+    'total' => $total,
+    'activity_details' => $activity_details
+]);
+?>
