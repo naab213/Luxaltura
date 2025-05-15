@@ -11,10 +11,16 @@ $userEmail = $_SESSION['user_email'];
 require('getapikey.php');
 $api_key = getAPIKey("MI-3_I");
 
-$reservations = isset($_POST['reservations']) ? json_decode($_POST['reservations'], true) : [];
-$totalMontant = (float)($_POST['total'] ?? 0);
+if (empty($_POST['reservations']) || empty($_POST['total'])) {
+    die("Error: No reservations received.");
+}
 
-if (empty($reservations)) die("Error: No reservations received.");
+$reservations = json_decode($_POST['reservations'], true);
+if (json_last_error() !== JSON_ERROR_NONE) {
+    die("Invalid JSON data");
+}
+
+$totalMontant = (float)$_POST['total'];
 
 $transactionId = strtoupper(bin2hex(random_bytes(5)));
 
@@ -23,19 +29,10 @@ foreach ($reservations as $reservation) {
     $voyageId = $reservation['voyage_id'];
     $hotelNom = $reservation['hotel'];
     $activites = $reservation['activities'] ?? [];
-
-if (is_string($activites)) {
-    $activites = json_decode($activites, true);
-}
-
-if (!is_array($activites)) {
-    $activites = [];
-}
-
-
+    
     $flyData = json_decode(file_get_contents('dataJSON/fly.json'), true);
     $selectedVoyage = null;
-
+    
     foreach ($flyData as $voyage) {
         if ($voyage['id'] == $voyageId) {
             $selectedVoyage = $voyage;
@@ -43,27 +40,22 @@ if (!is_array($activites)) {
         }
     }
     if (!$selectedVoyage) continue;
-
-    $prixBillet = (float)$selectedVoyage['prix'];
+    
     $selectedHotel = null;
-
     foreach ($selectedVoyage['hotels'] as $hotel) {
         if ($hotel['nom'] === $hotelNom) {
             $selectedHotel = $hotel;
             break;
         }
     }
-
     if (!$selectedHotel) continue;
-
-    $hotelPrix = (float)$selectedHotel['prix'];
+    
     $activitesDetail = [];
-
-    foreach ($activites as $activiteId) {
+    foreach ($activites as $activiteNom) {
         foreach ($selectedVoyage as $key => $liste) {
             if (strpos($key, 'activite') === 0 && is_array($liste)) {
                 foreach ($liste as $act) {
-                    if ($act['nom'] === $activiteId) {
+                    if ($act['nom'] === $activiteNom) {
                         $activitesDetail[] = $act;
                         break;
                     }
@@ -71,13 +63,13 @@ if (!is_array($activites)) {
             }
         }
     }
-
+    
     $details[] = [
         'city' => $selectedVoyage['ville'],
         'country' => $selectedVoyage['pays'],
-        'flight_price' => $prixBillet,
+        'flight_price' => (float)$selectedVoyage['prix'],
         'hotel' => $selectedHotel['nom'],
-        'hotel_price' => $hotelPrix,
+        'hotel_price' => (float)$selectedHotel['prix'],
         'activities' => $activitesDetail
     ];
 }
@@ -95,7 +87,7 @@ $transactions = file_exists($transactionsFile) ? json_decode(file_get_contents($
 $transactions[] = $transactionData;
 file_put_contents($transactionsFile, json_encode($transactions, JSON_PRETTY_PRINT));
 
-$returnUrl = "http://localhost/Luxaltura/return_payment.php?multi=1";
+$returnUrl = "http://".$_SERVER['HTTP_HOST']."/Luxaltura/return_payment.php?multi=1";
 $control = md5($api_key . "#" . $transactionId . "#" . $totalMontant . "#MI-3_I#" . $returnUrl . "#");
 
 include 'header.php';
