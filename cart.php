@@ -1,18 +1,22 @@
-<?php require_once 'init.php';
+<?php 
+require_once 'init.php';
 
 if (!isset($_SESSION['user_email'])) {
     header("Location: sign_in.php");
     exit;
 }
 
-require_once 'init.php';
-
 if (isset($_POST['add_to_cart'])) {
     $id = $_POST['id'] ?? '';
     $name = $_POST['name'] ?? '';
     $base_price = (float)($_POST['base_price'] ?? 0);
     $hotel_name = $_POST['hotel'] ?? '';
-    $selected_activities = isset($_POST['activities']) ? json_decode($_POST['activities'], true) : [];
+    
+    $selected_activities = $_POST['activities'] ?? [];
+    if (is_string($selected_activities)) {
+        $selected_activities = json_decode($selected_activities, true) ?? [];
+    }
+    
     $total_price = (float)($_POST['total_price'] ?? 0);
 
     if ($id && $name && $hotel_name) {
@@ -77,8 +81,9 @@ function loadVoyageData($voyageId) {
     }
     return null;
 }
+
+include 'header.php'; 
 ?>
-<?php include 'header.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -101,9 +106,9 @@ function loadVoyageData($voyageId) {
 
 <nav>
     <ul>
-        <li><a href="home.php"><i class="fas fa-home"></i> Home</a></li>
-        <li><a href="presentation.php"><i class="fas fa-info-circle"></i> About</a></li>
-        <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+        <li><a href="home.php"> Home</a></li>
+        <li><a href="presentation.php"> About</a></li>
+        <li><a href="#contact"> Contact</a></li>
     </ul>
 </nav>
 
@@ -134,6 +139,7 @@ function loadVoyageData($voyageId) {
                                 foreach ($group as $act) {
                                     if ($act['nom'] === $selectedName) {
                                         $activity_details[] = $act;
+                                        break;
                                     }
                                 }
                             }
@@ -193,7 +199,9 @@ function loadVoyageData($voyageId) {
                 <div>
                     <form method="POST">
                         <input type="hidden" name="index" value="<?= $index ?>">
-                        <button type="submit" name="remove_item">❌ Remove</button>
+                        <button type="submit" name="remove_item" class="btn-remove">
+                            <i class="fas fa-trash-alt"></i> Remove
+                        </button>
                     </form>
                 </div>
             </div>
@@ -206,7 +214,7 @@ function loadVoyageData($voyageId) {
 
             <div class="action-buttons">
                 <form action="payment.php" method="POST" class="inline-form">
-                    <input type="hidden" name="reservations" value='<?= json_encode($_SESSION['cart']) ?>'>
+                    <input type="hidden" name="reservations" value='<?= isset($_SESSION['cart']) ? json_encode($_SESSION['cart']) : '' ?>'>
                     <input type="hidden" name="total" value="<?= $totalGeneral ?>">
                     <button type="submit" class="btn-confirm">
                         <i class="fas fa-credit-card"></i> Pay All Reservations
