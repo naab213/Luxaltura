@@ -157,7 +157,7 @@ $duree_vol = $selected_voyage['duree'];
 </footer>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() 
+document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('departure').addEventListener('change', function() {
         const departureDate = new Date(this.value);
         if (!isNaN(departureDate.getTime())) {
