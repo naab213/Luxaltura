@@ -10,6 +10,13 @@
 
 <body>
     <header>
+        <nav>
+            <ul>
+                <li><a href="presentation.php" title="Our presentation">Presentation</a></li>
+                <li><a href="specific.php" title="Go to my bookings">Bookings</a></li>
+                <li><a href="#contact" title="Go to contact">Contact us</a></li>
+            </ul>
+        </nav>
         <h1>Our users</h1>
     </header>
 
@@ -25,13 +32,6 @@
                 </tr>
             </thead>
             <tbody>
-                <nav>
-                    <ul>
-                        <li><a href="presentation.php" title="Our presentation">Presentation</a></li>
-                        <li><a href="specific.php" title="Go to my bookings">Bookings</a></li>
-                        <li><a href="#contact" title="Go to contact">Contact us</a></li>
-                    </ul>
-                </nav>
                 <?php
                     $jsonPath = 'dataJSON/user_data.json';
                     $jsonData = file_get_contents($jsonPath);
