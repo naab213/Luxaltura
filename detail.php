@@ -90,21 +90,6 @@ $duree_vol = $selected_voyage['duree'];
                     <p><strong>Activities:</strong> <?= $packs[$selected_voyage['pack']] ?? 'Not defined' ?></p>
                     <p><strong>Price:</strong> <?= $selected_voyage['prix'] ?></p>
 
-                    <h4>Recommended Hotels :</h4>
-                        <ul>
-                            <?php foreach ($selected_voyage['hotels'] as $hotel): ?>
-                            <li class="hotel-item">
-                                <div class="hotel-info">
-                                    <strong><?php echo $hotel['nom']; ?></strong><br>
-                                    <span><?php echo $hotel['prix'€]; ?></span>
-                                 </div>
-                                <div class="hotel-image">
-                                <img src="<?php echo $hotel['image']; ?>" alt="<?php echo $hotel['nom']; ?>" width="300" height="150" />
-                                </div>
-                            </li>
-                            <?php endforeach; ?>
-                        </ul>
-
                     <label for="departure">Departure Date:</label>
                     <input type="date" id="departure" name="departure" required>
 
