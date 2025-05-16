@@ -88,7 +88,7 @@ $duree_vol = $selected_voyage['duree'];
                 <div class="details">
                     <h3><?= $selected_voyage['ville'] . ', ' . $selected_voyage['pays'] ?></h3>
                     <p><strong>Activities:</strong> <?= $packs[$selected_voyage['pack']] ?? 'Not defined' ?></p>
-                    <p><strong>Price:</strong> <?= $selected_voyage['prix'] ?> €</p>
+                    <p><strong>Price:</strong> <?= $selected_voyage['prix'] ?></p>
 
                     <h4>Recommended Hotels :</h4>
                         <ul>
