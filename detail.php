@@ -85,6 +85,20 @@ $duree_vol = $selected_voyage['duree'];
                 <div class="image">
                     <img src="<?= $selected_voyage['image'] ?>" alt="Trip Image">
                 </div>
+                <h4>Recommended Hotels :</h4>
+                <ul>
+                    <?php foreach ($selected_voyage['hotels'] as $hotel): ?>
+                        <li class="hotel-item">
+                             <div class="hotel-info">
+                                <strong><?php echo $hotel['nom']; ?></strong><br>
+                                <span><?php echo $hotel['prix']; ?>€</span>
+                            </div>
+                            <div class="hotel-image">
+                                <img src="<?php echo $hotel['image']; ?>" alt="<?php echo $hotel['nom']; ?>" width="300" height="150" />
+                            </div>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
                 <div class="details">
                     <h3><?= $selected_voyage['ville'] . ', ' . $selected_voyage['pays'] ?></h3>
                     <p><strong>Activities:</strong> <?= $packs[$selected_voyage['pack']] ?? 'Not defined' ?></p>

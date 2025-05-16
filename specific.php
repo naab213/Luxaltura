@@ -60,7 +60,7 @@ $voyages = [
         <div class="container">
             <h2>Search and Filters</h2>
             <form id="search">
-                <input type="text" placeholder="Search..." id="request" name="request">
+                <input type="text" placeholder="Search a country..." id="request" name="request">
                 <div class="field">
                     <label for="date">* Select a date to go:</label>
                     <input type="date" id="date" name="date" required min="<?php echo date('Y-m-d'); ?>">
