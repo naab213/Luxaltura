@@ -82,7 +82,8 @@ function displayVoyages(voyages){
 
     voyages.forEach(v => {
         const row = document.createElement("tr");
-        row.id = "line";
+        row.classList.add("line");
+
 
         row.style.cursor = "pointer";
 

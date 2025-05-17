@@ -166,7 +166,10 @@ input, select {
 }
 
 button {
+    white-space: nowrap;
+    min-width: 200px;
     width: 100%;
+    display: inline-block;
     padding: 12px;
     margin: 10px 0;
     background: #5A4D4D;
@@ -606,4 +609,36 @@ footer .footer-container {
 
 .cart:hover .cart-count {
     color: #F5F5F5;
+}
+
+
+#results-section {
+    display: none;
+    padding: 20px;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+#search-results {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#search-results tr.line {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background-color 0.3s ease;
+    width: 90%;
+    margin: 10px auto;
+}
+
+#search-results tr.line:hover {
+    background-color: #817575;
 }
