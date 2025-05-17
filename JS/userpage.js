@@ -88,3 +88,33 @@ function logout(){
             console.error('Error during logout:', error);
         });
 }
+
+document.getElementById('profileForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const data = {
+        lastname: document.getElementById('lastname').value,
+        name: document.getElementById('name').value,
+        age: document.getElementById('age').value,
+        email: document.getElementById('email').value,
+        pw: document.getElementById('pw').value
+    };
+
+    const response = await fetch('update_profile.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    });
+
+    const result = await response.json();
+
+    if (result.success) {
+        alert('Profil upadte !');
+        // Optionnel : désactive les champs à nouveau
+        document.querySelectorAll('#profileForm input').forEach(input => input.disabled = true);
+    } else {
+        alert('error : ' + result.error);
+        // Optionnel : recharger les anciennes valeurs si besoin
+        window.location.reload();
+    }
+});

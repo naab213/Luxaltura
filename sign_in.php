@@ -32,10 +32,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 break;
                             }
 
-                            $_SESSION['user_email'] = $email;
+                            $_SESSION['user_email'] = $user['email'];
                             $_SESSION['user_name'] = $user['name'];
                             $_SESSION['user_lastname'] = $user['lastname'];
                             $_SESSION['user_age'] = $user['age'];
+                            if (isset($user['role'])) {
+                                $_SESSION['role'] = $user['role'];
+                            } else {
+                                unset($_SESSION['role']);
+                            }
 
                             $tempDir = 'dataJSON/temp/';
                             if (!is_dir($tempDir)) {
@@ -112,7 +117,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <?php if (isset($error)): ?>
             <p class="error-message"><?php echo $error; ?></p>
         <?php endif; ?>
-        <form id="signin" action="sign_in.php" method="post";>
+        <form id="signin" action="sign_in.php" method="post" ;>
             <div class="input-box">
                 <input type="email" name="email" placeholder="Email" id="email" required maxlength="50" data-counter="email-counter">
                 <i class="uil uil-envelope icon"></i>

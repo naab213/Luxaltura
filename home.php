@@ -1,15 +1,14 @@
-<?php require_once 'init.php';?>
-<?php include 'header.php'; ?>
+<?php require_once 'init.php';
+include 'header.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8" />
     <?php
-    if(isset($_COOKIE['mode']) && $_COOKIE['mode'] === 'clair'){
+    if (isset($_COOKIE['mode']) && $_COOKIE['mode'] === 'clair') {
         echo '<link rel="stylesheet" href="style2.css" />';
-    }
-    else{
+    } else {
         echo '<link rel="stylesheet" href="style.css" />';
     }
     ?>
@@ -27,6 +26,9 @@
                 <!-- Afficher ces liens si l'utilisateur est connecté -->
                 <a href="userpage.php" title="My Account">My Account</a>
                 <a href="logout.php" title="Log out">Log out</a>
+                <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+                    <a href="admin_page.php" title="Admin">Admin</a>
+                <?php endif; ?>
             <?php else: ?>
                 <!-- Afficher ces liens si l'utilisateur n'est pas connecté -->
                 <a href="sign_in.php" title="Sign in">Sign in</a>
