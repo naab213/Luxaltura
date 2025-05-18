@@ -1,120 +1,94 @@
-let originalValues = {}; 
-let isModified = false; 
+const originalValues = {};
 
-function editField(id) {
-    const input = document.getElementById(id);
-    const cancelBtn = input.parentElement.querySelector('.cancel-btn');
-
-    input.disabled = false;
-    cancelBtn.classList.add('show'); 
-
-    document.getElementById('submitBtn').style.display = "block";
-}
-
-function cancelEdit(id) {
-    const input = document.getElementById(id);
-    const cancelBtn = input.parentElement.querySelector('.cancel-btn');
-
-    input.disabled = true;
-    cancelBtn.classList.remove('show'); 
-
- 
-    const anyEditing = Array.from(document.querySelectorAll('.field input')).some(inp => !inp.disabled);
-
-    if(!anyEditing){
-        document.getElementById('submitBtn').style.display = "none";
+function editField(fieldId) {
+    const field = document.getElementById(fieldId);
+    if (!originalValues[fieldId]) {
+        originalValues[fieldId] = field.value;
     }
+
+    field.disabled = false;
+    field.classList.add('editable');
+
+    const val = field.value;
+    field.focus();
+    field.value = '';
+    field.value = val;
+
+    const cancelBtn = field.parentElement.querySelector('.cancel-btn');
+    if (cancelBtn) cancelBtn.style.display = 'inline-block';
 }
 
+function cancelEdit(fieldId) {
+    const field = document.getElementById(fieldId);
+    field.value = originalValues[fieldId] || field.value;
+    field.disabled = true;
+    field.classList.remove('editable');
 
-function toggleSubmitButton() {
-    const submitBtn = document.getElementById("submitBtn");
-    submitBtn.style.display = isModified ? "block" : "none";
-}
+    const cancelBtn = field.parentElement.querySelector('.cancel-btn');
+    if (cancelBtn) cancelBtn.style.display = 'none';
 
-function checkIfModified() {
-    isModified = Object.keys(originalValues).some(fieldId => {
-        const field = document.getElementById(fieldId);
-        return field.value !== originalValues[fieldId];
-    });
-
-    toggleSubmitButton();
-}
-
-function edit(fieldId){
-    const inputField = document.getElementById(fieldId);
-    inputField.disabled = !inputField.disabled;
-}
-
-function updateForm(){
-    const fields = {
-        lastname: document.getElementById('lastname').value,
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
-        age: document.getElementById('age').value,
-        password: document.getElementById('pw').value
-    };
-
-    fetch('update_user.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(fields)
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            alert('Profile updated successfully!');
-        } else {
-            alert('Error updating profile: ' + data.message);
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('An error occurred while updating the profile.');
-    });
-
-    const inputFields = document.querySelectorAll('input');
-    inputFields.forEach(field => field.disabled = true);
-}
-
-function logout(){
-    fetch('logout.php', { method: 'POST' })
-        .then(() => {
-            window.location.href = 'sign_in.php';
-        })
-        .catch(error => {
-            console.error('Error during logout:', error);
-        });
+    delete originalValues[fieldId];
 }
 
 document.getElementById('profileForm').addEventListener('submit', async function(e) {
     e.preventDefault();
 
-    const data = {
-        lastname: document.getElementById('lastname').value,
-        name: document.getElementById('name').value,
-        age: document.getElementById('age').value,
-        email: document.getElementById('email').value,
-        pw: document.getElementById('pw').value
+    const fields = {
+        lastname: document.getElementById('lastname'),
+        name: document.getElementById('name'),
+        age: document.getElementById('age'),
+        email: document.getElementById('email'),
+        pw: document.getElementById('pw')
     };
 
-    const response = await fetch('update_profile.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
+    Object.values(fields).forEach(field => {
+        field.disabled = true;
+        field.classList.add('loading');
     });
 
-    const result = await response.json();
+    const submitBtn = document.getElementById('submitBtn');
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Updating...';
 
-    if (result.success) {
-        alert('Profil upadte !');
-        // Optionnel : désactive les champs à nouveau
-        document.querySelectorAll('#profileForm input').forEach(input => input.disabled = true);
-    } else {
-        alert('error : ' + result.error);
-        // Optionnel : recharger les anciennes valeurs si besoin
+    const dataToSend = {
+        lastname: fields.lastname.value,
+        name: fields.name.value,
+        age: fields.age.value,
+        email: fields.email.value,
+        pw: fields.pw.value
+    };
+
+    try {
+        const response = await fetch('update_profile.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(dataToSend)
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            alert('Profil mis à jour !');
+            Object.values(fields).forEach(field => {
+                field.classList.remove('loading');
+                field.disabled = true;
+            });
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = 'Update';
+            fields.pw.value = '';
+        } else {
+            alert('Erreur : ' + result.error);
+            window.location.reload();
+        }
+    } catch (err) {
+        console.error('Erreur:', err);
+        alert('Erreur lors de la mise à jour.');
         window.location.reload();
     }
 });
+
+function logout() {
+    if (confirm("Voulez-vous vraiment vous déconnecter ?")) {
+        window.location.href = "logout.php";
+    }
+}
