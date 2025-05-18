@@ -31,26 +31,7 @@
                     <th>Action</th>
                 </tr>
             </thead>
-            <tbody>
-                <?php
-                    $jsonPath = 'dataJSON/user_data.json';
-                    $jsonData = file_get_contents($jsonPath);
-
-                    $users = json_decode($jsonData, true);
-
-                    foreach ($users as $user) {
-                                echo "<tr>";
-                                echo "<td>" . htmlspecialchars($user['lastname']) . "</td>";
-                                echo "<td>" . htmlspecialchars($user['name']) . "</td>";
-                                echo "<td>" . htmlspecialchars($user['email']) . "</td>";
-                                echo "<td>" . htmlspecialchars($user['age']) . "</td>";
-                                echo "<td>
-                                        <button onclick=\"simulateUpdate(this)\">Modifier</button>
-                                        <button onclick=\"cancelUser(this)\">Supprimer</button>
-                                      </td>";
-                                echo "</tr>";
-                            }
-                ?>
+            <tbody id="userTableBody">
             </tbody>
         </table>
     </section>
