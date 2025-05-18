@@ -73,4 +73,31 @@ document.addEventListener("DOMContentLoaded", () => {
             console.error("Failed to load voyage data:", err);
             alert("Unable to load trip details.");
         });
+
+    const addToCartForm = document.getElementById("addToCartForm");
+    if (addToCartForm) {
+        addToCartForm.addEventListener("submit", function (e) {
+            // Récupère les valeurs sélectionnées
+            const hotelSelect = document.querySelector("select[name='hotel']");
+            const activityContainers = document.querySelectorAll("select[name='activites[]']");
+            const selectedHotel = hotelSelect ? hotelSelect.value : "";
+            const selectedActivities = Array.from(activityContainers).map(sel => sel.value);
+
+            // Calcul du total (adapte selon ton besoin)
+            let total = 0;
+            const basePrice = parseFloat(document.querySelector("input[name='base_price']").value) || 0;
+            total += basePrice;
+            const hotelOption = hotelSelect && hotelSelect.selectedOptions[0];
+            if (hotelOption) total += parseFloat(hotelOption.dataset.price) || 0;
+            activityContainers.forEach(sel => {
+                const opt = sel.selectedOptions[0];
+                if (opt) total += parseFloat(opt.dataset.price) || 0;
+            });
+
+            // Remplit les champs cachés
+            document.getElementById("selected_hotel").value = selectedHotel;
+            document.getElementById("selected_activities").value = JSON.stringify(selectedActivities);
+            document.getElementById("hidden_total_price").value = total;
+        });
+    }
 });
